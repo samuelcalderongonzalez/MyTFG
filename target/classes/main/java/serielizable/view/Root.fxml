@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../general.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="concesionario.view.ControllerRootJefe">
+   <top>
+      <MenuBar prefWidth="1080.0" styleClass="menubar" stylesheets="@../general.css" useSystemMenuBar="true" BorderPane.alignment="CENTER">
+         <menus>
+         <Menu mnemonicParsing="false" text="Inicio">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleRoot" text="Inicio" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Resumen Ventas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleResumen" text="Resumen" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Stock">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleStock" text="Stock" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ajustes">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleSalir" text="Salir" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

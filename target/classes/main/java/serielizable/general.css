@@ -1,0 +1,82 @@
+/* border-radius: 10; */
+/* backdrop-color: #cf8ba3; */
+/* card-background-color: #fafafa; */
+/* pill-editable-background-color: #e5cdc8; */
+/* pill-background-color: #d0d0d0; */
+/* btn-create-color: #cf8ba3; */
+/* btn-cancel-background: #595358; */
+/* btn-back-background: #d9d9d9; */
+/* menubar-background: #946f7d; */
+/* breadcrumb-background: #82495d; */
+
+.body{
+    -fx-background-color: #cf8ba3;
+}
+
+.menubar{
+    -fx-background-color: #2e51d1;
+}
+
+.context-menu{
+    -fx-background-color: #946f7d;
+}
+
+.menubar .label{
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+}
+
+.breadcrumb{
+    -fx-background-color: #82495d;
+}
+
+.card{
+    -fx-border-radius: 10;
+    -fx-background-color: #fafafa;
+}
+
+.pill{
+    -fx-border-radius: 10;
+    -fx-font-size: 24px;
+    -fx-background-color: #d0d0d0;
+}
+
+.pill .label{
+    -fx-font-size: 24px;
+}
+
+.pill-editable{
+    -fx-background-color: #e5cdc8;
+}
+
+.btn{
+    -fx-font-size: 24px;
+}
+
+.btn-create{
+    -fx-background-color: #cf8ba3;
+}
+
+.btn-back{
+    -fx-background-color: #595358;
+    -fx-text-fill: white;
+}
+
+.btn-cancel{
+    -fx-background-color: #d9d9d9;
+}
+
+.table-view .column-header, .table-view .filler{
+    -fx-background-color: #cf8ba3;
+}
+
+.table-row-cell{
+	-fx-cell-size: 30px;
+    -fx-border-color: transparent;
+    -fx-padding: 0 0 0;
+}
+
+.table-row-cell .button{
+    -fx-background-color: #cf8ba3;
+    -fx-padding: 0 0 0;
+}
