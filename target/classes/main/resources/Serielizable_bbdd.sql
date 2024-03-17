@@ -11,26 +11,44 @@ create table User(
 );
 -- rollback: 'drop table User;' --
 
-create table Footage(
-	id varchar(50) primary key,
+create table Film(
+	id int primary key,
     user_id int references user(id),
     title varchar(50) NOT NULL,
-    type varchar(50), -- Enumerado EJ: (Film, Series, Short, etc) --
     status varchar(50), -- Enumerado EJ (Completed, Watching, On-Hold, Dropped, Plan to watch)
     review text, -- Dato subjetivo del usuario -- 
-    score int check (score >= 0 AND score <= 10), -- Dato subjetivo del usuario -- 
+    score decimal check (score >= 0 AND score <= 10),
+    personal_score decimal check (personal_score >= 0 AND personal_score <= 10), -- Dato subjetivo del usuario --
+    synopsis text,
     release_date date,
     completed_date date,
     last_update_date date,
     genres varchar(100),
-    episodes int,
-    duration int
+    duration int  -- En minutos --
 );
--- rollback: 'drop table Footage;'
+-- rollback: 'drop table Film;'
 
-INSERT INTO Footage VALUES ("IDPRUEBA", 1, "Breaking bad", "Series", "Completed", "", 9, null, null, null, "Action, Drama", 24, 40);
-INSERT INTO Footage VALUES ("IDPRUEBA2", 1, "Big Bang Theory", "Series", "Completed", "", 7, null, null, null, "Comedia", 24, 20);
-INSERT INTO Footage VALUES ("IDPRUEBA3", 1, "One punch man", "Series", "Completed", "", 4, null, null, null, "Action", 12, 20);
-
-
-
+create table Serie(
+	id int primary key,
+    user_id int references user(id),
+    title varchar(50) NOT NULL,
+    status varchar(50), -- Enumerado EJ (Completed, Watching, On-Hold, Dropped, Plan to watch)
+    review text, -- Dato subjetivo del usuario -- 
+    score decimal check (score >= 0 AND score <= 10),
+    personal_score decimal check (personal_score >= 0 AND personal_score <= 10), -- Dato subjetivo del usuario --
+    synopsis text,
+    release_date date,
+    completed_date date,
+    last_update_date date,
+    genres varchar(100),
+    duration_per_episode int, -- En minutos --
+    total_episodes int,
+    current_episodes int
+);
+-- rollback: 'drop table Serie;'
+-- INSERT INTO USER VALUES(1, "Admin", "Admin123@");
+-- INSERT INTO FILM VALUES (1, 1, "PeliPrueba", "Completed", null, null, null, null, null, null, null, null, null);
+-- INSERT INTO SERIE VALUES (1, 1, "SeriePrueba", "Completed", null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO USER VALUES(1, "Admin", "Admin123@");
+INSERT INTO FILM VALUES (1, 1, "PeliPrueba", "Completed", null, null, null, null, null, null, null, null, null);
+INSERT INTO SERIE VALUES (1, 1, "SeriePrueba", "Completed", null, null, null, null, null, null, null, null, null, null, null);
