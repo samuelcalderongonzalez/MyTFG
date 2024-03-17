@@ -3,24 +3,27 @@ package serielizable;
 import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
-import serielizable.SerielizableApp;
-//import dao.utils.HibernateUtils;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import utils.APILibrary;
 import utils.AbstractController;
 import utils.HibernateUtils;
 
-public class SerielizableApp extends Application implements CAPPI{
+public class SerielizableApp extends Application implements CAPPI {
 	private Stage primaryStage;
 	// Window elements
 	private AnchorPane loginLayout;
 	private BorderPane rootLayout;
+	private static APILibrary api;
 
 	public static void main(String[] args) throws ClientProtocolException, IOException {
+		api = new APILibrary();
+		api.searchFilmByTitle("Matrix");
 		launch(args);
 	}
 
@@ -33,16 +36,16 @@ public class SerielizableApp extends Application implements CAPPI{
 		});
 		HibernateUtils.getSession();
 		initLoginLayout();
-		
+
 	}
-	
+
 	/**
 	 * This method launches the first stage
 	 */
 	private void initLoginLayout() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			//Define the view
+			// Define the view
 			loader.setLocation(SerielizableApp.class.getResource("view/Login.fxml"));
 			loginLayout = (AnchorPane) loader.load();
 			// Define and load the scene
@@ -50,14 +53,14 @@ public class SerielizableApp extends Application implements CAPPI{
 			// Load and show the scene
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
+
 			AbstractController controlador = loader.getController();
 			controlador.setMainApp(this);
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	
+
 	}
 
 	public BorderPane getPrimaryStage() {

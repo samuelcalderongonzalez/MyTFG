@@ -4,17 +4,23 @@ import java.util.List;
 
 import serielizable.CAPPI;
 import serielizable.entity.User;
-import serielizable.entity.Footage;
-import serielizable.repository.FootageRepository;
+import serielizable.entity.Film;
+import serielizable.entity.Serie;
+import serielizable.repository.FilmRepository;
+import serielizable.repository.SerieRepository;
 import serielizable.repository.UserRepository;
 
 public abstract class AbstractController {
 	public UserRepository userRepository = new UserRepository();
-	public FootageRepository footageRepository = new FootageRepository();
+	public FilmRepository filmRepository = new FilmRepository();
+	public SerieRepository serieRepository = new SerieRepository();
+
 	public Constants constants;
 	public CAPPI cApp;
 	public static User currentUser;
-	public static List<Footage> currentFootages;
+	public static List<Film> currentFilms;
+	public static List<Serie> currentSeries;
+
 
 	/**
 	 * Llamada por la aplicacion principal, creando una referencia entre la

@@ -143,7 +143,8 @@ public class ControllerLogin extends AbstractController {
 					if (user.getPassword().equals(passwordFieldViewable.getText())) {
 						// Save the user
 						currentUser = user;
-						currentFootages = footageRepository.getAllByUserId(currentUser.getId());
+						currentFilms = filmRepository.getAllByUserId(currentUser.getId());
+						currentSeries = serieRepository.getAllByUserId(currentUser.getId());
 						return true;
 					} 
 					// If the credentials don´t match:
@@ -175,7 +176,8 @@ public class ControllerLogin extends AbstractController {
 					if (user.getPassword().equals(passwordField.getText())) {
 						// Save the user
 						currentUser = user;
-						currentFootages = footageRepository.getAllByUserId(currentUser.getId());
+						currentFilms = filmRepository.getAllByUserId(currentUser.getId());
+						currentSeries = serieRepository.getAllByUserId(currentUser.getId());
 						return true;
 					} 
 					// If the credentials don´t match:

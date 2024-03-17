@@ -5,31 +5,30 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import serielizable.entity.Footage;
+import serielizable.entity.Film;
 import utils.AbstractController;
 
 public class ControllerMainApp extends AbstractController {
 
-	private ObservableList<Footage> footages;
+	private ObservableList<Film> films;
 
 	@FXML
-	private TableView<Footage> tableFootage;
+	private TableView<Film> tableFootage;
 	@FXML
-	private TableColumn<Footage, String> tcTitle;
+	private TableColumn<Film, String> tcTitle;
 	@FXML
-	private TableColumn<Footage, String> tcStatus;
+	private TableColumn<Film, String> tcStatus;
 	@FXML
-	private TableColumn<Footage, String> tcProgress;
+	private TableColumn<Film, String> tcProgress;
 	@FXML
-	private TableColumn<Footage, String> trvBeneficio;
+	private TableColumn<Film, String> trvBeneficio;
 
 	@FXML
 	public void initialize() {
-		footages = FXCollections.observableArrayList(currentFootages);
+		films = FXCollections.observableArrayList(currentFilms);
 		tcTitle.setCellValueFactory(param -> param.getValue().getSPTitle());
 		tcStatus.setCellValueFactory(param -> param.getValue().getSPStatus());
-		tcProgress.setCellValueFactory(param -> param.getValue().getSPProgress());
-		tableFootage.setItems(footages);
+		tableFootage.setItems(films);
 
 	}
 
@@ -37,6 +36,11 @@ public class ControllerMainApp extends AbstractController {
 	public void logOff() {
 		currentUser = null;
 		setView("Login");
+	}
+	
+	@FXML
+	public void search() {
+		setView("Search");
 	}
 	
 	public ControllerMainApp () {

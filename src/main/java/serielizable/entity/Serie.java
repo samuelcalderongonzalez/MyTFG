@@ -4,71 +4,71 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import javafx.beans.property.SimpleStringProperty;
 
 @Entity
-@Table(name = "Footage")
-public class Footage  {
+@Table(name = "Serie")
+public class Serie {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	private String id;
+	private Integer id;
 
 	@Column(name = "user_id")
-	private int userId;
-	
+	private Integer userId;
+
 	@Column(name = "title")
 	private String title;
-	
-	@Column(name = "type")
-	private String type; // TODO Pendiente de enum
-	
+
 	@Column(name = "status")
 	private String status; // TODO Pendiente de enum
 
 	@Column(name = "review")
 	private String review;
-	
+
 	@Column(name = "score")
-	private int score;
-	
+	private Double score;
+
+	@Column(name = "personal_score")
+	private Double personalScore;
+
 	@Column(name = "release_date")
 	private Date releaseDate;
-	
+
 	@Column(name = "completed_date")
 	private Date completedDate;
-	
+
 	@Column(name = "last_update_date")
 	private Date lastUpdateDate;
-	
-	@Column(name = "genres")
-	private String genres; //TODO darle una vuelta a esto
-	
-	@Column(name = "episodes")
-	private Integer episodes;
-	
-	@Column(name = "duration")
-	private int duration;
 
-	public String getId() {
+	@Column(name = "genres")
+	private String genres; // TODO darle una vuelta a esto
+
+	@Column(name = "total_episodes")
+	private Integer totalEpisodes;
+
+	@Column(name = "current_episodes")
+	private Integer currentEpisodes;
+
+	@Column(name = "duration_per_episode")
+	private Integer duration;
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
@@ -78,14 +78,6 @@ public class Footage  {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public String getStatus() {
@@ -104,12 +96,20 @@ public class Footage  {
 		this.review = review;
 	}
 
-	public int getScore() {
+	public Double getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Double score) {
 		this.score = score;
+	}
+
+	public Double getPersonalScore() {
+		return personalScore;
+	}
+
+	public void setPersonalScore(Double personalScore) {
+		this.personalScore = personalScore;
 	}
 
 	public Date getReleaseDate() {
@@ -144,52 +144,65 @@ public class Footage  {
 		this.genres = genres;
 	}
 
-	public int getEpisodes() {
-		return episodes;
+	public Integer getTotalEpisodes() {
+		return totalEpisodes;
 	}
 
-	public void setEpisodes(int episodes) {
-		this.episodes = episodes;
+	public void setEpisodes(Integer totalEpisodes) {
+		this.totalEpisodes = totalEpisodes;
 	}
 
-	public int getDuration() {
+	public Integer getCurrentEpisodes() {
+		return currentEpisodes;
+	}
+
+	public void setCurrentEpisodes(Integer currentEpisodes) {
+		this.currentEpisodes = currentEpisodes;
+	}
+
+	public Integer getDuration() {
 		return duration;
 	}
 
-	public void setDuration(int duration) {
+	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
 
-	public Footage(int userId, String title, String type, String status, String review, int score,
-			Date releaseDate, Date completedDate, Date lastUpdateDate, String genres, int episodes, int duration) {
+	public Serie(Integer id, Integer userId, String title, String type, String status, String review, Double score,
+			Double personalScore, Date releaseDate, Date completedDate, Date lastUpdateDate, String genres,
+			Integer totalEpisodes, Integer currentEpisodes, Integer duration) {
+		this.id = id;
 		this.userId = userId;
 		this.title = title;
-		this.type = type;
 		this.status = status;
 		this.review = review;
 		this.score = score;
+		this.personalScore = personalScore;
 		this.releaseDate = releaseDate;
 		this.completedDate = completedDate;
 		this.lastUpdateDate = lastUpdateDate;
 		this.genres = genres;
-		this.episodes = episodes;
+		this.totalEpisodes = totalEpisodes;
+		this.currentEpisodes = currentEpisodes;
 		this.duration = duration;
 	}
-	public Footage() {
-		
+
+	public Serie() {
+
 	}
-	
+
 	public SimpleStringProperty getSPTitle() {
 		return new SimpleStringProperty(title);
 	}
-	
+
 	public SimpleStringProperty getSPStatus() {
 		return new SimpleStringProperty(status);
 	}
-	
+
 	public SimpleStringProperty getSPProgress() {
-		return new SimpleStringProperty(episodes.toString());
+		if (currentEpisodes > totalEpisodes)
+			setCurrentEpisodes(totalEpisodes);
+		return new SimpleStringProperty(currentEpisodes.toString() + "/" + totalEpisodes.toString());
 	}
-	
-	
+
 }
