@@ -13,29 +13,26 @@ import utils.Constants;
 
 public class ControllerRegister extends AbstractController {
 
-	private final String pattern = "^(?=.*[0-9])"
-            + "(?=.*[a-z])(?=.*[A-Z])"
-            + "(?=.*[@#$%^&+=])"
-            + "(?=\\S+$).{8,20}$";
+	private final String pattern = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$";
 
 	@FXML
 	private TextField userNameTextField;
 
 	@FXML
 	private PasswordField firstPasswordField;
-	
+
 	@FXML
 	private TextField passwordFieldViewable;
-	
+
 	@FXML
 	private Button passwordViewButton;
 
 	@FXML
 	private PasswordField repeatPasswordField;
-	
+
 	@FXML
 	private TextField repeatPasswordFieldViewable;
-	
+
 	@FXML
 	private Button repeatPasswordViewButton;
 
@@ -63,29 +60,30 @@ public class ControllerRegister extends AbstractController {
 
 	@FXML
 	public void handleRegister() {
-		if(passwordIsVisible) {
+		if (passwordIsVisible) {
 			changePasswordVisivility();
 		}
-		if(repeatPasswordIsVisible) {
+		if (repeatPasswordIsVisible) {
 			changeRepeatPasswordVisivility();
 		}
 		// If everything is filled:
-		if (!userNameTextField.getText().isEmpty() && !firstPasswordField.getText().isEmpty() && !repeatPasswordField.getText().isEmpty()) {
+		if (!userNameTextField.getText().isEmpty() && !firstPasswordField.getText().isEmpty()
+				&& !repeatPasswordField.getText().isEmpty()) {
 			// If the username is not used yet:
 			if (!userRepository.exists(userNameTextField.getText())) {
 				// If both passwords are the same then:
 				if (firstPasswordField.getText().equals(repeatPasswordField.getText())) {
 					// If the password matches some rules:
-					if(firstPasswordField.getText().matches(pattern)) {
+					if (firstPasswordField.getText().matches(pattern)) {
 						// Create a new user
 						userRepository.insertUser(new User(userNameTextField.getText(), firstPasswordField.getText()));
-											// And get back to the login screen
-											setView("Login");
-					}else {
+						// And get back to the login screen
+						setViewLogin();
+					} else {
 						// Warn the user about it
 						System.err.println(Constants.REGEX_ERROR);
 					}
-				} 
+				}
 				// If the passwords are not the same:
 				else {
 					// Warn the user about it
@@ -104,7 +102,7 @@ public class ControllerRegister extends AbstractController {
 			System.err.println(Constants.USER_AND_PASSWORD_EMPTY);
 		}
 	}
-	
+
 	/**
 	 * This method resizes the password visibility button image
 	 */
@@ -114,7 +112,7 @@ public class ControllerRegister extends AbstractController {
 		// Load the image into the button
 		passwordViewButton.setGraphic(imageView);
 	}
-	
+
 	/**
 	 * This method resizes the password visibility button image
 	 */
@@ -124,46 +122,46 @@ public class ControllerRegister extends AbstractController {
 		// Load the image into the button
 		repeatPasswordViewButton.setGraphic(imageView);
 	}
-	
+
 	/**
 	 * This method changes the password visibility button image
 	 */
 	private void setPasswordImage() {
-		if(!passwordIsVisible) {
+		if (!passwordIsVisible) {
 			// Change the image of the button
 			imageView = new ImageView(showPasswordImg);
 			resizePasswordImage();
-		}else {
+		} else {
 			// Change the image of the button
 			imageView = new ImageView(hidePasswordImg);
 			resizePasswordImage();
 		}
-		
+
 	}
-	
+
 	/**
 	 * This method changes the password visibility button image
 	 */
 	private void setRepeatPasswordImage() {
-		if(!repeatPasswordIsVisible) {
+		if (!repeatPasswordIsVisible) {
 			// Change the image of the button
 			imageView = new ImageView(showPasswordImg);
 			resizeRepeatPasswordImage();
-		}else {
+		} else {
 			// Change the image of the button
 			imageView = new ImageView(hidePasswordImg);
 			resizeRepeatPasswordImage();
 		}
-		
+
 	}
-	
+
 	@FXML
 	/**
 	 * This method changed the password visibility
 	 */
 	private void changePasswordVisivility() {
 		// If the password is not visible:
-		if(!passwordIsVisible) {
+		if (!passwordIsVisible) {
 			// Set the normal textfield available
 			passwordFieldViewable.setVisible(true);
 			passwordFieldViewable.setDisable(false);
@@ -192,14 +190,14 @@ public class ControllerRegister extends AbstractController {
 			setPasswordImage();
 		}
 	}
-	
+
 	@FXML
 	/**
 	 * This method changed the password visibility
 	 */
 	private void changeRepeatPasswordVisivility() {
 		// If the password is not visible:
-		if(!repeatPasswordIsVisible) {
+		if (!repeatPasswordIsVisible) {
 			// Set the normal textfield available
 			repeatPasswordFieldViewable.setVisible(true);
 			repeatPasswordFieldViewable.setDisable(false);
@@ -234,6 +232,6 @@ public class ControllerRegister extends AbstractController {
 	 * This method returns you back to the login view
 	 */
 	public void handleBack() {
-		setView("Login");
+		setViewLogin();
 	}
 }

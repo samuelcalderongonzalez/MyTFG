@@ -55,6 +55,21 @@ public class Serie {
 
 	@Column(name = "duration_per_episode")
 	private Integer duration;
+	
+	@Column(name = "synopsis")
+	private String synopsis;
+
+	public String getSynopsis() {
+		return synopsis;
+	}
+
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
+
+	public void setTotalEpisodes(Integer totalEpisodes) {
+		this.totalEpisodes = totalEpisodes;
+	}
 
 	public Integer getId() {
 		return id;
@@ -170,7 +185,7 @@ public class Serie {
 
 	public Serie(Integer id, Integer userId, String title, String type, String status, String review, Double score,
 			Double personalScore, Date releaseDate, Date completedDate, Date lastUpdateDate, String genres,
-			Integer totalEpisodes, Integer currentEpisodes, Integer duration) {
+			Integer totalEpisodes, Integer currentEpisodes, Integer duration, String synopsis) {
 		this.id = id;
 		this.userId = userId;
 		this.title = title;
@@ -185,6 +200,7 @@ public class Serie {
 		this.totalEpisodes = totalEpisodes;
 		this.currentEpisodes = currentEpisodes;
 		this.duration = duration;
+		this.synopsis = synopsis;
 	}
 
 	public Serie() {
@@ -204,5 +220,11 @@ public class Serie {
 			setCurrentEpisodes(totalEpisodes);
 		return new SimpleStringProperty(currentEpisodes.toString() + "/" + totalEpisodes.toString());
 	}
-
+	public void addGenre(String genre) {
+		if(this.genres == null) {
+			genres = genre;
+		} else {
+			genres = genres + ", " + genre;
+		}
+	}
 }

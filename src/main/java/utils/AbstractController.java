@@ -18,6 +18,8 @@ public abstract class AbstractController {
 	public Constants constants;
 	public CAPPI cApp;
 	public static User currentUser;
+	public static Film currentFilm;
+	public static Serie currentSerie;
 	public static List<Film> currentFilms;
 	public static List<Serie> currentSeries;
 
@@ -44,6 +46,34 @@ public abstract class AbstractController {
 	 */
 	public void setView(String vista) {
 		cApp.setView("view/" + vista + ".fxml");
+	}
+	
+	public void setViewFilm() {
+		setView("Film");
+	}
+	
+	public void setViewLogin() {
+		setView("Login");
+	}
+	
+	public void setViewRegister() {
+		setView("Register");
+	}
+	
+	public void setViewSearch() {
+		setView("Search");
+	}
+	
+	public void setViewEditFilm() {
+		setView("EditFilm");
+	}
+	
+	public void setViewAddFilm() {
+		setView("AddFilm");
+	}
+	
+	public void setViewAddSerie() {
+		setView("AddSerie");
 	}
 
 }

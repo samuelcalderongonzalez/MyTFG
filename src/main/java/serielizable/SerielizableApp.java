@@ -23,6 +23,8 @@ public class SerielizableApp extends Application implements CAPPI {
 
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		api = new APILibrary();
+//		api.searchSerieRuntime(1396);
+		api.searchSerieByTitle("Breaking Bad");
 		api.searchFilmByTitle("Matrix");
 		launch(args);
 	}

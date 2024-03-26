@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import javafx.beans.property.SimpleStringProperty;
+import utils.DateUtils;
 
 @Entity
 @Table(name = "Film")
@@ -49,6 +50,17 @@ public class Film {
 
 	@Column(name = "duration")
 	private Integer duration;
+	
+	@Column(name = "synopsis")
+	private String synopsis;
+
+	public String getSynopsis() {
+		return synopsis;
+	}
+
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
+	}
 
 	public Integer getId() {
 		return id;
@@ -83,7 +95,10 @@ public class Film {
 	}
 
 	public String getReview() {
-		return review;
+		if(review != null)
+			return review;
+		else
+			return null;
 	}
 
 	public void setReview(String review) {
@@ -99,7 +114,10 @@ public class Film {
 	}
 
 	public Double getPersonalScore() {
-		return personalScore;
+		if(personalScore != null)
+			return personalScore;
+		else
+			return null;
 	}
 
 	public void setPersonalScore(Double personalScore) {
@@ -148,7 +166,7 @@ public class Film {
 
 	public Film(Integer id, Integer userId, String title, String type, String status, String review, Double score,
 			Double personalScore, Date releaseDate, Date completedDate, Date lastUpdateDate, String genres,
-			Integer episodes, Integer duration) {
+			Integer episodes, Integer duration, String synopsis) {
 		this.id = id;
 		this.userId = userId;
 		this.title = title;
@@ -161,6 +179,7 @@ public class Film {
 		this.lastUpdateDate = lastUpdateDate;
 		this.genres = genres;
 		this.duration = duration;
+		this.synopsis = synopsis;
 	}
 
 	public Film() {
@@ -173,6 +192,40 @@ public class Film {
 
 	public SimpleStringProperty getSPStatus() {
 		return new SimpleStringProperty(status);
+	}
+	
+	public SimpleStringProperty getSPPersonalScore() {
+		if(personalScore != null)
+			return new SimpleStringProperty(personalScore.toString());
+		else
+			return new SimpleStringProperty("-");
+	}
+	
+	public SimpleStringProperty getSPReleaseDate() {
+		return new SimpleStringProperty(DateUtils.mapDateToString(releaseDate));
+	}
+	
+	public void addGenre(String genre) {
+		if(this.genres == null) {
+			genres = genre;
+		} else {
+			genres = genres + ", " + genre;
+		}
+	}
+
+	public SimpleStringProperty getSPDuration() {
+		int newDuration = duration;
+		Integer hour = 0;
+		while(newDuration - 60 >= 0) {
+			hour++;
+			newDuration = newDuration - 60;
+		}
+		String finalDuration = hour > 0 ? hour.toString() + "h " + newDuration + "min" : newDuration + "min";
+		return new SimpleStringProperty(finalDuration);
+	}
+
+	public SimpleStringProperty getSPScore() {
+		return new SimpleStringProperty(getScore().toString());
 	}
 
 }

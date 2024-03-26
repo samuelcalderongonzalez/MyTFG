@@ -10,4 +10,16 @@ public class SerieRepository extends AbstractRepository{
 	public List<Serie> getAllByUserId(int userId) {
 		return session.createQuery("from Serie where user_id = '" + userId + "'").list();
 	}
+	
+	public void insertSerie(Serie serie) {
+		try {
+			beginTransaction();
+			session.save(serie);
+			commitTransaction();
+			System.out.println("Serie registered succesfully");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerEditFilm">
+   <children>
+      <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" stylesheets="@../../../../../../concesionario/src/main/java/concesionario/general.css" AnchorPane.bottomAnchor="0.0">
+         <top>
+            <MenuBar prefHeight="40.0" prefWidth="1091.0" styleClass="menubar" stylesheets="@../../../../../../concesionario/src/main/java/concesionario/general.css" useSystemMenuBar="true" BorderPane.alignment="CENTER">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Películas">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Lists" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Series">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Lists" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Buscar">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#search" text="Search" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Desconectarse">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#logOff" text="Log off" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
+      <TextField fx:id="tfTitle" editable="false" prefHeight="37.0" prefWidth="367.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="120.0" />
+      <TextField fx:id="tfStatus" layoutX="10.0" layoutY="10.0" prefHeight="37.0" prefWidth="372.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="120.0" />
+      <TextField fx:id="tfReview" layoutX="20.0" layoutY="473.0" prefHeight="124.0" prefWidth="790.0" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="473.0" />
+      <Label prefHeight="28.0" prefWidth="312.0" text="Título" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="90.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="370.0" text="Estado" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="90.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="312.0" text="Reseña" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="440.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfReleaseDate" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="37.0" prefWidth="242.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0" />
+      <Label layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="312.0" text="Fecha de estreno" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="170.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfCompletedDate" editable="false" layoutX="20.0" layoutY="20.0" prefHeight="37.0" prefWidth="246.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="200.0" />
+      <Label layoutX="20.0" layoutY="20.0" prefHeight="28.0" prefWidth="137.0" text="Completado en" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="170.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="242.0" text="Eliminar" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="225.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="76.0" prefWidth="242.0" text="Guardar" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="225.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="76.0" prefWidth="78.0" text="&lt;" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="40.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tfGenres" editable="false" layoutX="20.0" layoutY="20.0" prefHeight="37.0" prefWidth="367.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="280.0" />
+      <TextField fx:id="tfScore" alignment="CENTER" editable="false" layoutX="30.0" layoutY="30.0" prefHeight="37.0" prefWidth="163.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="280.0" />
+      <TextField fx:id="tfPersonalScore" alignment="CENTER" layoutX="40.0" layoutY="40.0" prefHeight="37.0" prefWidth="161.0" AnchorPane.rightAnchor="358.0" AnchorPane.topAnchor="280.0" />
+      <Label layoutX="20.0" layoutY="20.0" prefHeight="28.0" prefWidth="312.0" text="Géneros" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="250.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="30.0" layoutY="30.0" prefHeight="28.0" prefWidth="152.0" text="Puntuación global" AnchorPane.rightAnchor="158.0" AnchorPane.topAnchor="250.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="40.0" prefHeight="28.0" prefWidth="126.0" text="Mi puntuación" AnchorPane.rightAnchor="392.0" AnchorPane.topAnchor="250.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfSynopsis" editable="false" layoutX="30.0" layoutY="365.0" prefHeight="80.0" prefWidth="790.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="360.0" />
+      <Label layoutX="30.0" layoutY="30.0" prefHeight="28.0" prefWidth="312.0" text="Sinopsis" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="325.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfDuration" editable="false" layoutX="30.0" layoutY="30.0" prefHeight="37.0" prefWidth="234.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="200.0" />
+      <Label layoutX="30.0" layoutY="30.0" prefHeight="28.0" prefWidth="157.0" text="Duración" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="170.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

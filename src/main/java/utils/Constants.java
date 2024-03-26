@@ -9,5 +9,8 @@ public class Constants {
 			+ "-Between 8 and 15 characters lenght/ln" + "-At least 1 mayus/ln" + "-At least 1 digit/ln"
 			+ "-At least 1 special character";
 	public static final String API_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYWYxMDc5ODI1OTg5ZjFjNzA5OGY4ZThhMDBjMWM5OCIsInN1YiI6IjY1ZjE3OTg0NDcwZWFkMDE3ZTljZmI1MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Z2CyzKVUW2KVrIGUhueKlVN8LXU-lAwydqbpAm-v9xU";
+	public static final String API_KEY = "0af1079825989f1c7098f8e8a00c1c98";
 	public static final String DATE_PATTERN = "yyyy-MM-dd";
+	public static final String STATUS_NULL_ERROR = "Status field can't be null";
+
 }

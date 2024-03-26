@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import serielizable.entity.Film;
+import serielizable.entity.Serie;
 import utils.APILibrary;
 import utils.AbstractController;
 
@@ -17,50 +18,99 @@ public class ControllerSearch extends AbstractController {
 	APILibrary api = new APILibrary();
 
 	List<Film> foundFilms;
-	@FXML
-	private Button searchButton;
-	
-	@FXML
-	private TextField searchTextField;
-	
-	private ObservableList<Film> films;
+
+	List<Serie> foundSeries;
 
 	@FXML
-	private TableView<Film> tableFootage;
+	private Button searchButton;
+
 	@FXML
-	private TableColumn<Film, String> tcTitle;
+	private TextField searchTextField;
+
+	private ObservableList<Film> films;
+
+	private ObservableList<Serie> series;
+
 	@FXML
-	private TableColumn<Film, String> tcRelease;
+	private TableView<Film> tableFilm;
 	@FXML
-	private TableColumn<Film, String> tcScore;
-	
+	private TableColumn<Film, String> tcFilmTitle;
+	@FXML
+	private TableColumn<Film, String> tcFilmRelease;
+	@FXML
+	private TableColumn<Film, String> tcFilmScore;
+
+	@FXML
+	private TableView<Serie> tableSerie;
+	@FXML
+	private TableColumn<Serie, String> tcSerieTitle;
+	@FXML
+	private TableColumn<Serie, String> tcSerieRelease;
+	@FXML
+	private TableColumn<Serie, String> tcSerieScore;
+
+	private boolean isFilm;
+
 	@FXML
 	public void initialize() {
 
 	}
 
-	
 	@FXML
 	public void logOff() {
 		currentUser = null;
-		setView("Login");
+		setViewLogin();
 	}
-	
+
 	@FXML
 	public void mainApp() {
-		setView("MainApp");
+		setViewFilm();
 	}
-	
+
 	@FXML
 	public void searchFilm() {
-		foundFilms = api.searchFilmByTitle(searchTextField.getText());	
+		isFilm = true;
+		foundFilms = api.searchFilmByTitle(searchTextField.getText());
 		films = FXCollections.observableArrayList(foundFilms);
 		populateTable();
 	}
-	
-	public void populateTable() {
-		tcTitle.setCellValueFactory(param -> param.getValue().getSPTitle());
-		tableFootage.setItems(films);
+
+	@FXML
+	public void searchSerie() {
+		isFilm = false;
+		foundSeries = api.searchSerieByTitle(searchTextField.getText());
+		series = FXCollections.observableArrayList(foundSeries);
+		populateTable();
+	}
+
+	private void populateTable() {
+		if (isFilm) {
+			tableSerie.setVisible(false);
+			tableFilm.setVisible(true);
+			tcFilmTitle.setCellValueFactory(param -> param.getValue().getSPTitle());
+			tcFilmRelease.setCellValueFactory(param -> param.getValue().getSPReleaseDate());
+			tcFilmScore.setCellValueFactory(param -> param.getValue().getSPScore());
+			tableFilm.setItems(films);
+			tableFilm.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2) {
+					currentFilm = tableFilm.getSelectionModel().getSelectedItem();
+					System.out.println(currentFilm);
+					setViewAddFilm();
+				}
+			});
+		} else {
+			tableFilm.setVisible(false);
+			tableSerie.setVisible(true);
+			tcSerieTitle.setCellValueFactory(param -> param.getValue().getSPTitle());
+			tableSerie.setItems(series);
+			tableSerie.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2) {
+					currentSerie = tableSerie.getSelectionModel().getSelectedItem();
+					System.out.println(currentSerie);
+					setViewAddSerie();
+				}
+			});
+		}
 	}
 
 }

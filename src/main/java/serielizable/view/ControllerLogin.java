@@ -51,7 +51,7 @@ public class ControllerLogin extends AbstractController {
 		// If the credentials are good:
 		if (checkAcceso()) 
 			// Go to the next view
-			setView("MainApp");
+			setViewFilm();
 		
 	}
 	
@@ -122,7 +122,7 @@ public class ControllerLogin extends AbstractController {
 	 * This method is used to change the view to the register one
 	 */
 	private void handleRegister() {
-		setView("Register");
+		setViewRegister();
 	}
 
 	@FXML
@@ -143,7 +143,6 @@ public class ControllerLogin extends AbstractController {
 					if (user.getPassword().equals(passwordFieldViewable.getText())) {
 						// Save the user
 						currentUser = user;
-						currentFilms = filmRepository.getAllByUserId(currentUser.getId());
 						currentSeries = serieRepository.getAllByUserId(currentUser.getId());
 						return true;
 					} 

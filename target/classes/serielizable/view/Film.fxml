@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerFilm">
+   <children>
+      <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" AnchorPane.rightAnchor="0.0">
+         <top>
+            <MenuBar prefHeight="40.0" prefWidth="1091.0" styleClass="menubar" useSystemMenuBar="true" BorderPane.alignment="CENTER">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Películas">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Lists" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Series">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Lists" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Buscar">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#search" text="Search" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Desconectarse">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#logOff" text="Log off" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
+      <TableView fx:id="tableFootage" layoutX="63.0" layoutY="202.0" prefHeight="478.0" prefWidth="595.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="445.0" AnchorPane.topAnchor="202.0">
+        <columns>
+          <TableColumn fx:id="tcTitle" prefWidth="174.0" text="Título" />
+          <TableColumn fx:id="tcStatus" prefWidth="118.0" text="Estado" />
+            <TableColumn fx:id="tcPersonalScore" prefWidth="95.0" text="Mi puntuación" />
+            <TableColumn fx:id="tcReleaseDate" prefWidth="103.0" text="Fecha estreno" />
+            <TableColumn fx:id="tcDuration" prefWidth="105.0" text="Duración" />
+        </columns>
+      </TableView>
+      <Label layoutX="662.0" layoutY="399.0" prefHeight="22.0" prefWidth="123.0" text="Sinopsis" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="400.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="sinopsis" alignment="TOP_LEFT" layoutX="661.0" layoutY="424.0" prefHeight="105.0" prefWidth="379.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="425.0" />
+      <Label layoutX="661.0" layoutY="535.0" prefHeight="22.0" prefWidth="123.0" text="Reseña" AnchorPane.rightAnchor="305.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="review" alignment="TOP_LEFT" layoutX="660.0" layoutY="560.0" prefHeight="121.0" prefWidth="379.0" AnchorPane.rightAnchor="50.0" />
+      <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" layoutX="812.0" layoutY="202.0" prefHeight="91.0" prefWidth="92.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="202.0">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalVotes" alignment="CENTER" contentDisplay="CENTER" layoutX="792.0" layoutY="275.0" prefHeight="17.0" prefWidth="132.0" text="votos" AnchorPane.topAnchor="275.0" />
+      <Label layoutX="696.0" layoutY="239.0" prefHeight="17.0" prefWidth="157.0" text="Puntuación global" AnchorPane.rightAnchor="272.0" AnchorPane.topAnchor="239.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="662.0" layoutY="309.0" prefHeight="22.0" prefWidth="123.0" text="Géneros" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="300.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="genres" layoutX="662.0" layoutY="329.0" prefHeight="22.0" prefWidth="379.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="325.0" />
+      <Label layoutX="672.0" layoutY="319.0" prefHeight="22.0" prefWidth="123.0" text="Fecha Completado" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="350.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="completedDate" layoutX="672.0" layoutY="339.0" prefHeight="22.0" prefWidth="379.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="375.0" />
+      <Button fx:id="btEditFilm" mnemonicParsing="false" onAction="#editFilm" prefHeight="50.0" prefWidth="50.0" visible="false" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="225.0" />
+   </children>
+</AnchorPane>
