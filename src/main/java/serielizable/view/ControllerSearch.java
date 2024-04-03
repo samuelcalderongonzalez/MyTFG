@@ -68,6 +68,11 @@ public class ControllerSearch extends AbstractController {
 	public void mainApp() {
 		setViewFilm();
 	}
+	
+	@FXML
+	public void serie() {
+		setViewSerie();
+	}
 
 	@FXML
 	public void searchFilm() {

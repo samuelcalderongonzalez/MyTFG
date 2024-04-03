@@ -3,10 +3,12 @@ package utils;
 import java.util.List;
 
 import serielizable.CAPPI;
-import serielizable.entity.User;
 import serielizable.entity.Film;
+import serielizable.entity.Season;
 import serielizable.entity.Serie;
+import serielizable.entity.User;
 import serielizable.repository.FilmRepository;
+import serielizable.repository.SeasonRepository;
 import serielizable.repository.SerieRepository;
 import serielizable.repository.UserRepository;
 
@@ -14,12 +16,14 @@ public abstract class AbstractController {
 	public UserRepository userRepository = new UserRepository();
 	public FilmRepository filmRepository = new FilmRepository();
 	public SerieRepository serieRepository = new SerieRepository();
+	public SeasonRepository seasonRepository = new SeasonRepository();
 
 	public Constants constants;
 	public CAPPI cApp;
 	public static User currentUser;
 	public static Film currentFilm;
 	public static Serie currentSerie;
+	public static Season currentSeason;
 	public static List<Film> currentFilms;
 	public static List<Serie> currentSeries;
 
@@ -50,6 +54,14 @@ public abstract class AbstractController {
 	
 	public void setViewFilm() {
 		setView("Film");
+	}
+	
+	public void setViewSerie() {
+		setView("Serie");
+	}
+	
+	public void setViewSeason() {
+		setView("Season");
 	}
 	
 	public void setViewLogin() {

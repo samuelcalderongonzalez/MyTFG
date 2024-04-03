@@ -32,7 +32,7 @@ public class ControllerFilm extends AbstractController {
 
 	@FXML
 	private Label review;
-	
+
 	@FXML
 	private Button btEditFilm;
 
@@ -80,7 +80,13 @@ public class ControllerFilm extends AbstractController {
 	public void search() {
 		setViewSearch();
 	}
+	
+	@FXML
+	public void serie() {
+		setViewSerie();
+	}
 
+	@FXML
 	public void editFilm() {
 		setViewEditFilm();
 	}
@@ -89,8 +95,10 @@ public class ControllerFilm extends AbstractController {
 		btEditFilm.setVisible(true);
 		score.setText(currentFilm.getScore().toString());
 //		totalVotes.setText(currentFilm.getScoreVotes().toString()); TODO
-		genres.setText(currentFilm.getGenres()); 
-		completedDate.setText(filmRepository.completedDateExists(currentFilm) ? DateUtils.mapDateToString(currentFilm.getCompletedDate()) : "No se ha completado");
+		genres.setText(currentFilm.getGenres());
+		completedDate.setText(filmRepository.completedDateExists(currentFilm)
+				? DateUtils.mapDateToString(currentFilm.getCompletedDate())
+				: "No se ha completado");
 		sinopsis.setText(currentFilm.getSynopsis());
 		review.setText(filmRepository.reviewExists(currentFilm) ? currentFilm.getReview()
 				: "No has hecho ninguna reseña sobre esta película");

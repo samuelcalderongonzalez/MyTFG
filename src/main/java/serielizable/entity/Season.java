@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import javafx.beans.property.SimpleStringProperty;
+import utils.DateUtils;
+
 @Entity
 @Table(name = "Season")
 public class Season {
@@ -19,7 +22,7 @@ public class Season {
 
 	@Column(name = "user_id")
 	private Integer userId;
-	
+
 	@Column(name = "season_number")
 	private Integer seasonNumber;
 
@@ -49,7 +52,7 @@ public class Season {
 
 	@Column(name = "current_episodes")
 	private Integer currentEpisodes;
-	
+
 	@ManyToOne()
 	@JoinColumn(name = "serie_id")
 	private Serie serie;
@@ -111,7 +114,9 @@ public class Season {
 	}
 
 	public Double getScore() {
-		return score;
+		if(score != null)
+			return score;
+		else return 0.0;
 	}
 
 	public void setScore(Double score) {
@@ -160,6 +165,38 @@ public class Season {
 
 	public Season() {
 
+	}
+
+	public SimpleStringProperty getSPName() {
+		return new SimpleStringProperty(name);
+	}
+
+	public SimpleStringProperty getSPStatus() {
+		return new SimpleStringProperty(status);
+	}
+
+	public SimpleStringProperty getSPProgress() {
+		Integer provCurrentEpisodes = 0;
+		if (currentEpisodes != null)
+			provCurrentEpisodes = currentEpisodes;
+		if (provCurrentEpisodes > totalEpisodes)
+			setCurrentEpisodes(totalEpisodes);
+		return new SimpleStringProperty(provCurrentEpisodes.toString() + "/" + totalEpisodes.toString());
+	}
+
+	public SimpleStringProperty getSPReleaseDate() {
+		return new SimpleStringProperty(DateUtils.mapDateToString(releaseDate));
+	}
+
+	public SimpleStringProperty getSPScore() {
+		return new SimpleStringProperty(score.toString());
+	}
+
+	public SimpleStringProperty getSPPersonalScore() {
+		if (personalScore != null)
+			return new SimpleStringProperty(personalScore.toString());
+		else
+			return new SimpleStringProperty("-");
 	}
 
 }

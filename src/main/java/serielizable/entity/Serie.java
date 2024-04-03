@@ -73,7 +73,7 @@ public class Serie {
 	public List<Season> getSeasons() {
 		return seasons;
 	}
-	
+
 	public void addSeason(Season season) {
 		seasons.add(season);
 	}
@@ -252,15 +252,15 @@ public class Serie {
 			setCurrentEpisodes(totalEpisodes);
 		return new SimpleStringProperty(currentEpisodes.toString() + "/" + totalEpisodes.toString());
 	}
-	
+
 	public SimpleStringProperty getSPReleaseDate() {
 		return new SimpleStringProperty(DateUtils.mapDateToString(releaseDate));
 	}
-	
+
 	public SimpleStringProperty getSPTotalSeasons() {
 		return new SimpleStringProperty(countSeasons.toString());
 	}
-	
+
 	public SimpleStringProperty getSPScore() {
 		return new SimpleStringProperty(score.toString());
 	}
@@ -271,5 +271,16 @@ public class Serie {
 		} else {
 			genres = genres + ", " + genre;
 		}
+	}
+
+	public SimpleStringProperty getSPPersonalScore() {
+		if (personalScore != null)
+			return new SimpleStringProperty(personalScore.toString());
+		else
+			return new SimpleStringProperty("-");
+	}
+
+	public SimpleStringProperty getSPCountSeasons() {
+		return new SimpleStringProperty(countSeasons.toString());
 	}
 }

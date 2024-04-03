@@ -24,7 +24,7 @@
                   </Menu>
                   <Menu mnemonicParsing="false" onAction="#mainApp" text="Series">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Lists" />
+                        <MenuItem mnemonicParsing="false" onAction="#serie" text="Lists" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Buscar">

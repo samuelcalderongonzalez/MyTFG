@@ -4,11 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import serielizable.entity.Film;
 import serielizable.entity.Season;
-import serielizable.entity.Serie;
 import utils.AbstractController;
-import utils.Constants;
 
 public class ControllerAddSerie extends AbstractController {
 

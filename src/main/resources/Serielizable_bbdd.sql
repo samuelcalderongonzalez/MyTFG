@@ -78,3 +78,4 @@ INSERT INTO SERIE VALUES(3, 1, "SeriePrueba3", "Completed", null, 2 , null, "Sin
 
 select * from film;
 select * from serie;
+select * from season;
