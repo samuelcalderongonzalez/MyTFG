@@ -57,6 +57,7 @@
             <TableColumn fx:id="tcSerieTitle" prefWidth="179.0" text="Título" />
             <TableColumn fx:id="tcSerieRelease" minWidth="0.0" prefWidth="113.33331298828125" text="Estreno" />
             <TableColumn fx:id="tcSerieScore" minWidth="1.0" prefWidth="93.66668701171875" text="Puntuación" />
+            <TableColumn fx:id="tcSerieSeasons" prefWidth="179.0" text="Temporadas" />
          </columns>
       </TableView>
    </children>

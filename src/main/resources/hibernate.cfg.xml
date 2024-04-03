@@ -18,5 +18,6 @@
 		<mapping class="serielizable.entity.Film" />
 		<mapping class="serielizable.entity.Serie" />
 		<mapping class="serielizable.entity.User" />
+		<mapping class="serielizable.entity.Season" />
 	</session-factory>
 </hibernate-configuration>

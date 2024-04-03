@@ -48,6 +48,8 @@ public class ControllerSearch extends AbstractController {
 	private TableColumn<Serie, String> tcSerieRelease;
 	@FXML
 	private TableColumn<Serie, String> tcSerieScore;
+	@FXML
+	private TableColumn<Serie, String> tcSerieSeasons;
 
 	private boolean isFilm;
 
@@ -102,6 +104,9 @@ public class ControllerSearch extends AbstractController {
 			tableFilm.setVisible(false);
 			tableSerie.setVisible(true);
 			tcSerieTitle.setCellValueFactory(param -> param.getValue().getSPTitle());
+			tcSerieRelease.setCellValueFactory(param -> param.getValue().getSPReleaseDate());
+			tcSerieScore.setCellValueFactory(param -> param.getValue().getSPScore());
+			tcSerieSeasons.setCellValueFactory(param -> param.getValue().getSPTotalSeasons());
 			tableSerie.setItems(series);
 			tableSerie.setOnMouseClicked(event -> {
 				if (event.getClickCount() == 2) {

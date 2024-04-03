@@ -1,13 +1,18 @@
 package serielizable.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javafx.beans.property.SimpleStringProperty;
+import utils.DateUtils;
 
 @Entity
 @Table(name = "Serie")
@@ -55,9 +60,35 @@ public class Serie {
 
 	@Column(name = "duration_per_episode")
 	private Integer duration;
-	
+
+	@Column(name = "total_seasons")
+	private Integer countSeasons;
+
 	@Column(name = "synopsis")
 	private String synopsis;
+
+	@OneToMany(mappedBy = "serie", cascade = CascadeType.ALL)
+	private List<Season> seasons;
+
+	public List<Season> getSeasons() {
+		return seasons;
+	}
+	
+	public void addSeason(Season season) {
+		seasons.add(season);
+	}
+
+	public Integer getCountSeasons() {
+		return countSeasons;
+	}
+
+	public void setCountSeasons(Integer countSeasons) {
+		this.countSeasons = countSeasons;
+	}
+
+	public void setSeasons(List<Season> seasons) {
+		this.seasons = seasons;
+	}
 
 	public String getSynopsis() {
 		return synopsis;
@@ -201,10 +232,11 @@ public class Serie {
 		this.currentEpisodes = currentEpisodes;
 		this.duration = duration;
 		this.synopsis = synopsis;
+		this.seasons = new ArrayList<Season>();
 	}
 
 	public Serie() {
-
+		this.seasons = new ArrayList<Season>();
 	}
 
 	public SimpleStringProperty getSPTitle() {
@@ -220,8 +252,21 @@ public class Serie {
 			setCurrentEpisodes(totalEpisodes);
 		return new SimpleStringProperty(currentEpisodes.toString() + "/" + totalEpisodes.toString());
 	}
+	
+	public SimpleStringProperty getSPReleaseDate() {
+		return new SimpleStringProperty(DateUtils.mapDateToString(releaseDate));
+	}
+	
+	public SimpleStringProperty getSPTotalSeasons() {
+		return new SimpleStringProperty(countSeasons.toString());
+	}
+	
+	public SimpleStringProperty getSPScore() {
+		return new SimpleStringProperty(score.toString());
+	}
+
 	public void addGenre(String genre) {
-		if(this.genres == null) {
+		if (this.genres == null) {
 			genres = genre;
 		} else {
 			genres = genres + ", " + genre;

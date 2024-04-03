@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerAddFilm">
+<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerAddSerie">
    <children>
       <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" stylesheets="@../../../../../../concesionario/src/main/java/concesionario/general.css" AnchorPane.bottomAnchor="0.0">
          <top>
@@ -40,9 +40,9 @@
             </MenuBar>
          </top>
       </BorderPane>
-      <TextField fx:id="tfStatus" layoutX="150.0" layoutY="283.0" prefHeight="37.0" prefWidth="372.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="283.0" />
+      <TextField fx:id="tfStatus" layoutX="150.0" layoutY="265.0" prefHeight="37.0" prefWidth="372.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="265.0" />
       <TextField fx:id="tfReview" alignment="CENTER" layoutX="20.0" layoutY="473.0" prefHeight="124.0" prefWidth="790.0" promptText="Opcional" AnchorPane.bottomAnchor="135.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="430.0" />
-      <Label layoutX="150.0" layoutY="243.0" prefHeight="28.0" prefWidth="370.0" text="Estado" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="243.0">
+      <Label layoutX="150.0" layoutY="231.0" prefHeight="28.0" prefWidth="370.0" text="Estado" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="231.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -52,7 +52,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddFilm" prefHeight="76.0" prefWidth="242.0" text="Añadir" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="425.0">
+      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAddSerie" prefHeight="76.0" prefWidth="242.0" text="Añadir" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="425.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -62,8 +62,8 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <TextField fx:id="tfPersonalScore" alignment="CENTER" layoutX="571.0" layoutY="283.0" prefHeight="37.0" prefWidth="370.0" promptText="Opcional" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="283.0" />
-      <Label layoutX="572.0" layoutY="243.0" prefHeight="28.0" prefWidth="126.0" text="Mi puntuación" AnchorPane.rightAnchor="392.0" AnchorPane.topAnchor="243.0">
+      <TextField fx:id="tfPersonalScore" alignment="CENTER" layoutX="571.0" layoutY="265.0" prefHeight="37.0" prefWidth="370.0" promptText="Opcional" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="265.0" />
+      <Label layoutX="572.0" layoutY="231.0" prefHeight="28.0" prefWidth="126.0" text="Mi puntuación" AnchorPane.rightAnchor="392.0" AnchorPane.topAnchor="231.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -73,5 +73,18 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
+      <Label fx:id="progress" layoutX="582.0" layoutY="241.0" prefHeight="28.0" prefWidth="126.0" text="Progreso" visible="false" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="310.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfProgress" layoutX="160.0" layoutY="275.0" prefHeight="37.0" prefWidth="189.0" visible="false" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="345.0" />
+      <Label fx:id="totalEpisodes" layoutX="592.0" layoutY="251.0" prefHeight="37.0" prefWidth="126.0" text="de" visible="false" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="345.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnNext" mnemonicParsing="false" onAction="#handleNext" prefHeight="208.0" prefWidth="52.0" text="&gt;" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="300.0" />
+      <Button fx:id="btnPrev" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlePrev" prefHeight="208.0" prefWidth="52.0" text="&lt;" visible="false" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="300.0" />
    </children>
 </AnchorPane>

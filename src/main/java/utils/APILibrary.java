@@ -17,6 +17,7 @@ import com.squareup.okhttp.Response;
 import com.squareup.okhttp.ResponseBody;
 
 import serielizable.entity.Film;
+import serielizable.entity.Season;
 import serielizable.entity.Serie;
 
 public class APILibrary {
@@ -102,7 +103,9 @@ public class APILibrary {
 
 			for (JsonElement element : results) {
 				JsonArray jsonGenres = element.getAsJsonObject().getAsJsonArray("genre_ids");
+				JsonArray jsonSeasons = element.getAsJsonObject().getAsJsonArray("seasons");
 				Serie currSerie = new Serie();
+				Season seasons = new Season();
 				for (JsonElement el : jsonGenres) {
 					for (Genre g : serieGenres) {
 						if (g.getId() == el.getAsInt()) {
@@ -111,12 +114,14 @@ public class APILibrary {
 					}
 				}
 				currSerie.setId(element.getAsJsonObject().get("id").getAsInt());
+				System.out.println(currSerie.getId());
 				currSerie.setTitle(element.getAsJsonObject().get("name").getAsString());
 				currSerie.setReleaseDate(
 						DateUtils.mapStringToDate(element.getAsJsonObject().get("first_air_date").getAsString()));
 				currSerie.setScore(element.getAsJsonObject().get("vote_average").getAsDouble());
 				currSerie.setSynopsis(element.getAsJsonObject().get("overview").getAsString());
-				series.add(currSerie);
+
+				series.add(searchSerieDetails(currSerie));
 			}
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
@@ -199,12 +204,12 @@ public class APILibrary {
 		return runtime;
 	}
 
-	public Integer searchSerieRuntime(int serieId) {
+	public Serie searchSerieDetails(Serie serie) {
 		Integer runtime = 0;
 		OkHttpClient client = new OkHttpClient();
 
 		Request request = new Request.Builder()
-				.url("https://api.themoviedb.org/3/tv/" + serieId + "?api_key=" + Constants.API_KEY).get()
+				.url("https://api.themoviedb.org/3/tv/" + serie.getId() + "?api_key=" + Constants.API_KEY).get()
 				.addHeader("accept", "application/json").addHeader("Authorization", Constants.API_TOKEN).build();
 
 		try {
@@ -212,12 +217,32 @@ public class APILibrary {
 			Gson gson = new Gson();
 			String jsonResponse = response.string();
 			JsonObject jsonObject = gson.fromJson(jsonResponse, JsonObject.class);
-			runtime = jsonObject.get("runtime").getAsInt();
+			JsonArray results = jsonObject.getAsJsonArray("seasons");
+			System.out.println(results);
+//			runtime = jsonObject.get("runtime").getAsInt();
+			serie.setTotalEpisodes(jsonObject.get("number_of_episodes").getAsInt());
+			serie.setCountSeasons(jsonObject.get("number_of_seasons").getAsInt());
+			if(serie.getCountSeasons() > 0) {
+				for (JsonElement element : results) {
+					System.out.println(element);
+					Season currSeason = new Season();
+					currSeason.setId(element.getAsJsonObject().get("id").getAsInt());
+					currSeason.setSerie(serie);
+					currSeason.setReleaseDate(DateUtils.mapStringToDate(element.getAsJsonObject().get("air_date").getAsString()));
+					try {
+						currSeason.setTotalEpisodes(element.getAsJsonObject().get("episode_count").getAsInt());
+					} catch (Exception e) {
+						currSeason.setTotalEpisodes(0);
+					}
+					currSeason.setSeasonNumber(element.getAsJsonObject().get("season_number").getAsInt());
+					currSeason.setName(element.getAsJsonObject().get("name").getAsString());
+					serie.addSeason(currSeason);
+				}
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return runtime;
+		return serie;
 	}
 
 }
