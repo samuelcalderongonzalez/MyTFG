@@ -2,6 +2,7 @@ package serielizable.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import serielizable.entity.Season;
@@ -19,13 +20,13 @@ public class ControllerAddSerie extends AbstractController {
 	private Label totalEpisodes;
 
 	@FXML
-	private TextField tfStatus;
+	private ComboBox<String> cbStatus;
+
+	@FXML
+	private ComboBox<String> cbPersonalScore;
 
 	@FXML
 	private TextField tfProgress;
-
-	@FXML
-	private TextField tfPersonalScore;
 
 	@FXML
 	private TextField tfReview;
@@ -42,6 +43,8 @@ public class ControllerAddSerie extends AbstractController {
 
 	@FXML
 	public void initialize() {
+		cbStatus.getItems().addAll("Completada", "En curso", "Abandonada", "Pendiente");
+		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 		page = -1;
 		maxPage = currentSerie.getSeasons().size() - 1;
 		populateTitle();
@@ -88,28 +91,20 @@ public class ControllerAddSerie extends AbstractController {
 		clearAndPopulateFields();
 	}
 
+	// TODO Esto es horroroso, hay que refactorizar.
 	public void saveSerie() {
 		if (page < 0) {
 			currentSerie.setUserId(currentUser.getId());
-			currentSerie.setStatus(tfStatus.getText().isEmpty() ? null : tfStatus.getText());
-			try {
-				currentSerie.setPersonalScore(
-						tfPersonalScore.getText().isEmpty() ? null : Double.parseDouble(tfPersonalScore.getText()));
-			} catch (NumberFormatException e) {
-			}
+			currentSerie.setStatus(cbStatus.getSelectionModel().getSelectedItem());
+			currentSerie.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
 			currentSerie.setReview(tfReview.getText().isEmpty() ? null : tfReview.getText());
 		} else {
-			currentSerie.getSeasons().get(page)
-					.setStatus(tfStatus.getText().isEmpty() ? null : tfStatus.getText());
-			try {
-				currentSerie.getSeasons().get(page).setPersonalScore(
-						tfPersonalScore.getText().isEmpty() ? null : Double.parseDouble(tfPersonalScore.getText()));
-			} catch (NumberFormatException e) {
-			}
+			currentSerie.getSeasons().get(page).setStatus(cbStatus.getSelectionModel().getSelectedItem());
+			currentSerie.getSeasons().get(page).setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
 			currentSerie.getSeasons().get(page).setReview(tfReview.getText().isEmpty() ? null : tfReview.getText());
 			try {
-				currentSerie.getSeasons().get(page)
-						.setCurrentEpisodes(tfProgress.getText().isEmpty() ? null : Integer.parseInt(tfProgress.getText()));
+				currentSerie.getSeasons().get(page).setCurrentEpisodes(
+						tfProgress.getText().isEmpty() ? null : Integer.parseInt(tfProgress.getText()));
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
@@ -120,14 +115,14 @@ public class ControllerAddSerie extends AbstractController {
 	public void handleAddSerie() {
 		saveSerie();
 		for (Season season : currentSerie.getSeasons()) {
-			if(season.getStatus() == null) {
+			if (season.getStatus() == null) {
 				season.setStatus("Pendiente");
 			}
 			season.setUserId(currentUser.getId());
 		}
 		serieRepository.insertSerie(currentSerie);
 		currentSerie = null;
-		setViewFilm(); // TODO cambiar
+		setViewSerie();
 
 	}
 
@@ -150,27 +145,35 @@ public class ControllerAddSerie extends AbstractController {
 			tfProgress.setVisible(true);
 		}
 	}
-
+	
+	//TODO muy mejorable. Añadir lambdas a ser posible
 	private void clearAndPopulateFields() {
 		populateTitle();
 		pupulateTotalEpisodes();
 		if (page < 0) {
-			tfStatus.setText(currentSerie.getStatus() == null  ? " " : currentSerie.getStatus());
-			tfPersonalScore.setText(currentSerie.getPersonalScore() == null ? " "
-					: currentSerie.getPersonalScore().toString());
-			tfReview.setText(currentSerie.getReview() == null  ? " " : currentSerie.getReview());
+			if (currentSerie.getStatus() != null) {
+				cbStatus.getSelectionModel().select(currentSerie.getStatus());
+			} else {
+				cbStatus.getSelectionModel().select("Pendiente");
+			}
+			cbPersonalScore.getSelectionModel().select(
+					(currentSerie.getPersonalScore() == null ? "-" : currentSerie.getPersonalScore().toString()));
+			tfReview.setText(currentSerie.getReview() == null ? "" : currentSerie.getReview());
 		} else {
-			tfStatus.setText(currentSerie.getSeasons().get(page).getStatus() == null ? " "
-					: currentSerie.getSeasons().get(page).getStatus());
-			tfPersonalScore.setText(currentSerie.getSeasons().get(page).getPersonalScore() == null ? " "
-					: currentSerie.getSeasons().get(page).getPersonalScore().toString());
-			tfReview.setText(currentSerie.getSeasons().get(page).getReview() == null  ? " "
+			if (currentSerie.getSeasons().get(page).getStatus() != null) {
+				cbStatus.getSelectionModel().select(currentSerie.getSeasons().get(page).getStatus());
+			} else {
+				cbStatus.getSelectionModel().select("Pendiente");
+			}
+			cbPersonalScore.getSelectionModel().select(
+					(currentSerie.getSeasons().get(page).getPersonalScore() == null ? "-" : currentSerie.getSeasons().get(page).getPersonalScore().toString()));
+			tfReview.setText(currentSerie.getSeasons().get(page).getReview() == null ? ""
 					: currentSerie.getSeasons().get(page).getReview());
-			tfProgress.setText(currentSerie.getSeasons().get(page).getCurrentEpisodes()  == null ? " "
+			tfProgress.setText(currentSerie.getSeasons().get(page).getCurrentEpisodes() == null ? ""
 					: currentSerie.getSeasons().get(page).getCurrentEpisodes().toString());
 		}
 	}
-
+	//TODO cambiar por lambda
 	private void pupulateTotalEpisodes() {
 		if (page < 0)
 			totalEpisodes.setText("");

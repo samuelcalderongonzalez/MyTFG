@@ -136,7 +136,7 @@ public class Serie {
 	}
 
 	public String getReview() {
-		if(review != null)
+		if (review != null)
 			return review;
 		else
 			return " ";
@@ -162,6 +162,11 @@ public class Serie {
 		this.personalScore = personalScore;
 	}
 
+	public void setPersonalScore(String personalScore) {
+		if(!personalScore.contains("-"))
+			this.personalScore = Double.parseDouble(personalScore);
+	}
+
 	public Date getReleaseDate() {
 		return releaseDate;
 	}
@@ -171,7 +176,7 @@ public class Serie {
 	}
 
 	public String getCompletedDate() {
-		if(completedDate != null)
+		if (completedDate != null)
 			return DateUtils.mapDateToString(completedDate);
 		else
 			return Constants.NO_COMPLETE_DATE;

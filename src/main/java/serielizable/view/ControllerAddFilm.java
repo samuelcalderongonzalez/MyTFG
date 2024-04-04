@@ -1,6 +1,7 @@
 package serielizable.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import utils.AbstractController;
@@ -12,16 +13,18 @@ public class ControllerAddFilm extends AbstractController {
 	private Label title;
 
 	@FXML
-	private TextField tfStatus;
+	private ComboBox<String> cbStatus;
 
 	@FXML
-	private TextField tfPersonalScore;
+	private ComboBox<String> cbPersonalScore;
 
 	@FXML
 	private TextField tfReview;
 
 	@FXML
 	public void initialize() {
+		cbStatus.getItems().addAll("Completada", "Pendiente", "Abandonada");
+		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 		populateTitle();
 	}
 
@@ -48,10 +51,10 @@ public class ControllerAddFilm extends AbstractController {
 
 	@FXML
 	public void handleAddFilm() {
-		if (!tfStatus.getText().isEmpty()) {
+		if (cbStatus.getSelectionModel().getSelectedItem() != null) {
 			currentFilm.setUserId(currentUser.getId());
-			currentFilm.setStatus(tfStatus.getText());
-			currentFilm.setPersonalScore(tfPersonalScore.getText().isEmpty() ? null : Double.parseDouble(tfPersonalScore.getText()));
+			currentFilm.setStatus(cbStatus.getSelectionModel().getSelectedItem());
+			currentFilm.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
 			currentFilm.setReview(tfReview.getText().isEmpty() ? null : tfReview.getText());
 			filmRepository.insertFilm(currentFilm);
 			currentFilm = null;

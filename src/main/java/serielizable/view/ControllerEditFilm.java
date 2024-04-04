@@ -1,6 +1,7 @@
 package serielizable.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import utils.AbstractController;
@@ -11,16 +12,18 @@ public class ControllerEditFilm extends AbstractController {
 	private Label title;
 
 	@FXML
-	private TextField tfStatus;
+	private ComboBox<String> cbStatus;
 
 	@FXML
-	private TextField tfPersonalScore;
+	private ComboBox<String> cbPersonalScore;
 
 	@FXML
 	private TextField tfReview;
 
 	@FXML
 	public void initialize() {
+		cbStatus.getItems().addAll("Completada", "Pendiente", "Abandonada");
+		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 		populateFields();
 	}
 
@@ -45,45 +48,27 @@ public class ControllerEditFilm extends AbstractController {
 
 	private void populateFields() {
 		title.setText(currentFilm.getTitle());
-		tfStatus.setText(currentFilm.getStatus());
-		tfPersonalScore
-				.setText(currentFilm.getPersonalScore() != null ? currentFilm.getPersonalScore().toString() : "");
+		cbStatus.getSelectionModel().select(currentFilm.getStatus());
+		cbPersonalScore.getSelectionModel().select(currentFilm.getStringPersonalScore());
 		tfReview.setText(currentFilm.getReview() != null ? currentFilm.getReview() : "");
 
 	}
 
 	@FXML
 	private void deleteFilm() {
-		if (validateTextFields()) {
-			filmRepository.deleteFilm(currentFilm);
-			handleBack();
-		}
+		filmRepository.deleteFilm(currentFilm);
+		handleBack();
+
 	}
 
 	@FXML
 	private void saveFilm() {
-		if (validateTextFields()) {
-			currentFilm.setStatus(tfStatus.getText());
-			currentFilm.setReview(tfReview.getText());
-			if(!tfPersonalScore.getText().isEmpty())
-				currentFilm.setPersonalScore(Double.parseDouble(tfPersonalScore.getText()));
-			filmRepository.updateFilm(currentFilm);
-			handleBack();
-		}
-	}
-
-	private boolean validateTextFields() {
-		if (!tfPersonalScore.getText().isEmpty()) {
-			try {
-				Double.parseDouble(tfPersonalScore.getText());
-				return true;
-			} catch (Exception e) {
-				System.err.println("Score must be numeric");
-				return false;
-			}
-		} else {
-			return true;
-		}
+		currentFilm.setStatus(cbStatus.getSelectionModel().getSelectedItem());
+		currentFilm.setReview(tfReview.getText());
+		if (cbPersonalScore.getSelectionModel().getSelectedItem() != null)
+			currentFilm.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
+		filmRepository.updateFilm(currentFilm);
+		handleBack();
 	}
 
 }

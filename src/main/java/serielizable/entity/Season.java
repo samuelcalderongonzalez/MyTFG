@@ -205,5 +205,10 @@ public class Season {
 		else
 			return new SimpleStringProperty("-");
 	}
+	
+	public void setPersonalScore(String personalScore) {
+		if(!personalScore.contains("-"))
+			this.personalScore = Double.parseDouble(personalScore);
+	}
 
 }

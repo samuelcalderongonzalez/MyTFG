@@ -120,6 +120,13 @@ public class Film {
 		else
 			return null;
 	}
+	
+	public String getStringPersonalScore() {
+		if(personalScore != null)
+			return personalScore.toString();
+		else
+			return "";
+	}
 
 	public void setPersonalScore(Double personalScore) {
 		this.personalScore = personalScore;
@@ -230,6 +237,11 @@ public class Film {
 
 	public SimpleStringProperty getSPScore() {
 		return new SimpleStringProperty(getScore().toString());
+	}
+	
+	public void setPersonalScore(String personalScore) {
+		if(!personalScore.contains("-"))
+			this.personalScore = Double.parseDouble(personalScore);
 	}
 
 }
