@@ -149,6 +149,13 @@ public class Serie {
 	public Double getScore() {
 		return score;
 	}
+	
+	public String getStringScore() {
+		if(score != null)
+			return score.toString();
+		else
+			return "";
+	}
 
 	public void setScore(Double score) {
 		this.score = score;
@@ -163,7 +170,7 @@ public class Serie {
 	}
 
 	public void setPersonalScore(String personalScore) {
-		if(!personalScore.contains("-"))
+		if (!personalScore.contains("-"))
 			this.personalScore = Double.parseDouble(personalScore);
 	}
 
@@ -294,5 +301,12 @@ public class Serie {
 
 	public SimpleStringProperty getSPCountSeasons() {
 		return new SimpleStringProperty(countSeasons.toString());
+	}
+
+	public String getStringPersonalScore() {
+		if (personalScore != null)
+			return personalScore.toString();
+		else
+			return "";
 	}
 }

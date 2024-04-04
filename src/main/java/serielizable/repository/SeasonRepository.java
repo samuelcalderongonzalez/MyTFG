@@ -15,5 +15,16 @@ public class SeasonRepository extends AbstractRepository {
 			return null;
 		}
 	}
+	
+	public void updateSeason(Season season) {
+		try {
+			beginTransaction();
+			session.save(season);
+			commitTransaction();
+			System.out.println("Season updated succesfully");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

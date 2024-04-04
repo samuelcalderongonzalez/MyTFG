@@ -76,6 +76,7 @@ INSERT INTO SERIE VALUES(1, 1, "SeriePrueba", "Completed", null, 10 , null, "Sin
 INSERT INTO SERIE VALUES(2, 1, "SeriePrueba2", "Completed", null, 1 , null, "Sinopsis de prueba", '2020-01-01', null, null, null, null, null, null, 4);
 INSERT INTO SERIE VALUES(3, 1, "SeriePrueba3", "Completed", null, 2 , null, "Sinopsis de prueba", '2020-01-01', null, null, null, null, null, null, 0);
 
+select * from user;
 select * from film;
 select * from serie;
 select * from season;

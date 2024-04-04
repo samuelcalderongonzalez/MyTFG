@@ -107,7 +107,7 @@ public class Season {
 	}
 
 	public String getReview() {
-		if(review != null)
+		if (review != null)
 			return review;
 		else
 			return " ";
@@ -118,9 +118,10 @@ public class Season {
 	}
 
 	public Double getScore() {
-		if(score != null)
+		if (score != null)
 			return score;
-		else return 0.0;
+		else
+			return 0.0;
 	}
 
 	public void setScore(Double score) {
@@ -144,7 +145,7 @@ public class Season {
 	}
 
 	public String getCompletedDate() {
-		if(completedDate != null)
+		if (completedDate != null)
 			return DateUtils.mapDateToString(completedDate);
 		else
 			return Constants.NO_COMPLETE_DATE;
@@ -166,8 +167,19 @@ public class Season {
 		return currentEpisodes;
 	}
 
+	public String getStringCurrentEpisodes() {
+		if (currentEpisodes != null)
+			return currentEpisodes.toString();
+		else
+			return "0";
+	}
+
 	public void setCurrentEpisodes(Integer currentEpisodes) {
 		this.currentEpisodes = currentEpisodes;
+	}
+
+	public void setCurrentEpisodes(String currentEpisodes) {
+		this.currentEpisodes = Integer.parseInt(currentEpisodes);
 	}
 
 	public Season() {
@@ -205,10 +217,17 @@ public class Season {
 		else
 			return new SimpleStringProperty("-");
 	}
-	
+
 	public void setPersonalScore(String personalScore) {
-		if(!personalScore.contains("-"))
+		if (!personalScore.contains("-"))
 			this.personalScore = Double.parseDouble(personalScore);
+	}
+
+	public String getStringPersonalScore() {
+		if (personalScore != null)
+			return personalScore.toString();
+		else
+			return "";
 	}
 
 }

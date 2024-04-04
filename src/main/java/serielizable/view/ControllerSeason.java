@@ -60,7 +60,6 @@ public class ControllerSeason extends AbstractController {
 			if (event.getClickCount() == 1) {
 				clearLabels();
 				currentSeason = tableFootage.getSelectionModel().getSelectedItem();
-				System.out.println(currentSeason);
 				pupulateLabels();
 			}
 		});
@@ -87,19 +86,15 @@ public class ControllerSeason extends AbstractController {
 	public void serie() {
 		setViewSerie();
 	}
+	
 	@FXML
 	public void editSeason() {
-//		setViewEditSerie();
+		setViewEditSeason();
 	}
 	
 	@FXML
 	public void handleBack() {
 		setViewSerie();
-	}
-	
-	@FXML
-	public void viewSeasons() {
-//		setViewSeasons();
 	}
 
 	private void pupulateLabels() {

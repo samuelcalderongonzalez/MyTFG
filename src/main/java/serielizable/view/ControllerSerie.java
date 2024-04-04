@@ -9,7 +9,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import serielizable.entity.Serie;
 import utils.AbstractController;
-import utils.DateUtils;
 
 public class ControllerSerie extends AbstractController {
 
@@ -66,7 +65,6 @@ public class ControllerSerie extends AbstractController {
 			if (event.getClickCount() == 1) {
 				clearLabels();
 				currentSerie = tableFootage.getSelectionModel().getSelectedItem();
-				System.out.println(currentSerie);
 				pupulateLabels();
 			}
 		});
@@ -88,21 +86,21 @@ public class ControllerSerie extends AbstractController {
 	public void film() {
 		setViewFilm();
 	}
+	
 	@FXML
 	public void editSerie() {
-//		setViewEditSerie();
+		setViewEditSerie();
 	}
 	
 	@FXML
 	public void viewSeasons() {
-		System.out.println(currentSerie);
 		setViewSeason();
 	}
 
 	private void pupulateLabels() {
 		btnEditSerie.setVisible(true);
 		btnSeasons.setVisible(true);
-		score.setText(currentSerie.getScore().toString());
+		score.setText(currentSerie.getStringScore());
 //		totalVotes.setText(currentSerie.getScoreVotes().toString()); TODO
 		genres.setText(currentSerie.getGenres());
 		completedDate.setText(currentSerie.getCompletedDate());

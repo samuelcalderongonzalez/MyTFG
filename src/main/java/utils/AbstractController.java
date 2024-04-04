@@ -80,6 +80,14 @@ public abstract class AbstractController {
 		setView("EditFilm");
 	}
 	
+	public void setViewEditSerie() {
+		setView("EditSerie");
+	}
+	
+	public void setViewEditSeason() {
+		setView("EditSeason");
+	}
+	
 	public void setViewAddFilm() {
 		setView("AddFilm");
 	}
