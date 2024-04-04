@@ -23,29 +23,4 @@ public class SerieRepository extends AbstractRepository{
 		
 	}
 	
-	
-	public boolean completedDateExists(Serie serie) {
-		try {
-			Serie s = (Serie) session.createQuery("from Serie where id = " + serie.getId() + " and user_id = " + serie.getUserId()).list().get(0);
-			if(s.getCompletedDate() != null)
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			return false;
-		}
-	}
-	
-	
-	public boolean reviewExists(Serie serie) {
-		try {
-			Serie s = (Serie) session.createQuery("from Serie where id = " + serie.getId() + " and user_id = " + serie.getUserId()).list().get(0);
-			if(s.getReview() != null)
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			return false;
-		}
-	}
 }

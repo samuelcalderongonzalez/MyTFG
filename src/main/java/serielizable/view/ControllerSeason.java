@@ -9,7 +9,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import serielizable.entity.Season;
 import utils.AbstractController;
-import utils.DateUtils;
 
 public class ControllerSeason extends AbstractController {
 
@@ -107,11 +106,8 @@ public class ControllerSeason extends AbstractController {
 		btnEditSeason.setVisible(true);
 		score.setText(currentSeason.getScore().toString());
 //		totalVotes.setText(currentSerie.getScoreVotes().toString()); TODO
-		completedDate.setText(seasonRepository.completedDateExists(currentSeason)
-				? DateUtils.mapDateToString(currentSeason.getCompletedDate())
-				: "No se ha completado");
-		review.setText(seasonRepository.reviewExists(currentSeason) ? currentSeason.getReview()
-				: "No has hecho ninguna reseña sobre esta temporada");
+		completedDate.setText(currentSeason.getCompletedDate());
+		review.setText(currentSeason.getReview());
 	}
 
 	private void clearLabels() {

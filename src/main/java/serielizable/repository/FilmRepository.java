@@ -22,31 +22,6 @@ public class FilmRepository extends AbstractRepository{
 		}
 		
 	}
-	
-	public boolean completedDateExists(Film film) {
-		try {
-			Film f = (Film) session.createQuery("from Film where id = " + film.getId() + " and user_id = " + film.getUserId()).list().get(0);
-			if(f.getCompletedDate() != null)
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			return false;
-		}
-	}
-	
-	
-	public boolean reviewExists(Film film) {
-		try {
-			Film f = (Film) session.createQuery("from Film where id = " + film.getId() + " and user_id = " + film.getUserId()).list().get(0);
-			if(f.getReview() != null)
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			return false;
-		}
-	}
 
 	public void deleteFilm(Film film) {
 		try {

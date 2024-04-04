@@ -55,13 +55,13 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="sinopsis" alignment="TOP_LEFT" layoutX="661.0" layoutY="424.0" prefHeight="105.0" prefWidth="379.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="425.0" />
+      <Label fx:id="sinopsis" alignment="TOP_LEFT" layoutX="661.0" layoutY="424.0" prefHeight="105.0" prefWidth="379.0" wrapText="true" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="425.0" />
       <Label layoutX="661.0" layoutY="535.0" prefHeight="22.0" prefWidth="123.0" text="Reseña" AnchorPane.rightAnchor="305.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="review" alignment="TOP_LEFT" layoutX="660.0" layoutY="560.0" prefHeight="121.0" prefWidth="379.0" AnchorPane.rightAnchor="50.0" />
+      <Label fx:id="review" alignment="TOP_LEFT" layoutX="660.0" layoutY="560.0" prefHeight="121.0" prefWidth="379.0" wrapText="true" AnchorPane.rightAnchor="50.0" />
       <Label fx:id="score" alignment="CENTER" contentDisplay="CENTER" layoutX="812.0" layoutY="202.0" prefHeight="91.0" prefWidth="92.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="202.0">
          <font>
             <Font size="32.0" />

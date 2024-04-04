@@ -9,7 +9,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import serielizable.entity.Film;
 import utils.AbstractController;
-import utils.DateUtils;
 
 public class ControllerFilm extends AbstractController {
 
@@ -96,12 +95,9 @@ public class ControllerFilm extends AbstractController {
 		score.setText(currentFilm.getScore().toString());
 //		totalVotes.setText(currentFilm.getScoreVotes().toString()); TODO
 		genres.setText(currentFilm.getGenres());
-		completedDate.setText(filmRepository.completedDateExists(currentFilm)
-				? DateUtils.mapDateToString(currentFilm.getCompletedDate())
-				: "No se ha completado");
+		completedDate.setText(currentFilm.getCompletedDate());
 		sinopsis.setText(currentFilm.getSynopsis());
-		review.setText(filmRepository.reviewExists(currentFilm) ? currentFilm.getReview()
-				: "No has hecho ninguna reseña sobre esta película");
+		review.setText(currentFilm.getReview());
 	}
 
 	private void clearLabels() {

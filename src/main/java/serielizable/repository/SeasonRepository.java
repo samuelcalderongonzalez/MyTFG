@@ -15,31 +15,5 @@ public class SeasonRepository extends AbstractRepository {
 			return null;
 		}
 	}
-	
-	
-	public boolean completedDateExists(Season season) {
-		try {
-			Season s = (Season) session.createQuery("from Season where id = " + season.getId() + " and user_id = " + season.getUserId() + " and serie_id = " + season.getSerie().getId()).list().get(0);
-			if(s.getCompletedDate() != null)
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			return false;
-		}
-	}
-	
-	
-	public boolean reviewExists(Season season) {
-		try {
-			Season s = (Season) session.createQuery("from Season where id = " + season.getId() + " and user_id = " + season.getUserId() + " and serie_id = " + season.getSerie().getId()).list().get(0);
-			if(s.getReview() != null)
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			return false;
-		}
-	}
 
 }

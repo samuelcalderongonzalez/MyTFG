@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import javafx.beans.property.SimpleStringProperty;
+import utils.Constants;
 import utils.DateUtils;
 
 @Entity
@@ -106,7 +107,10 @@ public class Season {
 	}
 
 	public String getReview() {
-		return review;
+		if(review != null)
+			return review;
+		else
+			return " ";
 	}
 
 	public void setReview(String review) {
@@ -139,8 +143,11 @@ public class Season {
 		this.releaseDate = releaseDate;
 	}
 
-	public Date getCompletedDate() {
-		return completedDate;
+	public String getCompletedDate() {
+		if(completedDate != null)
+			return DateUtils.mapDateToString(completedDate);
+		else
+			return Constants.NO_COMPLETE_DATE;
 	}
 
 	public void setCompletedDate(Date completedDate) {

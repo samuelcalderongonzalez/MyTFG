@@ -105,12 +105,9 @@ public class ControllerSerie extends AbstractController {
 		score.setText(currentSerie.getScore().toString());
 //		totalVotes.setText(currentSerie.getScoreVotes().toString()); TODO
 		genres.setText(currentSerie.getGenres());
-		completedDate.setText(serieRepository.completedDateExists(currentSerie)
-				? DateUtils.mapDateToString(currentSerie.getCompletedDate())
-				: "No se ha completado");
+		completedDate.setText(currentSerie.getCompletedDate());
 		sinopsis.setText(currentSerie.getSynopsis());
-		review.setText(serieRepository.reviewExists(currentSerie) ? currentSerie.getReview()
-				: "No has hecho ninguna reseña sobre esta película");
+		review.setText(currentSerie.getReview());
 	}
 
 	private void clearLabels() {
