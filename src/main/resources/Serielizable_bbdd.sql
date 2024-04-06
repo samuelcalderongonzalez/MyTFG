@@ -17,7 +17,7 @@ create table Film(
     status varchar(50) NOT NULL, -- Enumerado EJ (Completed, Watching, On-Hold, Dropped, Plan to watch)
     review text, -- Dato subjetivo del usuario -- 
     score decimal(4,2) check (score >= 0 AND score <= 10) NOT NULL,
-    personal_score decimal(4,2) check (personal_score >= 0 AND personal_score <= 10), -- Dato subjetivo del usuario --
+    personal_score int check (personal_score >= 0 AND personal_score <= 10), -- Dato subjetivo del usuario --
     synopsis text NOT NULL,
     release_date date NOT NULL,
     completed_date date,
@@ -35,7 +35,7 @@ create table Serie(
     status varchar(50) NOT NULL, -- Enumerado EJ (Completed, Watching, On-Hold, Dropped, Plan to watch)
     review text, -- Dato subjetivo del usuario -- 
     score decimal(4,2) check (score >= 0 AND score <= 10) NOT NULL,
-    personal_score decimal(4,2) check (personal_score >= 0 AND personal_score <= 10), -- Dato subjetivo del usuario --
+    personal_score int check (personal_score >= 0 AND personal_score <= 10), -- Dato subjetivo del usuario --
     synopsis text NOT NULL,
     release_date date NOT NULL,
     completed_date date,
@@ -61,7 +61,7 @@ create table Season(
     total_episodes int,
     current_episodes int,
     score decimal(4,2) check (score >= 0 AND score <= 10),
-	personal_score decimal(4,2) check (personal_score >= 0 AND personal_score <= 10),
+	personal_score int check (personal_score >= 0 AND personal_score <= 10),
     review text,
     primary key(id, serie_id, user_id)
 );

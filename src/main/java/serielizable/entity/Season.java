@@ -40,7 +40,7 @@ public class Season {
 	private Double score;
 
 	@Column(name = "personal_score")
-	private Double personalScore;
+	private Integer personalScore;
 
 	@Column(name = "release_date")
 	private Date releaseDate;
@@ -128,11 +128,11 @@ public class Season {
 		this.score = score;
 	}
 
-	public Double getPersonalScore() {
+	public Integer getPersonalScore() {
 		return personalScore;
 	}
 
-	public void setPersonalScore(Double personalScore) {
+	public void setPersonalScore(Integer personalScore) {
 		this.personalScore = personalScore;
 	}
 
@@ -220,14 +220,16 @@ public class Season {
 
 	public void setPersonalScore(String personalScore) {
 		if (!personalScore.contains("-"))
-			this.personalScore = Double.parseDouble(personalScore);
+			this.personalScore = Integer.parseInt(personalScore);
+		else
+			this.personalScore = null;
 	}
 
 	public String getStringPersonalScore() {
 		if (personalScore != null)
 			return personalScore.toString();
 		else
-			return "";
+			return "-";
 	}
 
 }

@@ -35,7 +35,7 @@ public class Film {
 	private Double score;
 
 	@Column(name = "personal_score")
-	private Double personalScore;
+	private Integer personalScore;
 
 	@Column(name = "release_date")
 	private Date releaseDate;
@@ -114,7 +114,7 @@ public class Film {
 		this.score = score;
 	}
 
-	public Double getPersonalScore() {
+	public Integer getPersonalScore() {
 		if(personalScore != null)
 			return personalScore;
 		else
@@ -125,10 +125,10 @@ public class Film {
 		if(personalScore != null)
 			return personalScore.toString();
 		else
-			return "";
+			return "-";
 	}
 
-	public void setPersonalScore(Double personalScore) {
+	public void setPersonalScore(Integer personalScore) {
 		this.personalScore = personalScore;
 	}
 
@@ -173,24 +173,6 @@ public class Film {
 
 	public void setDuration(Integer duration) {
 		this.duration = duration;
-	}
-
-	public Film(Integer id, Integer userId, String title, String type, String status, String review, Double score,
-			Double personalScore, Date releaseDate, Date completedDate, Date lastUpdateDate, String genres,
-			Integer episodes, Integer duration, String synopsis) {
-		this.id = id;
-		this.userId = userId;
-		this.title = title;
-		this.status = status;
-		this.review = review;
-		this.score = score;
-		this.personalScore = personalScore;
-		this.releaseDate = releaseDate;
-		this.completedDate = completedDate;
-		this.lastUpdateDate = lastUpdateDate;
-		this.genres = genres;
-		this.duration = duration;
-		this.synopsis = synopsis;
 	}
 
 	public Film() {
@@ -241,7 +223,9 @@ public class Film {
 	
 	public void setPersonalScore(String personalScore) {
 		if(!personalScore.contains("-"))
-			this.personalScore = Double.parseDouble(personalScore);
+			this.personalScore = Integer.parseInt(personalScore);
+		else
+			this.personalScore = null;
 	}
 
 }

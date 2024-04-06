@@ -39,7 +39,7 @@ public class Serie {
 	private Double score;
 
 	@Column(name = "personal_score")
-	private Double personalScore;
+	private Integer personalScore;
 
 	@Column(name = "release_date")
 	private Date releaseDate;
@@ -161,17 +161,19 @@ public class Serie {
 		this.score = score;
 	}
 
-	public Double getPersonalScore() {
+	public Integer getPersonalScore() {
 		return personalScore;
 	}
 
-	public void setPersonalScore(Double personalScore) {
+	public void setPersonalScore(Integer personalScore) {
 		this.personalScore = personalScore;
 	}
 
 	public void setPersonalScore(String personalScore) {
 		if (!personalScore.contains("-"))
-			this.personalScore = Double.parseDouble(personalScore);
+			this.personalScore = Integer.parseInt(personalScore);
+		else
+			this.personalScore = null;
 	}
 
 	public Date getReleaseDate() {
@@ -233,27 +235,6 @@ public class Serie {
 		this.duration = duration;
 	}
 
-	public Serie(Integer id, Integer userId, String title, String type, String status, String review, Double score,
-			Double personalScore, Date releaseDate, Date completedDate, Date lastUpdateDate, String genres,
-			Integer totalEpisodes, Integer currentEpisodes, Integer duration, String synopsis) {
-		this.id = id;
-		this.userId = userId;
-		this.title = title;
-		this.status = status;
-		this.review = review;
-		this.score = score;
-		this.personalScore = personalScore;
-		this.releaseDate = releaseDate;
-		this.completedDate = completedDate;
-		this.lastUpdateDate = lastUpdateDate;
-		this.genres = genres;
-		this.totalEpisodes = totalEpisodes;
-		this.currentEpisodes = currentEpisodes;
-		this.duration = duration;
-		this.synopsis = synopsis;
-		this.seasons = new ArrayList<Season>();
-	}
-
 	public Serie() {
 		this.seasons = new ArrayList<Season>();
 	}
@@ -307,6 +288,6 @@ public class Serie {
 		if (personalScore != null)
 			return personalScore.toString();
 		else
-			return "";
+			return "-";
 	}
 }
