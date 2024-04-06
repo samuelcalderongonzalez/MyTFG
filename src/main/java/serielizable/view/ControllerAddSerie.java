@@ -1,5 +1,7 @@
 package serielizable.view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -7,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import serielizable.entity.Season;
 import utils.AbstractController;
+import utils.DateUtils;
 
 public class ControllerAddSerie extends AbstractController {
 
@@ -44,6 +47,12 @@ public class ControllerAddSerie extends AbstractController {
 	@FXML
 	public void initialize() {
 		cbStatus.getItems().addAll("Completada", "En curso", "Abandonada", "Pendiente");
+		cbStatus.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+            	checkIfCompleted();
+            }
+        });
 		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 		page = -1;
 		maxPage = currentSerie.getSeasons().size() - 1;
@@ -81,6 +90,7 @@ public class ControllerAddSerie extends AbstractController {
 		page++;
 		buttonsAndFieldsVisibility();
 		clearAndPopulateFields();
+		checkIfCompleted();
 	}
 
 	@FXML
@@ -89,6 +99,7 @@ public class ControllerAddSerie extends AbstractController {
 		page--;
 		buttonsAndFieldsVisibility();
 		clearAndPopulateFields();
+		checkIfCompleted();
 	}
 
 	// TODO Esto es horroroso, hay que refactorizar.
@@ -98,6 +109,7 @@ public class ControllerAddSerie extends AbstractController {
 			currentSerie.setStatus(cbStatus.getSelectionModel().getSelectedItem());
 			currentSerie.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
 			currentSerie.setReview(tfReview.getText().isEmpty() ? null : tfReview.getText());
+			currentSerie.setCompletedDate(cbStatus.getSelectionModel().getSelectedItem().equals("Completada") ? DateUtils.getCurrentDate() : null);
 		} else {
 			currentSerie.getSeasons().get(page).setStatus(cbStatus.getSelectionModel().getSelectedItem());
 			currentSerie.getSeasons().get(page).setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
@@ -108,6 +120,8 @@ public class ControllerAddSerie extends AbstractController {
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
+			currentSerie.getSeasons().get(page).setCompletedDate(cbStatus.getSelectionModel().getSelectedItem().equals("Completada") ? DateUtils.getCurrentDate() : null);
+
 		}
 	}
 
@@ -179,6 +193,16 @@ public class ControllerAddSerie extends AbstractController {
 			totalEpisodes.setText("");
 		else
 			totalEpisodes.setText("de " + currentSerie.getSeasons().get(page).getTotalEpisodes().toString());
+	}
+	
+	private void checkIfCompleted() {
+		if (page >= 0) {
+			if (cbStatus.getSelectionModel().getSelectedItem().equals("Completada")) {
+				tfProgress.setText(currentSerie.getSeasons().get(page).getStringTotalEpisodes());
+				tfProgress.setEditable(false);
+			} else
+				tfProgress.setEditable(true);
+		}
 	}
 
 }

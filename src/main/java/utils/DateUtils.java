@@ -27,4 +27,10 @@ public class DateUtils {
 		date.set(Calendar.HOUR_OF_DAY, 0);
 		return date.getTime();
 	}
+	
+	public static String getStringCurrentDate() {
+		Calendar date = Calendar.getInstance();
+		date.set(Calendar.HOUR_OF_DAY, 0);
+		return mapDateToString(date.getTime());
+	}
 }

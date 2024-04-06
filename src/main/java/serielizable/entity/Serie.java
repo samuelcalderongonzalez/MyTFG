@@ -67,14 +67,14 @@ public class Serie {
 
 	@Column(name = "synopsis")
 	private String synopsis;
-	
+
 	@Column(name = "total_score_votes")
 	private Integer totalScoreVotes;
 
 	public Integer getTotalScoreVotes() {
 		return totalScoreVotes;
 	}
-	
+
 	public String getStringTotalScoreVotes() {
 		return totalScoreVotes.toString() + " votos";
 	}
@@ -164,9 +164,9 @@ public class Serie {
 	public Double getScore() {
 		return score;
 	}
-	
+
 	public String getStringScore() {
-		if(score > 0)
+		if (score > 0)
 			return score.toString();
 		else
 			return Constants.NO_SCORE;
@@ -185,10 +185,12 @@ public class Serie {
 	}
 
 	public void setPersonalScore(String personalScore) {
-		if (!personalScore.contains("-"))
-			this.personalScore = Integer.parseInt(personalScore);
-		else
-			this.personalScore = null;
+		if (personalScore != null) {
+			if (!personalScore.contains("-"))
+				this.personalScore = Integer.parseInt(personalScore);
+			else
+				this.personalScore = null;
+		}
 	}
 
 	public Date getReleaseDate() {

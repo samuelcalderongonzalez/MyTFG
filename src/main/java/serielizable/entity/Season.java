@@ -120,11 +120,14 @@ public class Season {
 	public Double getScore() {
 		return score;
 	}
-	
+
 	public String getStringScore() {
-		if(score > 0)
-			return score.toString();
-		else
+		if (score != null) {
+			if (score > 0)
+				return score.toString();
+			else
+				return Constants.NO_SCORE;
+		} else
 			return Constants.NO_SCORE;
 	}
 
@@ -161,6 +164,10 @@ public class Season {
 
 	public Integer getTotalEpisodes() {
 		return totalEpisodes;
+	}
+
+	public String getStringTotalEpisodes() {
+		return totalEpisodes.toString();
 	}
 
 	public void setTotalEpisodes(Integer totalEpisodes) {

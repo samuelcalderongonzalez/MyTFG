@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import utils.AbstractController;
 import utils.Constants;
+import utils.DateUtils;
 
 public class ControllerAddFilm extends AbstractController {
 
@@ -56,6 +57,9 @@ public class ControllerAddFilm extends AbstractController {
 			currentFilm.setStatus(cbStatus.getSelectionModel().getSelectedItem());
 			currentFilm.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
 			currentFilm.setReview(tfReview.getText().isEmpty() ? null : tfReview.getText());
+			currentFilm.setCompletedDate(
+					cbStatus.getSelectionModel().getSelectedItem().equals("Completada") ? DateUtils.getCurrentDate()
+							: null);
 			filmRepository.insertFilm(currentFilm);
 			currentFilm = null;
 			setViewFilm();

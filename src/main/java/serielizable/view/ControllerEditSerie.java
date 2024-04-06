@@ -5,6 +5,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import utils.AbstractController;
+import utils.DateUtils;
 
 public class ControllerEditSerie extends AbstractController {
 
@@ -68,6 +69,9 @@ public class ControllerEditSerie extends AbstractController {
 		if (cbPersonalScore.getSelectionModel().getSelectedItem() != null)
 			currentSerie.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
 		serieRepository.updateSerie(currentSerie);
+		currentSerie.setCompletedDate(
+				cbStatus.getSelectionModel().getSelectedItem().equals("Completada") ? DateUtils.getCurrentDate()
+						: null);
 		handleBack();
 	}
 

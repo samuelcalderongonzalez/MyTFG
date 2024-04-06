@@ -5,6 +5,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import utils.AbstractController;
+import utils.DateUtils;
 
 public class ControllerEditFilm extends AbstractController {
 
@@ -67,6 +68,9 @@ public class ControllerEditFilm extends AbstractController {
 		currentFilm.setReview(tfReview.getText());
 		if (cbPersonalScore.getSelectionModel().getSelectedItem() != null)
 			currentFilm.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
+		currentFilm.setCompletedDate(
+				cbStatus.getSelectionModel().getSelectedItem().equals("Completada") ? DateUtils.getCurrentDate()
+						: null);
 		filmRepository.updateFilm(currentFilm);
 		handleBack();
 	}

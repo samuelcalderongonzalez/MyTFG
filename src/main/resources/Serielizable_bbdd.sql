@@ -1,5 +1,6 @@
 create schema if not exists serielizable;
 -- rollback: 'drop schema serielizable;' -- 
+
 use serielizable;
 create table User(
 	id int auto_increment,
@@ -69,15 +70,17 @@ create table Season(
 -- rollback: 'drop table Season;'
 
 INSERT INTO USER VALUES(1, "Admin", "Admin123@");
-INSERT INTO FILM VALUES (1, 1, "PeliPrueba", "Completed", "Review de prueba", 6.78, 8, "Sinopsis de prueba", '2020-01-01', '2020-01-01', '2020-01-01', "Drama, Acción, Romance", 50, 1235);
-INSERT INTO FILM VALUES (2, 1, "PeliPrueba2", "Completed", null, 6,  null, "Sinopsis de prueba", '2020-01-01', null, null,"Drama, Comedia, Romance", 140,453);
-INSERT INTO FILM VALUES (3, 1, "PeliPrueba3", "Completed", null, 9.8, null, "Sinopsis de prueba", '2024-01-01', null, null, "Romance", 120, 0);
+INSERT INTO FILM VALUES (1, 1, "PeliPrueba", "Completada", "Review de prueba", 6.78, 8, "Sinopsis de prueba", '2020-01-01', '2020-01-01', '2020-01-01', "Drama, Acción, Romance", 50, 1235);
+INSERT INTO FILM VALUES (2, 1, "PeliPrueba2", "Completada", null, 6,  null, "Sinopsis de prueba", '2020-01-01', null, null,"Drama, Comedia, Romance", 140,453);
+INSERT INTO FILM VALUES (3, 1, "PeliPrueba3", "Completada", null, 9.8, null, "Sinopsis de prueba", '2024-01-01', null, null, "Romance", 120, 0);
 
-INSERT INTO SERIE VALUES(1, 1, "SeriePrueba", "Completed", null, 10 , null, "Sinopsis de prueba", '2024-01-01', null, null, null, null, null, null, 3, 6546);
-INSERT INTO SERIE VALUES(2, 1, "SeriePrueba2", "Completed", null, 1 , null, "Sinopsis de prueba", '2020-01-01', null, null, null, null, null, null, 4, 3);
-INSERT INTO SERIE VALUES(3, 1, "SeriePrueba3", "Completed", null, 2 , null, "Sinopsis de prueba", '2020-01-01', null, null, null, null, null, null, 0, 24);
+INSERT INTO SERIE VALUES(1, 1, "SeriePrueba", "Completada", null, 10 , null, "Sinopsis de prueba", '2024-01-01', null, null, null, null, null, null, 3, 6546);
+INSERT INTO SERIE VALUES(2, 1, "SeriePrueba2", "Completada", null, 1 , null, "Sinopsis de prueba", '2020-01-01', null, null, null, null, null, null, 4, 3);
+INSERT INTO SERIE VALUES(3, 1, "SeriePrueba3", "Completada", null, 2 , null, "Sinopsis de prueba", '2020-01-01', null, null, null, null, null, null, 0, 24);
 
 select * from user;
 select * from film;
 select * from serie;
 select * from season;
+
+update film set score = 0 where user_id = 1 and id = 1;
