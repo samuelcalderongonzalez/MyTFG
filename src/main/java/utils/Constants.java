@@ -13,6 +13,8 @@ public class Constants {
 	public static final String DATE_PATTERN = "yyyy-MM-dd";
 	public static final String STATUS_NULL_ERROR = "Status field can't be null";
 	public static final String NO_COMPLETE_DATE= "Por completar";
+	public static final String NO_SCORE = "N/A";
+
 
 
 }

@@ -99,8 +99,7 @@ public class ControllerSeason extends AbstractController {
 
 	private void pupulateLabels() {
 		btnEditSeason.setVisible(true);
-		score.setText(currentSeason.getScore().toString());
-//		totalVotes.setText(currentSerie.getScoreVotes().toString()); TODO
+		score.setText(currentSeason.getStringScore());
 		completedDate.setText(currentSeason.getCompletedDate());
 		review.setText(currentSeason.getReview());
 	}

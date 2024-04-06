@@ -101,7 +101,7 @@ public class ControllerSerie extends AbstractController {
 		btnEditSerie.setVisible(true);
 		btnSeasons.setVisible(true);
 		score.setText(currentSerie.getStringScore());
-//		totalVotes.setText(currentSerie.getScoreVotes().toString()); TODO
+		totalVotes.setText(currentSerie.getStringTotalScoreVotes());
 		genres.setText(currentSerie.getGenres());
 		completedDate.setText(currentSerie.getCompletedDate());
 		sinopsis.setText(currentSerie.getSynopsis());

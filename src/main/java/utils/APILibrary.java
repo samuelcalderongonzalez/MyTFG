@@ -65,7 +65,8 @@ public class APILibrary {
 				currFilm.setScore(element.getAsJsonObject().get("vote_average").getAsDouble());
 				currFilm.setSynopsis(element.getAsJsonObject().get("overview").getAsString());
 				currFilm.setDuration(searchFilmRuntime(currFilm.getId()));
-				System.out.println(element.getAsJsonObject().get("vote_average").getAsDouble());
+				currFilm.setTotalScoreVotes(element.getAsJsonObject().get("vote_count").getAsInt());
+
 				films.add(currFilm);
 			}
 		} catch (UnsupportedEncodingException e) {
@@ -114,13 +115,12 @@ public class APILibrary {
 					}
 				}
 				currSerie.setId(element.getAsJsonObject().get("id").getAsInt());
-				System.out.println(currSerie.getId());
 				currSerie.setTitle(element.getAsJsonObject().get("name").getAsString());
 				currSerie.setReleaseDate(
 						DateUtils.mapStringToDate(element.getAsJsonObject().get("first_air_date").getAsString()));
 				currSerie.setScore(element.getAsJsonObject().get("vote_average").getAsDouble());
 				currSerie.setSynopsis(element.getAsJsonObject().get("overview").getAsString());
-
+				currSerie.setTotalScoreVotes(element.getAsJsonObject().get("vote_count").getAsInt());
 				series.add(searchSerieDetails(currSerie));
 			}
 		} catch (UnsupportedEncodingException e) {
@@ -198,7 +198,6 @@ public class APILibrary {
 			JsonObject jsonObject = gson.fromJson(jsonResponse, JsonObject.class);
 			runtime = jsonObject.get("runtime").getAsInt();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return runtime;
@@ -222,13 +221,14 @@ public class APILibrary {
 //			runtime = jsonObject.get("runtime").getAsInt();
 			serie.setTotalEpisodes(jsonObject.get("number_of_episodes").getAsInt());
 			serie.setCountSeasons(jsonObject.get("number_of_seasons").getAsInt());
-			if(serie.getCountSeasons() > 0) {
+			if (serie.getCountSeasons() > 0) {
 				for (JsonElement element : results) {
 					System.out.println(element);
 					Season currSeason = new Season();
 					currSeason.setId(element.getAsJsonObject().get("id").getAsInt());
 					currSeason.setSerie(serie);
-					currSeason.setReleaseDate(DateUtils.mapStringToDate(element.getAsJsonObject().get("air_date").getAsString()));
+					currSeason.setReleaseDate(
+							DateUtils.mapStringToDate(element.getAsJsonObject().get("air_date").getAsString()));
 					try {
 						currSeason.setTotalEpisodes(element.getAsJsonObject().get("episode_count").getAsInt());
 					} catch (Exception e) {

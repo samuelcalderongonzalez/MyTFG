@@ -54,6 +54,21 @@ public class Film {
 	
 	@Column(name = "synopsis")
 	private String synopsis;
+	
+	@Column(name = "total_score_votes")
+	private Integer totalScoreVotes;
+
+	public Integer getTotalScoreVotes() {
+		return totalScoreVotes;
+	}
+	
+	public String getStringTotalScoreVotes() {
+		return totalScoreVotes.toString() + " votos";
+	}
+
+	public void setTotalScoreVotes(Integer totalScoreVotes) {
+		this.totalScoreVotes = totalScoreVotes;
+	}
 
 	public String getSynopsis() {
 		return synopsis;
@@ -108,6 +123,13 @@ public class Film {
 
 	public Double getScore() {
 		return score;
+	}
+	
+	public String getStringScore() {
+		if(score > 0)
+			return score.toString();
+		else
+			return Constants.NO_SCORE;
 	}
 
 	public void setScore(Double score) {

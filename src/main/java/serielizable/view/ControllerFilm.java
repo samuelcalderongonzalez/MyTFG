@@ -92,8 +92,8 @@ public class ControllerFilm extends AbstractController {
 
 	private void pupulateLabels() {
 		btEditFilm.setVisible(true);
-		score.setText(currentFilm.getScore().toString());
-//		totalVotes.setText(currentFilm.getScoreVotes().toString()); TODO
+		score.setText(currentFilm.getStringScore());
+		totalVotes.setText(currentFilm.getStringTotalScoreVotes());
 		genres.setText(currentFilm.getGenres());
 		completedDate.setText(currentFilm.getCompletedDate());
 		sinopsis.setText(currentFilm.getSynopsis());

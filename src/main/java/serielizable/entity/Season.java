@@ -118,10 +118,14 @@ public class Season {
 	}
 
 	public Double getScore() {
-		if (score != null)
-			return score;
+		return score;
+	}
+	
+	public String getStringScore() {
+		if(score > 0)
+			return score.toString();
 		else
-			return 0.0;
+			return Constants.NO_SCORE;
 	}
 
 	public void setScore(Double score) {

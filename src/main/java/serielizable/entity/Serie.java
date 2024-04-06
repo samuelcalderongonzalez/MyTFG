@@ -67,6 +67,21 @@ public class Serie {
 
 	@Column(name = "synopsis")
 	private String synopsis;
+	
+	@Column(name = "total_score_votes")
+	private Integer totalScoreVotes;
+
+	public Integer getTotalScoreVotes() {
+		return totalScoreVotes;
+	}
+	
+	public String getStringTotalScoreVotes() {
+		return totalScoreVotes.toString() + " votos";
+	}
+
+	public void setTotalScoreVotes(Integer totalScoreVotes) {
+		this.totalScoreVotes = totalScoreVotes;
+	}
 
 	@OneToMany(mappedBy = "serie", cascade = CascadeType.ALL)
 	private List<Season> seasons;
@@ -151,10 +166,10 @@ public class Serie {
 	}
 	
 	public String getStringScore() {
-		if(score != null)
+		if(score > 0)
 			return score.toString();
 		else
-			return "";
+			return Constants.NO_SCORE;
 	}
 
 	public void setScore(Double score) {

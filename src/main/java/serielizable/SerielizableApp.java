@@ -25,7 +25,7 @@ public class SerielizableApp extends Application implements CAPPI {
 		api = new APILibrary();
 //		api.searchSerieRuntime(1396);
 		api.searchSerieByTitle("Breaking Bad");
-		api.searchFilmByTitle("Matrix");
+//		api.searchFilmByTitle("Matrix");
 		launch(args);
 	}
 
