@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import serielizable.entity.Serie;
 import utils.AbstractController;
 
@@ -50,9 +52,10 @@ public class ControllerSerie extends AbstractController {
 	private TableColumn<Serie, String> tcReleaseDate;
 	@FXML
 	private TableColumn<Serie, String> tcSeasons;
-
+	private ImageView imageView;
 	@FXML
 	public void initialize() {
+		setButtonIcon();
 		currentSeries = serieRepository.getAllByUserId(currentUser.getId());
 		series = FXCollections.observableArrayList(currentSeries);
 		tcTitle.setCellValueFactory(param -> param.getValue().getSPTitle());
@@ -119,5 +122,13 @@ public class ControllerSerie extends AbstractController {
 
 	public ControllerSerie() {
 
+	}
+	
+	private void setButtonIcon() {
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/edit.png"));
+		imageView = new ImageView(editImg);
+		imageView.setFitHeight(50);
+		imageView.setFitWidth(50);
+		btnEditSerie.setGraphic(imageView);
 	}
 }

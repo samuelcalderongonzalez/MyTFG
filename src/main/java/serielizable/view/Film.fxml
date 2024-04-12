@@ -13,9 +13,9 @@
 
 <AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerFilm">
    <children>
-      <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" AnchorPane.rightAnchor="0.0">
+      <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <MenuBar prefHeight="40.0" prefWidth="1091.0" styleClass="menubar" useSystemMenuBar="true" BorderPane.alignment="CENTER">
+            <MenuBar styleClass="menubar" useSystemMenuBar="true" BorderPane.alignment="CENTER">
                <menus>
                   <Menu mnemonicParsing="false" text="Películas">
                      <items>
@@ -85,6 +85,6 @@
          </font>
       </Label>
       <Label fx:id="completedDate" layoutX="672.0" layoutY="339.0" prefHeight="22.0" prefWidth="379.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="375.0" />
-      <Button fx:id="btEditFilm" mnemonicParsing="false" onAction="#editFilm" prefHeight="50.0" prefWidth="50.0" visible="false" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="225.0" />
+      <Button fx:id="btEditFilm" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#editFilm" prefHeight="0.0" prefWidth="0.0" visible="false" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="250.0" />
    </children>
 </AnchorPane>

@@ -29,6 +29,9 @@ public class ControllerLogin extends AbstractController {
 	
 	@FXML
 	private Button passwordViewButton;
+	
+	@FXML
+	private ImageView imagelogo;
 
 	// Define the button image
 	Image showPasswordImg = new Image(getClass().getResourceAsStream("../../utils/eye.png"));

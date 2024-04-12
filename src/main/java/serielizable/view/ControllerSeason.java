@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import serielizable.entity.Season;
 import utils.AbstractController;
 
@@ -44,10 +46,11 @@ public class ControllerSeason extends AbstractController {
 	private TableColumn<Season, String> tcReleaseDate;
 	@FXML
 	private TableColumn<Season, String> tcProgress;
+	private ImageView imageView;
 
 	@FXML
 	public void initialize() {
-		System.out.println(currentSerie);
+		setButtonIcon();
 		serieTitle.setText(currentSerie.getTitle());
 		seasons = FXCollections.observableArrayList(currentSerie.getSeasons());
 		tcTitle.setCellValueFactory(param -> param.getValue().getSPName());
@@ -113,5 +116,13 @@ public class ControllerSeason extends AbstractController {
 
 	public ControllerSeason() {
 
+	}
+	
+	private void setButtonIcon() {
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/edit.png"));
+		imageView = new ImageView(editImg);
+		imageView.setFitHeight(50);
+		imageView.setFitWidth(50);
+		btnEditSeason.setGraphic(imageView);
 	}
 }

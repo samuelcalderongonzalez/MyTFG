@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import serielizable.entity.Film;
 import utils.AbstractController;
 
@@ -47,9 +49,12 @@ public class ControllerFilm extends AbstractController {
 	private TableColumn<Film, String> tcReleaseDate;
 	@FXML
 	private TableColumn<Film, String> tcDuration;
+	
+	private ImageView imageView;
 
 	@FXML
 	public void initialize() {
+		setButtonIcon();
 		currentFilms = filmRepository.getAllByUserId(currentUser.getId());
 		films = FXCollections.observableArrayList(currentFilms);
 		tcTitle.setCellValueFactory(param -> param.getValue().getSPTitle());
@@ -111,5 +116,13 @@ public class ControllerFilm extends AbstractController {
 
 	public ControllerFilm() {
 
+	}
+	
+	private void setButtonIcon() {
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/edit.png"));
+		imageView = new ImageView(editImg);
+		imageView.setFitHeight(50);
+		imageView.setFitWidth(50);
+		btEditFilm.setGraphic(imageView);
 	}
 }
