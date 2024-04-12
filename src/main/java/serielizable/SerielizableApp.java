@@ -7,6 +7,7 @@ import org.apache.http.client.ClientProtocolException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -20,8 +21,10 @@ public class SerielizableApp extends Application implements CAPPI {
 	private AnchorPane loginLayout;
 	private BorderPane rootLayout;
 	private static APILibrary api;
+	Image icon = new Image(getClass().getResourceAsStream("../utils/logoApp.png"));
 
 	public static void main(String[] args) throws ClientProtocolException, IOException {
+		
 		api = new APILibrary();
 		launch(args);
 	}
@@ -30,6 +33,7 @@ public class SerielizableApp extends Application implements CAPPI {
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Serielizable");
+		this.primaryStage.getIcons().add(icon);
 		primaryStage.setOnCloseRequest(event -> {
 			HibernateUtils.close();
 		});
