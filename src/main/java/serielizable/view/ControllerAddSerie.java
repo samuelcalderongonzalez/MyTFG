@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import serielizable.entity.Season;
 import utils.AbstractController;
 import utils.DateUtils;
@@ -44,8 +46,14 @@ public class ControllerAddSerie extends AbstractController {
 
 	private int maxPage;
 
+	private ImageView imageViewBack;
+	
+	@FXML
+	private Button getBackButton;
+
 	@FXML
 	public void initialize() {
+		setBackButtonIcon();
 		cbStatus.getItems().addAll("Completada", "En curso", "Abandonada", "Pendiente");
 		cbStatus.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -203,6 +211,14 @@ public class ControllerAddSerie extends AbstractController {
 			} else
 				tfProgress.setEditable(true);
 		}
+	}
+	
+	private void setBackButtonIcon() {
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButton.png"));
+		imageViewBack = new ImageView(editImg);
+		imageViewBack.setFitHeight(50);
+		imageViewBack.setFitWidth(50);
+		getBackButton.setGraphic(imageViewBack);
 	}
 
 }

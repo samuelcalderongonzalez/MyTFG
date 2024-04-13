@@ -1,9 +1,12 @@
 package serielizable.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import utils.AbstractController;
 import utils.DateUtils;
 
@@ -20,11 +23,15 @@ public class ControllerEditFilm extends AbstractController {
 
 	@FXML
 	private TextField tfReview;
+	
+	@FXML
+	private Button getBackButton;
+	
+	private ImageView imageViewBack;
 
 	@FXML
 	public void initialize() {
-		cbStatus.getItems().addAll("Completada", "Pendiente", "Abandonada");
-		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+		setBackButtonIcon();
 		populateFields();
 	}
 
@@ -48,6 +55,8 @@ public class ControllerEditFilm extends AbstractController {
 	}
 
 	private void populateFields() {
+		cbStatus.getItems().addAll("Completada", "Pendiente", "Abandonada");
+		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 		title.setText(currentFilm.getTitle());
 		cbStatus.getSelectionModel().select(currentFilm.getStatus());
 		cbPersonalScore.getSelectionModel().select(currentFilm.getStringPersonalScore());
@@ -73,6 +82,14 @@ public class ControllerEditFilm extends AbstractController {
 						: null);
 		filmRepository.updateFilm(currentFilm);
 		handleBack();
+	}
+	
+	private void setBackButtonIcon() {
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButton.png"));
+		imageViewBack = new ImageView(editImg);
+		imageViewBack.setFitHeight(50);
+		imageViewBack.setFitWidth(50);
+		getBackButton.setGraphic(imageViewBack);
 	}
 
 }

@@ -46,7 +46,13 @@ public class ControllerRegister extends AbstractController {
 	Image showPasswordImg = new Image(getClass().getResourceAsStream("../../utils/eye.png"));
 	Image hidePasswordImg = new Image(getClass().getResourceAsStream("../../utils/hidden.png"));
 	// Define the ImageView to resize it
+	@FXML
+	private ImageView imageViewLogo;
+
 	ImageView imageView;
+	
+	ImageView imageViewBack;
+
 	// This is used for the password visibility
 	private boolean passwordIsVisible = false;
 	private boolean repeatPasswordIsVisible = false;
@@ -56,6 +62,7 @@ public class ControllerRegister extends AbstractController {
 		userRepository = new UserRepository();
 		setPasswordImage();
 		setRepeatPasswordImage();
+		setBackButtonIcon();
 	}
 
 	@FXML
@@ -233,5 +240,13 @@ public class ControllerRegister extends AbstractController {
 	 */
 	public void handleBack() {
 		setViewLogin();
+	}
+	
+	private void setBackButtonIcon() {
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButton.png"));
+		imageViewBack = new ImageView(editImg);
+		imageViewBack.setFitHeight(40);
+		imageViewBack.setFitWidth(40);
+		getBackButton.setGraphic(imageViewBack);
 	}
 }

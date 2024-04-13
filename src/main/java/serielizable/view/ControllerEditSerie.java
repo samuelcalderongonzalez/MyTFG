@@ -1,9 +1,12 @@
 package serielizable.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import utils.AbstractController;
 import utils.DateUtils;
 
@@ -21,10 +24,12 @@ public class ControllerEditSerie extends AbstractController {
 	@FXML
 	private TextField tfReview;
 
+	private ImageView imageViewBack;
 	@FXML
+	private Button getBackButton;
+
 	public void initialize() {
-		cbStatus.getItems().addAll("Completada", "Pendiente", "Abandonada");
-		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+		setBackButtonIcon();
 		populateFields();
 	}
 
@@ -48,6 +53,8 @@ public class ControllerEditSerie extends AbstractController {
 	}
 
 	private void populateFields() {
+		cbStatus.getItems().addAll("Completada", "Pendiente", "Abandonada");
+		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 		title.setText(currentSerie.getTitle());
 		cbStatus.getSelectionModel().select(currentSerie.getStatus());
 		cbPersonalScore.getSelectionModel().select(currentSerie.getStringPersonalScore());
@@ -73,6 +80,14 @@ public class ControllerEditSerie extends AbstractController {
 				cbStatus.getSelectionModel().getSelectedItem().equals("Completada") ? DateUtils.getCurrentDate()
 						: null);
 		handleBack();
+	}
+
+	private void setBackButtonIcon() {
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButton.png"));
+		imageViewBack = new ImageView(editImg);
+		imageViewBack.setFitHeight(50);
+		imageViewBack.setFitWidth(50);
+		getBackButton.setGraphic(imageViewBack);
 	}
 
 }

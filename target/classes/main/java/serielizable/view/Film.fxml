@@ -15,7 +15,7 @@
    <children>
       <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <MenuBar styleClass="menubar" useSystemMenuBar="true" BorderPane.alignment="CENTER">
+            <MenuBar styleClass="menubar" useSystemMenuBar="true">
                <menus>
                   <Menu mnemonicParsing="false" text="Películas">
                      <items>

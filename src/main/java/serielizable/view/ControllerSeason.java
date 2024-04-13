@@ -33,6 +33,9 @@ public class ControllerSeason extends AbstractController {
 
 	@FXML
 	private Button btnEditSeason;
+	
+	@FXML
+	private Button getBackButton;
 
 	@FXML
 	private TableView<Season> tableFootage;
@@ -46,10 +49,14 @@ public class ControllerSeason extends AbstractController {
 	private TableColumn<Season, String> tcReleaseDate;
 	@FXML
 	private TableColumn<Season, String> tcProgress;
+	
 	private ImageView imageView;
-
+	
+	private ImageView imageViewBack;
+	
 	@FXML
 	public void initialize() {
+		setBackButtonIcon();
 		setButtonIcon();
 		serieTitle.setText(currentSerie.getTitle());
 		seasons = FXCollections.observableArrayList(currentSerie.getSeasons());
@@ -124,5 +131,13 @@ public class ControllerSeason extends AbstractController {
 		imageView.setFitHeight(50);
 		imageView.setFitWidth(50);
 		btnEditSeason.setGraphic(imageView);
+	}
+	
+	private void setBackButtonIcon() {
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButton.png"));
+		imageViewBack = new ImageView(editImg);
+		imageViewBack.setFitHeight(40);
+		imageViewBack.setFitWidth(40);
+		getBackButton.setGraphic(imageViewBack);
 	}
 }

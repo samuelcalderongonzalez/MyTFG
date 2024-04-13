@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerLogin">
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerLogin">
    <children>
       <TextField fx:id="userNameTextField" layoutX="222.0" layoutY="518.0" prefHeight="39.0" prefWidth="323.0" promptText="Nombre de usuario" AnchorPane.bottomAnchor="243.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
       <PasswordField fx:id="passwordField" layoutX="222.0" layoutY="591.0" onAction="#handleAcceder" prefHeight="39.0" prefWidth="323.0" promptText="Contraseña" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />

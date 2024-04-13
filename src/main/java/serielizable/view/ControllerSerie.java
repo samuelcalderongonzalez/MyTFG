@@ -36,7 +36,7 @@ public class ControllerSerie extends AbstractController {
 
 	@FXML
 	private Button btnEditSerie;
-	
+
 	@FXML
 	private Button btnSeasons;
 
@@ -52,7 +52,11 @@ public class ControllerSerie extends AbstractController {
 	private TableColumn<Serie, String> tcReleaseDate;
 	@FXML
 	private TableColumn<Serie, String> tcSeasons;
+
 	private ImageView imageView;
+
+	private ImageView imageViewSeason;
+
 	@FXML
 	public void initialize() {
 		setButtonIcon();
@@ -89,12 +93,12 @@ public class ControllerSerie extends AbstractController {
 	public void film() {
 		setViewFilm();
 	}
-	
+
 	@FXML
 	public void editSerie() {
 		setViewEditSerie();
 	}
-	
+
 	@FXML
 	public void viewSeasons() {
 		setViewSeason();
@@ -123,12 +127,18 @@ public class ControllerSerie extends AbstractController {
 	public ControllerSerie() {
 
 	}
-	
+
 	private void setButtonIcon() {
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/edit.png"));
 		imageView = new ImageView(editImg);
 		imageView.setFitHeight(50);
 		imageView.setFitWidth(50);
 		btnEditSerie.setGraphic(imageView);
+		
+		Image goSeason = new Image(getClass().getResourceAsStream("../../utils/seasonDetails.png"));
+		imageViewSeason = new ImageView(goSeason);
+		imageViewSeason.setFitHeight(50);
+		imageViewSeason.setFitWidth(50);
+		btnSeasons.setGraphic(imageViewSeason);
 	}
 }
