@@ -9,28 +9,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerLogin">
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerLogin">
    <children>
       <TextField fx:id="userNameTextField" layoutX="222.0" layoutY="518.0" prefHeight="39.0" prefWidth="323.0" promptText="Nombre de usuario" AnchorPane.bottomAnchor="243.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
       <PasswordField fx:id="passwordField" layoutX="222.0" layoutY="591.0" onAction="#handleAcceder" prefHeight="39.0" prefWidth="323.0" promptText="Contraseña" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
       <TextField fx:id="passwordFieldViewable" disable="true" layoutX="222.0" layoutY="591.0" onAction="#handleAcceder" prefHeight="39.0" prefWidth="323.0" visible="false" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
       <Button fx:id="passwordViewButton" layoutX="520.0" layoutY="610.0" maxHeight="1.0" maxWidth="1.0" minHeight="1.0" minWidth="1.0" mnemonicParsing="false" onAction="#changePasswordVisivility" prefHeight="1.0" prefWidth="1.0" AnchorPane.bottomAnchor="189.0" AnchorPane.rightAnchor="170.0" />
-      <Button fx:id="accessButton" layoutX="222.0" layoutY="664.0" mnemonicParsing="false" onAction="#handleAcceder" prefHeight="35.0" prefWidth="115.0" text="Acceder" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="150.0">
+      <Button fx:id="accessButton" layoutX="222.0" layoutY="664.0" mnemonicParsing="false" onAction="#handleAcceder" prefHeight="35.0" prefWidth="115.0" text="Acceder" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="335.0">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="registerButton" layoutX="338.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="35.0" prefWidth="115.0" text="Registrar" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="150.0">
+      <Button fx:id="registerButton" layoutX="338.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="35.0" prefWidth="115.0" text="Registrar" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="150.0">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <ImageView fx:id="imageLogo" fitHeight="201.0" fitWidth="300.0" layoutX="150.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
+      <ImageView fx:id="imageLogo" fitHeight="201.0" fitWidth="300.0" layoutX="150.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="71.0">
          <viewport>
             <Rectangle2D />
          </viewport>
          <image>
-            <Image url="@../../utils/logo.png" />
+            <Image url="@../../utils/logopng.png" />
          </image>
       </ImageView>
    </children>

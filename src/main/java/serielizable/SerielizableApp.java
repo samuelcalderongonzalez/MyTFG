@@ -32,6 +32,10 @@ public class SerielizableApp extends Application implements CAPPI {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
+		primaryStage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue)
+                primaryStage.setMaximized(false);
+        });
 		this.primaryStage.setTitle("Serielizable");
 		this.primaryStage.getIcons().add(icon);
 		primaryStage.setOnCloseRequest(event -> {
