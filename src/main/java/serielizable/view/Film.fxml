@@ -47,7 +47,7 @@
           <TableColumn fx:id="tcStatus" prefWidth="118.0" text="Estado" />
             <TableColumn fx:id="tcPersonalScore" prefWidth="95.0" text="Mi puntuación" />
             <TableColumn fx:id="tcReleaseDate" prefWidth="103.0" text="Fecha estreno" />
-            <TableColumn fx:id="tcDuration" prefWidth="93.0" text="Duración" />
+            <TableColumn fx:id="tcDuration" prefWidth="89.0" text="Duración" />
         </columns>
       </TableView>
       <Label layoutX="662.0" layoutY="399.0" prefHeight="22.0" prefWidth="123.0" text="Sinopsis" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="400.0">

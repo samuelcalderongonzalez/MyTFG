@@ -21,11 +21,12 @@ public class SerielizableApp extends Application implements CAPPI {
 	private AnchorPane loginLayout;
 	private BorderPane rootLayout;
 	private static APILibrary api;
-	Image icon = new Image(getClass().getResourceAsStream("../utils/logoApp.png"));
+	Image icon = new Image(getClass().getResourceAsStream("../utils/logopng.png"));
 
 	public static void main(String[] args) throws ClientProtocolException, IOException {
 		
 		api = new APILibrary();
+		api.searchFilmByTitle("Los vengadores");
 		launch(args);
 	}
 

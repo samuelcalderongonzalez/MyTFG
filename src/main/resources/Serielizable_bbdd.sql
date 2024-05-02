@@ -25,6 +25,8 @@ create table Film(
     genres varchar(100),
     duration int, -- En minutos --
     total_score_votes int,
+	image_link varchar(150),
+    favorite bool default false,
     primary key(id, user_id)
 );
 -- rollback: 'drop table Film;'
@@ -47,6 +49,8 @@ create table Serie(
     current_episodes int,
     total_seasons int,
 	total_score_votes int,
+    image_link varchar(150),
+    favorite bool default false,
 	primary key(id, user_id)
 );
 -- rollback: 'drop table Serie;'
@@ -70,13 +74,13 @@ create table Season(
 -- rollback: 'drop table Season;'
 
 INSERT INTO USER VALUES(1, "Admin", "Admin123@");
-INSERT INTO FILM VALUES (1, 1, "PeliPrueba", "Completada", "Review de prueba", 6.78, 8, "Sinopsis de prueba", '2020-01-01', '2020-01-01', '2020-01-01', "Drama, Acción, Romance", 50, 1235);
-INSERT INTO FILM VALUES (2, 1, "PeliPrueba2", "Completada", null, 6,  null, "Sinopsis de prueba", '2020-01-01', null, null,"Drama, Comedia, Romance", 140,453);
-INSERT INTO FILM VALUES (3, 1, "PeliPrueba3", "Completada", null, 9.8, null, "Sinopsis de prueba", '2024-01-01', null, null, "Romance", 120, 0);
+INSERT INTO FILM VALUES (1, 1, "PeliPrueba", "Completada", "Review de prueba", 6.78, 8, "Sinopsis de prueba", '2020-01-01', '2020-01-01', '2020-01-01', "Drama, Acción, Romance", 50, 1235, null, true);
+INSERT INTO FILM VALUES (2, 1, "PeliPrueba2", "Completada", null, 6,  null, "Sinopsis de prueba", '2020-01-01', null, null,"Drama, Comedia, Romance", 140,453, null, false);
+INSERT INTO FILM VALUES (3, 1, "PeliPrueba3", "Completada", null, 9.8, null, "Sinopsis de prueba", '2024-01-01', null, null, "Romance", 120, 0, null, false);
 
-INSERT INTO SERIE VALUES(1, 1, "SeriePrueba", "Completada", null, 10 , null, "Sinopsis de prueba", '2024-01-01', null, null, null, null, null, null, 3, 6546);
-INSERT INTO SERIE VALUES(2, 1, "SeriePrueba2", "Completada", null, 1 , null, "Sinopsis de prueba", '2020-01-01', null, null, null, null, null, null, 4, 3);
-INSERT INTO SERIE VALUES(3, 1, "SeriePrueba3", "Completada", null, 2 , null, "Sinopsis de prueba", '2020-01-01', null, null, null, null, null, null, 0, 24);
+INSERT INTO SERIE VALUES(1, 1, "SeriePrueba", "Completada", null, 10 , null, "Sinopsis de prueba", '2024-01-01', null, null, null, null, null, null, 3, 6546, null, true);
+INSERT INTO SERIE VALUES(2, 1, "SeriePrueba2", "Completada", null, 1 , null, "Sinopsis de prueba", '2020-01-01', null, null, null, null, null, null, 4, 3, null, false);
+INSERT INTO SERIE VALUES(3, 1, "SeriePrueba3", "Completada", null, 2 , null, "Sinopsis de prueba", '2020-01-01', null, null, null, null, null, null, 0, 24, null, false);
 
 select * from user;
 select * from film;

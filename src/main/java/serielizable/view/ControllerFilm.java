@@ -71,6 +71,9 @@ public class ControllerFilm extends AbstractController {
 				pupulateLabels();
 			}
 		});
+		//Mostrar la primera película al iniciar la vista
+		currentFilm = currentFilms.get(0);
+		pupulateLabels();
 
 	}
 

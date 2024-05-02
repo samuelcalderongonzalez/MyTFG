@@ -71,6 +71,28 @@ public class Serie {
 	@Column(name = "total_score_votes")
 	private Integer totalScoreVotes;
 
+	@Column(name = "image_link")
+	private String imageLink;
+
+	@Column(name = "favorite")
+	private boolean favorite;
+
+	public String getImageLink() {
+		return imageLink;
+	}
+
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
+	}
+
+	public boolean isFavorite() {
+		return favorite;
+	}
+
+	public void setFavorite(boolean favorite) {
+		this.favorite = favorite;
+	}
+
 	public Integer getTotalScoreVotes() {
 		return totalScoreVotes;
 	}

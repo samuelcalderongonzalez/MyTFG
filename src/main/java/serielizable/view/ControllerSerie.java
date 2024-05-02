@@ -75,6 +75,9 @@ public class ControllerSerie extends AbstractController {
 				pupulateLabels();
 			}
 		});
+		//Mostrar la primera serie al iniciar la vista
+		currentSerie = currentSeries.get(0);
+		pupulateLabels();
 
 	}
 

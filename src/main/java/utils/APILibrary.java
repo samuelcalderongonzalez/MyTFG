@@ -48,6 +48,7 @@ public class APILibrary {
 			JsonArray results = jsonObject.getAsJsonArray("results");
 
 			for (JsonElement element : results) {
+				System.out.println(element);
 				JsonArray jsonGenres = element.getAsJsonObject().getAsJsonArray("genre_ids");
 				Film currFilm = new Film();
 				for (JsonElement el : jsonGenres) {
@@ -66,6 +67,7 @@ public class APILibrary {
 				currFilm.setSynopsis(element.getAsJsonObject().get("overview").getAsString());
 				currFilm.setDuration(searchFilmRuntime(currFilm.getId()));
 				currFilm.setTotalScoreVotes(element.getAsJsonObject().get("vote_count").getAsInt());
+				currFilm.setImageLink(Constants.POSTER_PATH_PREX + element.getAsJsonObject().get("poster_path").getAsString());
 
 				films.add(currFilm);
 			}
@@ -121,6 +123,8 @@ public class APILibrary {
 				currSerie.setScore(element.getAsJsonObject().get("vote_average").getAsDouble());
 				currSerie.setSynopsis(element.getAsJsonObject().get("overview").getAsString());
 				currSerie.setTotalScoreVotes(element.getAsJsonObject().get("vote_count").getAsInt());
+				currSerie.setImageLink(Constants.POSTER_PATH_PREX + element.getAsJsonObject().get("poster_path").getAsString());
+
 				series.add(searchSerieDetails(currSerie));
 			}
 		} catch (UnsupportedEncodingException e) {

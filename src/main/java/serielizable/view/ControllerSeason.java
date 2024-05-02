@@ -73,7 +73,9 @@ public class ControllerSeason extends AbstractController {
 				pupulateLabels();
 			}
 		});
-
+		//Mostrar la primera season al iniciar la vista
+		currentSeason = seasons.get(0);
+		pupulateLabels();
 	}
 
 	@FXML
