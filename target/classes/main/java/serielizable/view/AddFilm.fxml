@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerAddFilm">
+<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerAddFilm">
    <children>
-      <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" stylesheets="@../../../../../../concesionario/src/main/java/concesionario/general.css" AnchorPane.bottomAnchor="0.0">
+      <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" stylesheets="@../css/Serielizable.css" AnchorPane.bottomAnchor="0.0">
          <top>
-            <MenuBar prefHeight="40.0" prefWidth="1091.0" styleClass="menubar" stylesheets="@../../../../../../concesionario/src/main/java/concesionario/general.css" useSystemMenuBar="true" BorderPane.alignment="CENTER">
+            <MenuBar prefHeight="40.0" prefWidth="1091.0" styleClass="menubar" stylesheets="@../css/Serielizable.css" useSystemMenuBar="true" BorderPane.alignment="CENTER">
                <menus>
                   <Menu mnemonicParsing="false" text="Películas">
                      <items>
@@ -72,7 +72,7 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbStatus" prefHeight="37.0" prefWidth="370.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="283.0" />
-      <ComboBox fx:id="cbPersonalScore" layoutX="10.0" layoutY="10.0" prefHeight="37.0" prefWidth="180.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="283.0" />
+      <ComboBox fx:id="cbStatus" prefHeight="37.0" prefWidth="370.0" styleClass="combo-box" stylesheets="@../css/Serielizable.css" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="283.0" />
+      <ComboBox fx:id="cbPersonalScore" layoutX="10.0" layoutY="10.0" prefHeight="37.0" prefWidth="180.0" styleClass="combo-box" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="283.0" />
    </children>
 </AnchorPane>

@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerEditSerie">
+<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerEditSerie">
    <children>
-      <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" stylesheets="@../../../../../../concesionario/src/main/java/concesionario/general.css" AnchorPane.bottomAnchor="0.0">
+      <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" AnchorPane.bottomAnchor="0.0">
          <top>
-            <MenuBar prefHeight="40.0" prefWidth="1091.0" styleClass="menubar" stylesheets="@../../../../../../concesionario/src/main/java/concesionario/general.css" useSystemMenuBar="true" BorderPane.alignment="CENTER">
+            <MenuBar prefHeight="40.0" prefWidth="1091.0" styleClass="menubar" useSystemMenuBar="true" BorderPane.alignment="CENTER">
                <menus>
                   <Menu mnemonicParsing="false" text="Películas">
                      <items>
@@ -77,7 +77,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbStatus" prefHeight="36.0" prefWidth="337.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="235.0" />
-      <ComboBox fx:id="cbPersonalScore" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="234.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="235.0" />
+      <ComboBox fx:id="cbStatus" prefHeight="36.0" prefWidth="337.0" visibleRowCount="11" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="235.0" />
+      <ComboBox fx:id="cbPersonalScore" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="234.0" visibleRowCount="11" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="235.0" />
    </children>
 </AnchorPane>

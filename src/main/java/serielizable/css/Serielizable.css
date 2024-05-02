@@ -20,6 +20,20 @@
   -fx-font-weight: bold;
   -fx-padding: 10.0px 16.0px;
   -fx-border-radius: 3.0px;
+
+}
+
+.combo-box {
+  -fx-background-color: #4d82bc;
+  -fx-border-color: #000000;
+  -fx-border-width: 1.0px;
+  -fx-border-radius: 3.0px;
+  -fx-text-fill: #ffffff;
+}
+
+.combo-box .list-cell {
+    -fx-background: #6b8ad7;
+    -fx-text-fill: #ffffff;
 }
 
 .button:hover {

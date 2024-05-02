@@ -53,7 +53,7 @@ public class ControllerEditSerie extends AbstractController {
 	}
 
 	private void populateFields() {
-		cbStatus.getItems().addAll("Completada", "Pendiente", "Abandonada");
+		cbStatus.getItems().addAll("Completada", "Pendiente", "Abandonada", "En curso");
 		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 		title.setText(currentSerie.getTitle());
 		cbStatus.getSelectionModel().select(currentSerie.getStatus());

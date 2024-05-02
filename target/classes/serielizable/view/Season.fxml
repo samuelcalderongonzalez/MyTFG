@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerSeason">
+<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerSeason">
    <children>
       <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" AnchorPane.rightAnchor="0.0">
          <top>
@@ -74,9 +74,9 @@
       </Label>
       <Label fx:id="completedDate" layoutX="672.0" layoutY="339.0" prefHeight="22.0" prefWidth="379.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="375.0" />
       <Button fx:id="btnEditSeason" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#editSeason" prefHeight="0.0" prefWidth="0.0" text="Edit" visible="false" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="250.0" />
-      <Label fx:id="serieTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="89.0" prefHeight="50.0" prefWidth="991.0" text="Título" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="89.0">
+      <Label fx:id="serieTitle" alignment="BOTTOM_LEFT" contentDisplay="TOP" layoutX="98.0" layoutY="72.0" prefHeight="50.0" prefWidth="943.0" text="Título" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="72.0">
          <font>
-            <Font size="32.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
       </Label>
       <Button fx:id="getBackButton" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="0.0" prefWidth="0.0" text="&lt;" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="25.0" />

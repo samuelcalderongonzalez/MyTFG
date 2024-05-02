@@ -1,5 +1,10 @@
 package serielizable.view;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +20,9 @@ import utils.AbstractController;
 public class ControllerFilm extends AbstractController {
 
 	private ObservableList<Film> films;
+
+	@FXML
+	private Label title;
 
 	@FXML
 	private Label score;
@@ -49,8 +57,11 @@ public class ControllerFilm extends AbstractController {
 	private TableColumn<Film, String> tcReleaseDate;
 	@FXML
 	private TableColumn<Film, String> tcDuration;
-	
+
 	private ImageView imageView;
+
+	@FXML
+	private ImageView posterImage;
 
 	@FXML
 	public void initialize() {
@@ -71,7 +82,7 @@ public class ControllerFilm extends AbstractController {
 				pupulateLabels();
 			}
 		});
-		//Mostrar la primera película al iniciar la vista
+		// Mostrar la primera película al iniciar la vista
 		currentFilm = currentFilms.get(0);
 		pupulateLabels();
 
@@ -87,7 +98,7 @@ public class ControllerFilm extends AbstractController {
 	public void search() {
 		setViewSearch();
 	}
-	
+
 	@FXML
 	public void serie() {
 		setViewSerie();
@@ -106,6 +117,27 @@ public class ControllerFilm extends AbstractController {
 		completedDate.setText(currentFilm.getCompletedDate());
 		sinopsis.setText(currentFilm.getSynopsis());
 		review.setText(currentFilm.getReview());
+		try {
+			Image imgPoster = new Image(currentFilm.getImageLink());
+			System.out.println(currentFilm.getImageLink());
+			posterImage = new ImageView(imgPoster);
+			posterImage.setFitHeight(150);
+			posterImage.setFitWidth(130);
+			posterImage.setImage(imgPoster);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		title.setText(currentFilm.getTitle());
+
+	}
+
+	private Image createImage(String url) throws IOException {
+		URLConnection conn = new URL(url).openConnection();
+		conn.setRequestProperty("User-Agent", "Wget/1.13.4 (linux-gnu)");
+
+		try (InputStream stream = conn.getInputStream()) {
+			return new Image(stream);
+		}
 	}
 
 	private void clearLabels() {
@@ -120,7 +152,7 @@ public class ControllerFilm extends AbstractController {
 	public ControllerFilm() {
 
 	}
-	
+
 	private void setButtonIcon() {
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/edit.png"));
 		imageView = new ImageView(editImg);
