@@ -49,6 +49,11 @@
   -fx-background-color: #345da5;
   -fx-border-color: #9c9c9c;
   -fx-border-width: 0.0 0.0 1.0px 0.0;
+
+}
+
+.menu, .menu-item {
+  -fx-text-fill: #ffffff;
 }
 
 .circle {

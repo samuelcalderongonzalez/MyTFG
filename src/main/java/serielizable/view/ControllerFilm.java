@@ -14,6 +14,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import serielizable.entity.Film;
 import utils.AbstractController;
 
@@ -44,6 +46,9 @@ public class ControllerFilm extends AbstractController {
 
 	@FXML
 	private Button btEditFilm;
+	
+	@FXML
+	private Button btFavorite;
 
 	@FXML
 	private TableView<Film> tableFootage;
@@ -58,10 +63,15 @@ public class ControllerFilm extends AbstractController {
 	@FXML
 	private TableColumn<Film, String> tcDuration;
 
-	private ImageView imageView;
-
+	private ImageView editImageView;
+	
+	private ImageView imageFavoriteBtn;
+	
+	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
+	Image noFavoriteImg = new Image(getClass().getResourceAsStream("../../utils/noFavorite.png"));
+	
 	@FXML
-	private ImageView posterImage;
+	private Rectangle posterImageRec;
 
 	@FXML
 	public void initialize() {
@@ -110,6 +120,7 @@ public class ControllerFilm extends AbstractController {
 	}
 
 	private void pupulateLabels() {
+		setFavoriteImage();
 		btEditFilm.setVisible(true);
 		score.setText(currentFilm.getStringScore());
 		totalVotes.setText(currentFilm.getStringTotalScoreVotes());
@@ -117,28 +128,35 @@ public class ControllerFilm extends AbstractController {
 		completedDate.setText(currentFilm.getCompletedDate());
 		sinopsis.setText(currentFilm.getSynopsis());
 		review.setText(currentFilm.getReview());
-		try {
-			Image imgPoster = new Image(currentFilm.getImageLink());
-			System.out.println(currentFilm.getImageLink());
-			posterImage = new ImageView(imgPoster);
-			posterImage.setFitHeight(150);
-			posterImage.setFitWidth(130);
-			posterImage.setImage(imgPoster);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Image imgPoster = new Image(currentFilm.getImageLink());
+//			System.out.println(currentFilm.getImageLink());
+//			posterImage = new ImageView(imgPoster);
+//			posterImage.setFitHeight(150);
+//			posterImage.setFitWidth(130);
+//			posterImage.setImage(imgPoster);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		setPosterImg();
 		title.setText(currentFilm.getTitle());
 
 	}
 
-	private Image createImage(String url) throws IOException {
-		URLConnection conn = new URL(url).openConnection();
-		conn.setRequestProperty("User-Agent", "Wget/1.13.4 (linux-gnu)");
-
-		try (InputStream stream = conn.getInputStream()) {
-			return new Image(stream);
+	private void setPosterImg() {
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.png"));
+		if(currentFilm.getImageLink() != null) {
+			Image imgPoster = new Image(currentFilm.getImageLink());
+			if(!imgPoster.isError()) {
+				posterImageRec.setFill(new ImagePattern(imgPoster));
+			} else {
+				posterImageRec.setFill(new ImagePattern(imgPosterDefault));
+			}
+		} else {
+			posterImageRec.setFill(new ImagePattern(imgPosterDefault));
 		}
 	}
+
 
 	private void clearLabels() {
 		score.setText("");
@@ -155,9 +173,31 @@ public class ControllerFilm extends AbstractController {
 
 	private void setButtonIcon() {
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/edit.png"));
-		imageView = new ImageView(editImg);
-		imageView.setFitHeight(50);
-		imageView.setFitWidth(50);
-		btEditFilm.setGraphic(imageView);
+		editImageView = new ImageView(editImg);
+		editImageView.setFitHeight(50);
+		editImageView.setFitWidth(50);
+		btEditFilm.setGraphic(editImageView);
 	}
+	
+	private void setFavoriteImage() {
+		if(currentFilm.isFavorite()) {
+			imageFavoriteBtn = new ImageView(favoriteImg);
+			resizeFavoriteImage();
+		} else {
+			imageFavoriteBtn = new ImageView(noFavoriteImg);
+			resizeFavoriteImage();
+		}
+		
+	}
+	
+	private void resizeFavoriteImage() {
+		imageFavoriteBtn.setFitHeight(30);
+		imageFavoriteBtn.setFitWidth(30);
+		btFavorite.setGraphic(imageFavoriteBtn);
+	}
+	
+//	private void toggleFavorite() {
+//		currentFilm.setFavorite(!currentFilm.isFavorite());
+//		pupulateLabels();
+//	}
 }

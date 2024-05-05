@@ -88,3 +88,4 @@ select * from serie;
 select * from season;
 
 update film set score = 0 where user_id = 1 and id = 1;
+

@@ -22,6 +22,10 @@ public class FilmRepository extends AbstractRepository{
 		}
 		
 	}
+	
+//	public void filter(int userId, String ) {
+//		
+//	}
 
 	public void deleteFilm(Film film) {
 		try {

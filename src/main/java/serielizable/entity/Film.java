@@ -148,7 +148,7 @@ public class Film {
 	}
 	
 	public String getStringScore() {
-		if(score > 0)
+		if(score != null && score > 0)
 			return score.toString();
 		else
 			return Constants.NO_SCORE;

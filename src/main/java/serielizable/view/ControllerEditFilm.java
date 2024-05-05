@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import utils.AbstractController;
 import utils.DateUtils;
 
@@ -25,12 +27,25 @@ public class ControllerEditFilm extends AbstractController {
 	private TextField tfReview;
 	
 	@FXML
+	private Button btFavorite;
+	
+	@FXML
 	private Button getBackButton;
 	
 	private ImageView imageViewBack;
+	
+	private ImageView imageFavoriteBtn;
+	
+	@FXML
+	private Rectangle posterImageRec;
+	
+	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
+	Image noFavoriteImg = new Image(getClass().getResourceAsStream("../../utils/noFavorite.png"));
 
 	@FXML
 	public void initialize() {
+		setFavoriteImage();
+		setPosterImg();
 		setBackButtonIcon();
 		populateFields();
 	}
@@ -90,6 +105,43 @@ public class ControllerEditFilm extends AbstractController {
 		imageViewBack.setFitHeight(50);
 		imageViewBack.setFitWidth(50);
 		getBackButton.setGraphic(imageViewBack);
+	}
+	
+	private void setPosterImg() {
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.png"));
+		if(currentFilm.getImageLink() != null) {
+			Image imgPoster = new Image(currentFilm.getImageLink());
+			if(!imgPoster.isError()) {
+				posterImageRec.setFill(new ImagePattern(imgPoster));
+			} else {
+				posterImageRec.setFill(new ImagePattern(imgPosterDefault));
+			}
+		} else {
+			posterImageRec.setFill(new ImagePattern(imgPosterDefault));
+		}
+	}
+	
+	private void setFavoriteImage() {
+		if(currentFilm.isFavorite()) {
+			imageFavoriteBtn = new ImageView(favoriteImg);
+			resizeFavoriteImage();
+		} else {
+			imageFavoriteBtn = new ImageView(noFavoriteImg);
+			resizeFavoriteImage();
+		}
+		
+	}
+	
+	private void resizeFavoriteImage() {
+		imageFavoriteBtn.setFitHeight(60);
+		imageFavoriteBtn.setFitWidth(60);
+		btFavorite.setGraphic(imageFavoriteBtn);
+	}
+	
+	@FXML
+	private void toggleFavorite() {
+		currentFilm.setFavorite(!currentFilm.isFavorite());
+		setFavoriteImage();
 	}
 
 }
