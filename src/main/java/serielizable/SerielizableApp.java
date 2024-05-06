@@ -44,7 +44,6 @@ public class SerielizableApp extends Application implements CAPPI {
 		});
 		HibernateUtils.getSession();
 		initLoginLayout();
-
 	}
 
 	/**

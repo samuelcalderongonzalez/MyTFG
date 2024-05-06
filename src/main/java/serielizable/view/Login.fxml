@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
@@ -7,31 +8,77 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerLogin">
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="390.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerLogin">
    <children>
-      <TextField fx:id="userNameTextField" layoutX="222.0" layoutY="518.0" prefHeight="39.0" prefWidth="323.0" promptText="Nombre de usuario" AnchorPane.bottomAnchor="243.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-      <PasswordField fx:id="passwordField" layoutX="222.0" layoutY="591.0" onAction="#handleAcceder" prefHeight="39.0" prefWidth="323.0" promptText="Contraseña" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-      <TextField fx:id="passwordFieldViewable" disable="true" layoutX="222.0" layoutY="591.0" onAction="#handleAcceder" prefHeight="39.0" prefWidth="323.0" visible="false" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-      <Button fx:id="passwordViewButton" layoutX="520.0" layoutY="610.0" maxHeight="1.0" maxWidth="1.0" minHeight="1.0" minWidth="1.0" mnemonicParsing="false" onAction="#changePasswordVisivility" prefHeight="1.0" prefWidth="1.0" AnchorPane.bottomAnchor="189.0" AnchorPane.rightAnchor="170.0" />
-      <Button fx:id="accessButton" layoutX="222.0" layoutY="664.0" mnemonicParsing="false" onAction="#handleAcceder" prefHeight="35.0" prefWidth="115.0" text="Acceder" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="335.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <Button fx:id="registerButton" layoutX="338.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="35.0" prefWidth="115.0" text="Registrar" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="150.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <ImageView fx:id="imageLogo" fitHeight="201.0" fitWidth="300.0" layoutX="150.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="71.0">
-         <viewport>
-            <Rectangle2D />
-         </viewport>
-         <image>
-            <Image url="@../../utils/logopng.png" />
-         </image>
-      </ImageView>
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="71.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <ImageView fx:id="imagelogo" fitHeight="201.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <image>
+                  <Image url="@../../utils/logopng.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="318.0" AnchorPane.bottomAnchor="243.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TextField fx:id="userNameTextField" prefHeight="39.0" prefWidth="323.0" promptText="Nombre de usuario">
+               <HBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </HBox.margin></TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="391.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <PasswordField fx:id="passwordField" onAction="#handleAcceder" prefHeight="39.0" prefWidth="323.0" promptText="Contraseña">
+               <HBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </HBox.margin>
+            </PasswordField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="391.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TextField fx:id="passwordFieldViewable" disable="true" onAction="#handleAcceder" prefHeight="39.0" prefWidth="323.0" visible="false">
+               <HBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </HBox.margin></TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="429.0" layoutY="410.0" spacing="80.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="275.0" />
+            <Button fx:id="passwordViewButton" maxHeight="1.0" maxWidth="1.0" minHeight="1.0" minWidth="1.0" mnemonicParsing="false" onAction="#changePasswordVisivility" prefHeight="1.0" prefWidth="1.0">
+               <HBox.margin>
+                  <Insets right="70.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="455.0" spacing="90.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="accessButton" minWidth="101.0" mnemonicParsing="false" onAction="#handleAcceder" prefHeight="35.0" prefWidth="115.0" text="Acceder">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="registerButton" minWidth="101.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="35.0" prefWidth="115.0" text="Registrar">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="50.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

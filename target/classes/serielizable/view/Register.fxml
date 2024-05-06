@@ -1,36 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerRegister">
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="390.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerRegister">
    <children>
-      <TextField fx:id="userNameTextField" layoutX="150.0" layoutY="341.0" prefHeight="39.0" prefWidth="323.0" promptText="Nombre de usuario" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-      <PasswordField fx:id="firstPasswordField" layoutX="150.0" layoutY="391.0" onAction="#handleRegister" prefHeight="39.0" prefWidth="323.0" promptText="Contraseña" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-      <TextField fx:id="passwordFieldViewable" disable="true" layoutX="222.0" layoutY="528.0" onAction="#handleRegister" prefHeight="39.0" prefWidth="323.0" visible="false" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-      <Button fx:id="passwordViewButton" layoutX="505.0" layoutY="547.0" maxHeight="1.0" maxWidth="1.0" minHeight="1.0" minWidth="1.0" mnemonicParsing="false" onAction="#changePasswordVisivility" prefHeight="1.0" prefWidth="1.0" text="Button" AnchorPane.bottomAnchor="189.0" AnchorPane.rightAnchor="185.0" />
-      <PasswordField fx:id="repeatPasswordField" layoutX="150.0" layoutY="441.0" onAction="#handleRegister" prefHeight="39.0" prefWidth="323.0" promptText="Repetir contraseña" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-      <TextField fx:id="repeatPasswordFieldViewable" disable="true" layoutX="222.0" layoutY="591.0" onAction="#handleRegister" prefHeight="39.0" prefWidth="323.0" visible="false" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" />
-      <Button fx:id="repeatPasswordViewButton" layoutX="505.0" layoutY="610.0" maxHeight="1.0" maxWidth="1.0" minHeight="1.0" minWidth="1.0" mnemonicParsing="false" onAction="#changeRepeatPasswordVisivility" prefHeight="1.0" prefWidth="1.0" text="Button" AnchorPane.bottomAnchor="139.0" AnchorPane.rightAnchor="185.0" />
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="71.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0">
+         <children>
+            <ImageView fx:id="imageViewLogo" fitHeight="204.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../utils/logopng.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="341.0" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TextField fx:id="userNameTextField" prefHeight="39.0" prefWidth="323.0" promptText="Nombre de usuario">
+               <HBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="391.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <PasswordField fx:id="firstPasswordField" onAction="#handleRegister" prefHeight="39.0" prefWidth="323.0" promptText="Contraseña">
+               <HBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </HBox.margin>
+            </PasswordField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="391.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TextField fx:id="passwordFieldViewable" disable="true" onAction="#handleRegister" prefHeight="39.0" prefWidth="323.0" visible="false">
+               <HBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="414.0" layoutY="410.0" spacing="100.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="230.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </HBox>
+            <Button fx:id="passwordViewButton" maxHeight="1.0" maxWidth="1.0" minHeight="1.0" minWidth="1.0" mnemonicParsing="false" onAction="#changePasswordVisivility" prefHeight="1.0" prefWidth="1.0" text="Button">
+               <HBox.margin>
+                  <Insets right="85.0" />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="441.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <PasswordField fx:id="repeatPasswordField" onAction="#handleRegister" prefHeight="39.0" prefWidth="323.0" promptText="Repetir contraseña">
+               <HBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </HBox.margin>
+            </PasswordField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="150.0" layoutY="441.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TextField fx:id="repeatPasswordFieldViewable" disable="true" onAction="#handleRegister" prefHeight="39.0" prefWidth="323.0" visible="false">
+               <HBox.margin>
+                  <Insets left="50.0" right="50.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="414.0" layoutY="460.0" prefHeight="39.0" spacing="100.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="230.0" />
+            <Button fx:id="repeatPasswordViewButton" maxHeight="1.0" maxWidth="1.0" minHeight="1.0" minWidth="1.0" mnemonicParsing="false" onAction="#changeRepeatPasswordVisivility" prefHeight="1.0" prefWidth="1.0" text="Button">
+               <HBox.margin>
+                  <Insets right="85.0" />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
       <Button fx:id="getBackButton" layoutX="63.0" layoutY="655.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button fx:id="registerButton" layoutX="220.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="47.0" prefWidth="160.0" text="Registrarse" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <ImageView fx:id="imageViewLogo" fitHeight="204.0" fitWidth="300.0" layoutX="151.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="71.0">
-         <image>
-            <Image url="@../../utils/logopng.png" />
-         </image>
-      </ImageView>
+      <HBox alignment="CENTER" layoutX="220.0" layoutY="505.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="registerButton" minWidth="116.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="47.0" prefWidth="160.0" text="Registrarse">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

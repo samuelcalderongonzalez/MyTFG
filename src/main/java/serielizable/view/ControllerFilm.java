@@ -1,10 +1,5 @@
 package serielizable.view;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
@@ -33,57 +30,61 @@ public class ControllerFilm extends AbstractController {
 	private Label totalVotes;
 
 	@FXML
-	private Label genres;
+	private TextField genres;
 
 	@FXML
-	private Label completedDate;
+	private TextField completedDate;
 
 	@FXML
-	private Label sinopsis;
+	private TextArea sinopsis;
 
 	@FXML
-	private Label review;
+	private TextArea review;
 
 	@FXML
-	private Button btEditFilm;
+	private Button editFilmButton;
 	
 	@FXML
-	private Button btFavorite;
+	private Button favoriteButton;
 
 	@FXML
 	private TableView<Film> tableFootage;
 	@FXML
-	private TableColumn<Film, String> tcTitle;
+	private TableColumn<Film, String> titleTableColumn;
 	@FXML
-	private TableColumn<Film, String> tcStatus;
+	private TableColumn<Film, String> statusTableColumn;
 	@FXML
-	private TableColumn<Film, String> tcPersonalScore;
+	private TableColumn<Film, String> personalRateTableColumn;
 	@FXML
-	private TableColumn<Film, String> tcReleaseDate;
+	private TableColumn<Film, String> releaseDateTableColumn;
 	@FXML
-	private TableColumn<Film, String> tcDuration;
+	private TableColumn<Film, String> durationTableColumn;
 
 	private ImageView editImageView;
 	
-	private ImageView imageFavoriteBtn;
+	private ImageView favoriteButtonImage;
 	
 	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
 	Image noFavoriteImg = new Image(getClass().getResourceAsStream("../../utils/noFavorite.png"));
 	
 	@FXML
-	private Rectangle posterImageRec;
+	private Rectangle posterImageRectangle;
 
 	@FXML
 	public void initialize() {
-		setButtonIcon();
+		setEditButtonIcon();
+		// Get all the films of the logged user
 		currentFilms = filmRepository.getAllByUserId(currentUser.getId());
+		// Save them
 		films = FXCollections.observableArrayList(currentFilms);
-		tcTitle.setCellValueFactory(param -> param.getValue().getSPTitle());
-		tcStatus.setCellValueFactory(param -> param.getValue().getSPStatus());
-		tcPersonalScore.setCellValueFactory(param -> param.getValue().getSPPersonalScore());
-		tcReleaseDate.setCellValueFactory(param -> param.getValue().getSPReleaseDate());
-		tcDuration.setCellValueFactory(param -> param.getValue().getSPDuration());
+		// Assign the data collected to each label
+		titleTableColumn.setCellValueFactory(param -> param.getValue().getSPTitle());
+		statusTableColumn.setCellValueFactory(param -> param.getValue().getSPStatus());
+		personalRateTableColumn.setCellValueFactory(param -> param.getValue().getSPPersonalScore());
+		releaseDateTableColumn.setCellValueFactory(param -> param.getValue().getSPReleaseDate());
+		durationTableColumn.setCellValueFactory(param -> param.getValue().getSPDuration());
 		tableFootage.setItems(films);
+		// Assign clicks functionality
 		tableFootage.setOnMouseClicked(event -> {
 			if (event.getClickCount() == 1) {
 				clearLabels();
@@ -92,7 +93,7 @@ public class ControllerFilm extends AbstractController {
 				pupulateLabels();
 			}
 		});
-		// Mostrar la primera película al iniciar la vista
+		// Select first film when initializing the view
 		currentFilm = currentFilms.get(0);
 		pupulateLabels();
 
@@ -119,45 +120,55 @@ public class ControllerFilm extends AbstractController {
 		setViewEditFilm();
 	}
 
+	/**
+	 * This method gets the film information and sends them to the proper places
+	 */
 	private void pupulateLabels() {
 		setFavoriteImage();
-		btEditFilm.setVisible(true);
+		// Set the film editable
+		editFilmButton.setVisible(true);
+		// Set info
 		score.setText(currentFilm.getStringScore());
 		totalVotes.setText(currentFilm.getStringTotalScoreVotes());
 		genres.setText(currentFilm.getGenres());
 		completedDate.setText(currentFilm.getCompletedDate());
 		sinopsis.setText(currentFilm.getSynopsis());
 		review.setText(currentFilm.getReview());
-//		try {
-//			Image imgPoster = new Image(currentFilm.getImageLink());
-//			System.out.println(currentFilm.getImageLink());
-//			posterImage = new ImageView(imgPoster);
-//			posterImage.setFitHeight(150);
-//			posterImage.setFitWidth(130);
-//			posterImage.setImage(imgPoster);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 		setPosterImg();
 		title.setText(currentFilm.getTitle());
 
 	}
 
+	/**
+	 * This method fills the poster with the film image
+	 */
 	private void setPosterImg() {
+		// Create a default image
 		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.png"));
+		// If the current film has an url:
 		if(currentFilm.getImageLink() != null) {
+			// Create an image with the url
 			Image imgPoster = new Image(currentFilm.getImageLink());
+			// If the image is valid:
 			if(!imgPoster.isError()) {
-				posterImageRec.setFill(new ImagePattern(imgPoster));
-			} else {
-				posterImageRec.setFill(new ImagePattern(imgPosterDefault));
+				// Assign the image
+				posterImageRectangle.setFill(new ImagePattern(imgPoster));
 			}
-		} else {
-			posterImageRec.setFill(new ImagePattern(imgPosterDefault));
+			// Assign the default image
+			else {
+				posterImageRectangle.setFill(new ImagePattern(imgPosterDefault));
+			}
+		}
+		// Assign the default image
+		else {
+			posterImageRectangle.setFill(new ImagePattern(imgPosterDefault));
 		}
 	}
 
 
+	/**
+	 * This method clears the labels
+	 */
 	private void clearLabels() {
 		score.setText("");
 		totalVotes.setText("votes");
@@ -171,29 +182,42 @@ public class ControllerFilm extends AbstractController {
 
 	}
 
-	private void setButtonIcon() {
+	/**
+	 * This method prepares visually the edit button
+	 */
+	private void setEditButtonIcon() {
+		// Create the image
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/edit.png"));
+		// Assign the image
 		editImageView = new ImageView(editImg);
+		// Set some properties
 		editImageView.setFitHeight(50);
 		editImageView.setFitWidth(50);
-		btEditFilm.setGraphic(editImageView);
+		// Apply the image to the button
+		editFilmButton.setGraphic(editImageView);
 	}
 	
+	/**
+	 * This method prepares visually the favorite button
+	 */	
+	private void resizeFavoriteImage() {
+		favoriteButtonImage.setFitHeight(30);
+		favoriteButtonImage.setFitWidth(30);
+		favoriteButton.setGraphic(favoriteButtonImage);
+	}
+	
+	/**
+	 * This method is used to change favorite´s button icon after using it
+	 */
 	private void setFavoriteImage() {
 		if(currentFilm.isFavorite()) {
-			imageFavoriteBtn = new ImageView(favoriteImg);
+			favoriteButtonImage = new ImageView(favoriteImg);
 			resizeFavoriteImage();
 		} else {
-			imageFavoriteBtn = new ImageView(noFavoriteImg);
+			favoriteButtonImage = new ImageView(noFavoriteImg);
 			resizeFavoriteImage();
 		}
 		
-	}
-	
-	private void resizeFavoriteImage() {
-		imageFavoriteBtn.setFitHeight(30);
-		imageFavoriteBtn.setFitWidth(30);
-		btFavorite.setGraphic(imageFavoriteBtn);
 	}
 	
 //	private void toggleFavorite() {

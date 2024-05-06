@@ -13,6 +13,7 @@ import utils.Constants;
 
 public class ControllerRegister extends AbstractController {
 
+	// Password String regex
 	private final String pattern = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$";
 
 	@FXML
@@ -242,6 +243,9 @@ public class ControllerRegister extends AbstractController {
 		setViewLogin();
 	}
 	
+	/**
+	 * This method prepares the return button
+	 */
 	private void setBackButtonIcon() {
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButton.png"));
 		imageViewBack = new ImageView(editImg);
