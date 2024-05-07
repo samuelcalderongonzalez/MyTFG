@@ -1,9 +1,13 @@
 package serielizable.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -14,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import serielizable.entity.Film;
+import utils.APILibrary;
 import utils.AbstractController;
 
 public class ControllerFilm extends AbstractController {
@@ -43,9 +48,24 @@ public class ControllerFilm extends AbstractController {
 
 	@FXML
 	private Button editFilmButton;
-	
+
 	@FXML
 	private Button favoriteButton;
+
+	@FXML
+	private ComboBox<String> genreFilter;
+
+	@FXML
+	private ComboBox<String> favoriteFilter;
+
+	@FXML
+	private ComboBox<String> statusFilter;
+
+	@FXML
+	private TextField titleFilter;
+
+	@FXML
+	private Button searchFilters;
 
 	@FXML
 	private TableView<Film> tableFootage;
@@ -61,18 +81,22 @@ public class ControllerFilm extends AbstractController {
 	private TableColumn<Film, String> durationTableColumn;
 
 	private ImageView editImageView;
-	
+
 	private ImageView favoriteButtonImage;
-	
+
+	private List<Film> currentFilteredFilms = new ArrayList<Film>();
+
 	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
 	Image noFavoriteImg = new Image(getClass().getResourceAsStream("../../utils/noFavorite.png"));
-	
+
 	@FXML
 	private Rectangle posterImageRectangle;
 
 	@FXML
 	public void initialize() {
+		System.out.println(APILibrary.filmGenres);
 		setEditButtonIcon();
+		populateComboBoxes();
 		// Get all the films of the logged user
 		currentFilms = filmRepository.getAllByUserId(currentUser.getId());
 		// Save them
@@ -89,7 +113,6 @@ public class ControllerFilm extends AbstractController {
 			if (event.getClickCount() == 1) {
 				clearLabels();
 				currentFilm = tableFootage.getSelectionModel().getSelectedItem();
-				System.out.println(currentFilm);
 				pupulateLabels();
 			}
 		});
@@ -146,11 +169,11 @@ public class ControllerFilm extends AbstractController {
 		// Create a default image
 		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.png"));
 		// If the current film has an url:
-		if(currentFilm.getImageLink() != null) {
+		if (currentFilm.getImageLink() != null) {
 			// Create an image with the url
 			Image imgPoster = new Image(currentFilm.getImageLink());
 			// If the image is valid:
-			if(!imgPoster.isError()) {
+			if (!imgPoster.isError()) {
 				// Assign the image
 				posterImageRectangle.setFill(new ImagePattern(imgPoster));
 			}
@@ -164,7 +187,6 @@ public class ControllerFilm extends AbstractController {
 			posterImageRectangle.setFill(new ImagePattern(imgPosterDefault));
 		}
 	}
-
 
 	/**
 	 * This method clears the labels
@@ -196,30 +218,139 @@ public class ControllerFilm extends AbstractController {
 		// Apply the image to the button
 		editFilmButton.setGraphic(editImageView);
 	}
-	
+
 	/**
 	 * This method prepares visually the favorite button
-	 */	
+	 */
 	private void resizeFavoriteImage() {
 		favoriteButtonImage.setFitHeight(30);
 		favoriteButtonImage.setFitWidth(30);
 		favoriteButton.setGraphic(favoriteButtonImage);
 	}
-	
+
 	/**
 	 * This method is used to change favorite´s button icon after using it
 	 */
 	private void setFavoriteImage() {
-		if(currentFilm.isFavorite()) {
+		if (currentFilm.isFavorite()) {
 			favoriteButtonImage = new ImageView(favoriteImg);
 			resizeFavoriteImage();
 		} else {
 			favoriteButtonImage = new ImageView(noFavoriteImg);
 			resizeFavoriteImage();
 		}
-		
+
 	}
-	
+
+	private void populateComboBoxes() {
+		genreFilter.getItems().addAll("Sin filtro", "Acción", "Aventura", "Animación", "Comedia", "Crimen",
+				"Documental", "Drama", "Familia", "Fantasía", "Historia", "Terror", "Música", "Misterio", "Romance",
+				"Ciencia ficción", "Película de TV", "Suspense", "Bélica", "Western");
+		favoriteFilter.getItems().addAll("Sin filtro", "Favorito", "No favorito");
+		statusFilter.getItems().addAll("Sin filtro", "Completada", "Pendiente", "Abandonada");
+		defaultComboBoxes();
+
+	}
+
+	@FXML
+	private void applyFilters() {
+		for (Film film : currentFilms) {
+			if (checkFilterCases(film))
+				currentFilteredFilms.add(film);
+		}
+		if(!titleFilter.getText().isEmpty()) {
+			List<Film> trueFilteredList = new ArrayList<Film>();
+			for (Film film : currentFilteredFilms) {
+				if(film.getTitle().toLowerCase().contains(titleFilter.getText().toLowerCase()))
+					trueFilteredList.add(film);
+			}
+			films = FXCollections.observableArrayList(trueFilteredList);
+		} else {
+			films = FXCollections.observableArrayList(currentFilteredFilms);
+		}
+		tableFootage.setItems(films);
+		currentFilteredFilms = new ArrayList<Film>();
+
+	}
+
+	private boolean checkFilterCases(Film film) {
+		if (!genreFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& !statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& !favoriteFilter.getSelectionModel().getSelectedItem().equals("Sin filtro"))
+			if (film.getGenres().contains(genreFilter.getSelectionModel().getSelectedItem())
+					&& film.getStatus().equals(statusFilter.getSelectionModel().getSelectedItem())
+					&& ((film.isFavorite() && favoriteFilter.getSelectionModel().getSelectedItem().equals("Favorito"))
+							|| (!film.isFavorite()
+									&& favoriteFilter.getSelectionModel().getSelectedItem().equals("No favorito"))))
+				return true;
+			else
+				return false;
+		else if (!genreFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& favoriteFilter.getSelectionModel().getSelectedItem().equals("Sin filtro"))
+			if (film.getGenres().contains(genreFilter.getSelectionModel().getSelectedItem()))
+				return true;
+			else
+				return false;
+		else if (genreFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& !statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& favoriteFilter.getSelectionModel().getSelectedItem().equals("Sin filtro"))
+			if (film.getStatus().equals(statusFilter.getSelectionModel().getSelectedItem()))
+				return true;
+			else
+				return false;
+		else if (genreFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& !favoriteFilter.getSelectionModel().getSelectedItem().equals("Sin filtro"))
+			if ((film.isFavorite() && favoriteFilter.getSelectionModel().getSelectedItem().equals("Favorito"))
+					|| (!film.isFavorite() && favoriteFilter.getSelectionModel().getSelectedItem().equals("No favorito")))
+				return true;
+			else
+				return false;
+		else if (!genreFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& !statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& favoriteFilter.getSelectionModel().getSelectedItem().equals("Sin filtro"))
+			if (film.getGenres().contains(genreFilter.getSelectionModel().getSelectedItem())
+					&& film.getStatus().equals(statusFilter.getSelectionModel().getSelectedItem()))
+				return true;
+			else
+				return false;
+		else if (!genreFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& !favoriteFilter.getSelectionModel().getSelectedItem().equals("Sin filtro"))
+			if (film.getGenres().contains(genreFilter.getSelectionModel().getSelectedItem())
+					&& ((film.isFavorite() && favoriteFilter.getSelectionModel().getSelectedItem().equals("Favorito"))
+							|| (!film.isFavorite()
+									&& favoriteFilter.getSelectionModel().getSelectedItem().equals("No favorito"))))
+				return true;
+			else
+				return false;
+		else if (genreFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& !statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
+				&& !favoriteFilter.getSelectionModel().getSelectedItem().equals("Sin filtro"))
+			if (film.getStatus().equals(statusFilter.getSelectionModel().getSelectedItem())
+					&& ((film.isFavorite() && favoriteFilter.getSelectionModel().getSelectedItem().equals("Favorito"))
+							|| (!film.isFavorite()
+									&& favoriteFilter.getSelectionModel().getSelectedItem().equals("No favorito"))))
+				return true;
+			else
+				return false;
+		else
+			return true;
+	}
+
+	private void defaultComboBoxes() {
+		if (genreFilter.getSelectionModel().getSelectedItem() == null) {
+			genreFilter.getSelectionModel().select("Sin filtro");
+		}
+		if (favoriteFilter.getSelectionModel().getSelectedItem() == null) {
+			favoriteFilter.getSelectionModel().select("Sin filtro");
+		}
+		if (statusFilter.getSelectionModel().getSelectedItem() == null) {
+			statusFilter.getSelectionModel().select("Sin filtro");
+		}
+	}
+
 //	private void toggleFavorite() {
 //		currentFilm.setFavorite(!currentFilm.isFavorite());
 //		pupulateLabels();

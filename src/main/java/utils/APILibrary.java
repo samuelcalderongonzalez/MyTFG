@@ -21,8 +21,8 @@ import serielizable.entity.Season;
 import serielizable.entity.Serie;
 
 public class APILibrary {
-	private static List<Genre> filmGenres = searchAllFilmGenres();
-	private static List<Genre> serieGenres = searchAllSerieGenres();
+	public static List<Genre> filmGenres = searchAllFilmGenres();
+	public static List<Genre> serieGenres = searchAllSerieGenres();
 
 	public List<Film> searchFilmByTitle(String title) {
 
