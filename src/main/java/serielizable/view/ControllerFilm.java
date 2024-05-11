@@ -142,6 +142,11 @@ public class ControllerFilm extends AbstractController {
 	public void editFilm() {
 		setViewEditFilm();
 	}
+	
+	@FXML
+	public void filmStats() {
+		setViewFilmStats();
+	}
 
 	/**
 	 * This method gets the film information and sends them to the proper places

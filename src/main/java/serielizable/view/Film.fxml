@@ -36,6 +36,12 @@
                   <MenuItem mnemonicParsing="false" onAction="#search" text="Search" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Estadísticas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#filmStats" text="Películas" />
+                  <MenuItem mnemonicParsing="false" onAction="#search" text="Series" />
+               </items>
+            </Menu>
             <Menu mnemonicParsing="false" text="Desconectarse">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#logOff" text="Log off" />
@@ -54,7 +60,7 @@
             <ComboBox fx:id="favoriteFilter" prefHeight="28.0" prefWidth="104.0" promptText="Favorito" />
             <ComboBox fx:id="statusFilter" prefHeight="28.0" prefWidth="104.0" promptText="Estado" />
             <TextField fx:id="titleFilter" prefHeight="27.0" prefWidth="234.0" promptText="Título de la película" />
-            <Button fx:id="searchFilters" mnemonicParsing="false" onAction="#applyFilters" prefHeight="36.0" prefWidth="73.0" text="Filter" />
+            <Button fx:id="searchFilters" mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" text="Filter" />
          </children>
       </HBox>
       <HBox layoutX="691.0" layoutY="30.0" spacing="125.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="30.0">

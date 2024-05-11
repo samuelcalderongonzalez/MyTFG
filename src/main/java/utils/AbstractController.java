@@ -95,5 +95,9 @@ public abstract class AbstractController {
 	public void setViewAddSerie() {
 		setView("AddSerie");
 	}
+	
+	public void setViewFilmStats() {
+		setView("FilmStats");
+	}
 
 }
