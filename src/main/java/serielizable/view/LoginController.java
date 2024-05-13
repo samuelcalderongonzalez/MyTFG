@@ -6,11 +6,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import serielizable.entity.User;
 import utils.AbstractController;
 import utils.Constants;
 
-public class ControllerLogin extends AbstractController {
+public class LoginController extends AbstractController {
 
 	@FXML
 	private TextField userNameTextField;
@@ -32,6 +33,9 @@ public class ControllerLogin extends AbstractController {
 	
 	@FXML
 	private ImageView imagelogo;
+	
+	@FXML
+	private HBox viewablePasswordTextfieldHBox;
 
 	// Define the button image
 	Image showPasswordImg = new Image(getClass().getResourceAsStream("../../utils/eye.png"));
@@ -44,6 +48,8 @@ public class ControllerLogin extends AbstractController {
 	@FXML
 	public void initialize() {
 		setPasswordImage();
+		viewablePasswordTextfieldHBox.setDisable(true);
+		viewablePasswordTextfieldHBox.setVisible(false);
 	}
 	
 	@FXML
@@ -92,6 +98,8 @@ public class ControllerLogin extends AbstractController {
 		// If the password is not visible:
 		if(!passwordIsVisible) {
 			// Set the normal textfield available
+			viewablePasswordTextfieldHBox.setDisable(false);
+			viewablePasswordTextfieldHBox.setVisible(true);
 			passwordFieldViewable.setVisible(true);
 			passwordFieldViewable.setDisable(false);
 			passwordFieldViewable.setText(passwordField.getText());
@@ -111,6 +119,8 @@ public class ControllerLogin extends AbstractController {
 			// Set the text from the other field to "save" the progress
 			passwordField.setText(passwordFieldViewable.getText());
 			// Disable the normal textfield
+			viewablePasswordTextfieldHBox.setDisable(true);
+			viewablePasswordTextfieldHBox.setVisible(false);
 			passwordFieldViewable.setText("");
 			passwordFieldViewable.setVisible(false);
 			passwordFieldViewable.setDisable(true);
@@ -146,7 +156,6 @@ public class ControllerLogin extends AbstractController {
 					if (user.getPassword().equals(passwordFieldViewable.getText())) {
 						// Save the user
 						currentUser = user;
-						currentSeries = serieRepository.getAllByUserId(currentUser.getId());
 						return true;
 					} 
 					// If the credentials don´t match:
@@ -178,8 +187,6 @@ public class ControllerLogin extends AbstractController {
 					if (user.getPassword().equals(passwordField.getText())) {
 						// Save the user
 						currentUser = user;
-						currentFilms = filmRepository.getAllByUserId(currentUser.getId());
-						currentSeries = serieRepository.getAllByUserId(currentUser.getId());
 						return true;
 					} 
 					// If the credentials don´t match:

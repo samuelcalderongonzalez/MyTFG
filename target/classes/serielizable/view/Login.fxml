@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="390.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerLogin">
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="390.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.LoginController">
    <children>
       <HBox alignment="CENTER" layoutX="150.0" layoutY="71.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
@@ -42,7 +42,7 @@
             </PasswordField>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="150.0" layoutY="391.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox fx:id="viewablePasswordTextfieldHBox" alignment="CENTER" layoutX="150.0" layoutY="391.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <TextField fx:id="passwordFieldViewable" disable="true" onAction="#handleAcceder" prefHeight="39.0" prefWidth="323.0" visible="false">
                <HBox.margin>
@@ -50,14 +50,14 @@
                </HBox.margin></TextField>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="429.0" layoutY="410.0" spacing="80.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="439.0" layoutY="410.0" prefHeight="39.0" prefWidth="161.0" spacing="80.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="275.0" />
             <Button fx:id="passwordViewButton" maxHeight="1.0" maxWidth="1.0" minHeight="1.0" minWidth="1.0" mnemonicParsing="false" onAction="#changePasswordVisivility" prefHeight="1.0" prefWidth="1.0">
                <HBox.margin>
                   <Insets right="70.0" />
                </HBox.margin>
             </Button>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="275.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="150.0" layoutY="455.0" spacing="90.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

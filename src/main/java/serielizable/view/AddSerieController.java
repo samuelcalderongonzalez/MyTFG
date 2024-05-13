@@ -13,7 +13,7 @@ import serielizable.entity.Season;
 import utils.AbstractController;
 import utils.DateUtils;
 
-public class ControllerAddSerie extends AbstractController {
+public class AddSerieController extends AbstractController {
 
 	@FXML
 	private Label title;

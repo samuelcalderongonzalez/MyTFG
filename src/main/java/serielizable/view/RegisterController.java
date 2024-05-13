@@ -6,12 +6,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import serielizable.entity.User;
 import serielizable.repository.UserRepository;
 import utils.AbstractController;
 import utils.Constants;
 
-public class ControllerRegister extends AbstractController {
+public class RegisterController extends AbstractController {
 
 	// Password String regex
 	private final String pattern = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@#$%^&+=])" + "(?=\\S+$).{8,20}$";
@@ -42,6 +43,12 @@ public class ControllerRegister extends AbstractController {
 
 	@FXML
 	private Button registerButton;
+	
+	@FXML
+	private HBox viewablePasswordTextfieldHBox;
+	
+	@FXML
+	private HBox viewableRepeatPasswordTextfieldHBox;
 
 	// Define the button image
 	Image showPasswordImg = new Image(getClass().getResourceAsStream("../../utils/eye.png"));
@@ -61,6 +68,10 @@ public class ControllerRegister extends AbstractController {
 	@FXML
 	public void initialize() {
 		userRepository = new UserRepository();
+		viewablePasswordTextfieldHBox.setVisible(false);
+		viewablePasswordTextfieldHBox.setDisable(true);
+		viewableRepeatPasswordTextfieldHBox.setVisible(false);
+		viewableRepeatPasswordTextfieldHBox.setDisable(true);
 		setPasswordImage();
 		setRepeatPasswordImage();
 		setBackButtonIcon();
@@ -171,6 +182,8 @@ public class ControllerRegister extends AbstractController {
 		// If the password is not visible:
 		if (!passwordIsVisible) {
 			// Set the normal textfield available
+			viewablePasswordTextfieldHBox.setVisible(true);
+			viewablePasswordTextfieldHBox.setDisable(false);
 			passwordFieldViewable.setVisible(true);
 			passwordFieldViewable.setDisable(false);
 			passwordFieldViewable.setText(firstPasswordField.getText());
@@ -185,6 +198,8 @@ public class ControllerRegister extends AbstractController {
 		// If the password is visible:
 		else {
 			// Set the password field available
+			viewablePasswordTextfieldHBox.setVisible(false);
+			viewablePasswordTextfieldHBox.setDisable(true);
 			firstPasswordField.setVisible(true);
 			firstPasswordField.setDisable(false);
 			// Set the text from the other field to "save" the progress
@@ -207,6 +222,8 @@ public class ControllerRegister extends AbstractController {
 		// If the password is not visible:
 		if (!repeatPasswordIsVisible) {
 			// Set the normal textfield available
+			viewableRepeatPasswordTextfieldHBox.setVisible(true);
+			viewableRepeatPasswordTextfieldHBox.setDisable(false);
 			repeatPasswordFieldViewable.setVisible(true);
 			repeatPasswordFieldViewable.setDisable(false);
 			repeatPasswordFieldViewable.setText(repeatPasswordField.getText());
@@ -227,6 +244,8 @@ public class ControllerRegister extends AbstractController {
 			repeatPasswordField.setText(repeatPasswordFieldViewable.getText());
 			// Disable the normal textfield
 			repeatPasswordFieldViewable.setText("");
+			viewableRepeatPasswordTextfieldHBox.setVisible(false);
+			viewableRepeatPasswordTextfieldHBox.setDisable(true);
 			repeatPasswordFieldViewable.setVisible(false);
 			repeatPasswordFieldViewable.setDisable(true);
 			// And change the value of the variable used to check visibility

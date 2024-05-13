@@ -12,7 +12,7 @@ import javafx.scene.shape.Rectangle;
 import utils.AbstractController;
 import utils.DateUtils;
 
-public class ControllerEditFilm extends AbstractController {
+public class EditFilmController extends AbstractController {
 
 	@FXML
 	private Label title;

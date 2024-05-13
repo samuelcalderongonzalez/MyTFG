@@ -51,13 +51,13 @@ public class Film {
 
 	@Column(name = "duration")
 	private Integer duration;
-	
+
 	@Column(name = "synopsis")
 	private String synopsis;
-	
+
 	@Column(name = "total_score_votes")
 	private Integer totalScoreVotes;
-	
+
 	@Column(name = "image_link")
 	private String imageLink;
 
@@ -83,7 +83,7 @@ public class Film {
 	public Integer getTotalScoreVotes() {
 		return totalScoreVotes;
 	}
-	
+
 	public String getStringTotalScoreVotes() {
 		return totalScoreVotes.toString() + " votos";
 	}
@@ -133,7 +133,7 @@ public class Film {
 	}
 
 	public String getReview() {
-		if(review != null)
+		if (review != null)
 			return review;
 		else
 			return " ";
@@ -146,9 +146,9 @@ public class Film {
 	public Double getScore() {
 		return score;
 	}
-	
+
 	public String getStringScore() {
-		if(score != null && score > 0)
+		if (score != null && score > 0)
 			return score.toString();
 		else
 			return Constants.NO_SCORE;
@@ -159,14 +159,14 @@ public class Film {
 	}
 
 	public Integer getPersonalScore() {
-		if(personalScore != null)
+		if (personalScore != null)
 			return personalScore;
 		else
 			return null;
 	}
-	
+
 	public String getStringPersonalScore() {
-		if(personalScore != null)
+		if (personalScore != null)
 			return personalScore.toString();
 		else
 			return "-";
@@ -185,7 +185,7 @@ public class Film {
 	}
 
 	public String getCompletedDate() {
-		if(completedDate != null)
+		if (completedDate != null)
 			return DateUtils.mapDateToString(completedDate);
 		else
 			return Constants.NO_COMPLETE_DATE;
@@ -230,20 +230,20 @@ public class Film {
 	public SimpleStringProperty getSPStatus() {
 		return new SimpleStringProperty(status);
 	}
-	
+
 	public SimpleStringProperty getSPPersonalScore() {
-		if(personalScore != null)
+		if (personalScore != null)
 			return new SimpleStringProperty(personalScore.toString());
 		else
 			return new SimpleStringProperty("-");
 	}
-	
+
 	public SimpleStringProperty getSPReleaseDate() {
 		return new SimpleStringProperty(DateUtils.mapDateToString(releaseDate));
 	}
-	
+
 	public void addGenre(String genre) {
-		if(this.genres == null) {
+		if (this.genres == null) {
 			genres = genre;
 		} else {
 			genres = genres + ", " + genre;
@@ -253,7 +253,7 @@ public class Film {
 	public SimpleStringProperty getSPDuration() {
 		int newDuration = duration;
 		Integer hour = 0;
-		while(newDuration - 60 >= 0) {
+		while (newDuration - 60 >= 0) {
 			hour++;
 			newDuration = newDuration - 60;
 		}
@@ -261,15 +261,36 @@ public class Film {
 		return new SimpleStringProperty(finalDuration);
 	}
 
+	public String getDurationComplex() {
+		int newDuration = duration;
+		Integer hour = 0;
+		while (newDuration - 60 >= 0) {
+			hour++;
+			newDuration = newDuration - 60;
+		}
+		return hour > 0 ? hour.toString() + "h " + newDuration + "min" : newDuration + "min";
+	}
+
 	public SimpleStringProperty getSPScore() {
 		return new SimpleStringProperty(getScore().toString());
 	}
-	
+
 	public void setPersonalScore(String personalScore) {
-		if(!personalScore.contains("-"))
+		if (!personalScore.contains("-"))
 			this.personalScore = Integer.parseInt(personalScore);
 		else
 			this.personalScore = null;
+	}
+
+	public boolean isReviewed() {
+		if (review == null)
+			return false;
+		else
+			return true;
+	}
+
+	public String printDuration() {
+		return title + " (" + getDurationComplex() + ").";
 	}
 
 }

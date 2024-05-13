@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import utils.AbstractController;
 import utils.DateUtils;
 
-public class ControllerEditSeason extends AbstractController {
+public class EditSeasonController extends AbstractController {
 
 	@FXML
 	private Label title;

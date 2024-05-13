@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="390.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.ControllerRegister">
+<AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="390.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.RegisterController">
    <children>
       <HBox alignment="CENTER" layoutX="150.0" layoutY="71.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="71.0">
          <children>
@@ -39,7 +39,7 @@
             </PasswordField>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="150.0" layoutY="391.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox fx:id="viewablePasswordTextfieldHBox" alignment="CENTER" layoutX="150.0" layoutY="391.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <TextField fx:id="passwordFieldViewable" disable="true" onAction="#handleRegister" prefHeight="39.0" prefWidth="323.0" visible="false">
                <HBox.margin>
@@ -48,17 +48,14 @@
             </TextField>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="414.0" layoutY="410.0" spacing="100.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="439.0" layoutY="410.0" prefHeight="39.0" prefWidth="161.0" spacing="115.0" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="230.0">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </HBox>
             <Button fx:id="passwordViewButton" maxHeight="1.0" maxWidth="1.0" minHeight="1.0" minWidth="1.0" mnemonicParsing="false" onAction="#changePasswordVisivility" prefHeight="1.0" prefWidth="1.0" text="Button">
                <HBox.margin>
-                  <Insets right="85.0" />
-               </HBox.margin></Button>
+                  <Insets right="70.0" />
+               </HBox.margin>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="275.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="150.0" layoutY="441.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -70,7 +67,7 @@
             </PasswordField>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="150.0" layoutY="441.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox fx:id="viewableRepeatPasswordTextfieldHBox" alignment="CENTER" layoutX="150.0" layoutY="441.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <TextField fx:id="repeatPasswordFieldViewable" disable="true" onAction="#handleRegister" prefHeight="39.0" prefWidth="323.0" visible="false">
                <HBox.margin>
@@ -79,13 +76,14 @@
             </TextField>
          </children>
       </HBox>
-      <HBox alignment="CENTER" layoutX="414.0" layoutY="460.0" prefHeight="39.0" spacing="100.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="439.0" layoutY="460.0" prefHeight="39.0" prefWidth="161.0" spacing="115.0" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="439.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="230.0" />
             <Button fx:id="repeatPasswordViewButton" maxHeight="1.0" maxWidth="1.0" minHeight="1.0" minWidth="1.0" mnemonicParsing="false" onAction="#changeRepeatPasswordVisivility" prefHeight="1.0" prefWidth="1.0" text="Button">
                <HBox.margin>
-                  <Insets right="85.0" />
-               </HBox.margin></Button>
+                  <Insets right="70.0" />
+               </HBox.margin>
+            </Button>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="275.0" />
          </children>
       </HBox>
       <Button fx:id="getBackButton" layoutX="63.0" layoutY="655.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">

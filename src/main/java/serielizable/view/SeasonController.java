@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import serielizable.entity.Season;
 import utils.AbstractController;
 
-public class ControllerSeason extends AbstractController {
+public class SeasonController extends AbstractController {
 
 	private ObservableList<Season> seasons;
 
@@ -123,7 +123,7 @@ public class ControllerSeason extends AbstractController {
 		review.setText("");
 	}
 
-	public ControllerSeason() {
+	public SeasonController() {
 
 	}
 	

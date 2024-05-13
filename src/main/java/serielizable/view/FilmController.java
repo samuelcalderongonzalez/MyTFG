@@ -21,7 +21,7 @@ import serielizable.entity.Film;
 import utils.APILibrary;
 import utils.AbstractController;
 
-public class ControllerFilm extends AbstractController {
+public class FilmController extends AbstractController {
 
 	private ObservableList<Film> films;
 
@@ -94,7 +94,6 @@ public class ControllerFilm extends AbstractController {
 
 	@FXML
 	public void initialize() {
-		System.out.println(APILibrary.filmGenres);
 		setEditButtonIcon();
 		populateComboBoxes();
 		// Get all the films of the logged user
@@ -205,7 +204,7 @@ public class ControllerFilm extends AbstractController {
 		review.setText("");
 	}
 
-	public ControllerFilm() {
+	public FilmController() {
 
 	}
 

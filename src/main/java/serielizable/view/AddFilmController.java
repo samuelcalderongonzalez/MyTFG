@@ -11,7 +11,7 @@ import utils.AbstractController;
 import utils.Constants;
 import utils.DateUtils;
 
-public class ControllerAddFilm extends AbstractController {
+public class AddFilmController extends AbstractController {
 
 	@FXML
 	private Label title;

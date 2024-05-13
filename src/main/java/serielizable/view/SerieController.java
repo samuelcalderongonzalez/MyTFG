@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import serielizable.entity.Serie;
 import utils.AbstractController;
 
-public class ControllerSerie extends AbstractController {
+public class SerieController extends AbstractController {
 
 	private ObservableList<Serie> series;
 
@@ -127,7 +127,7 @@ public class ControllerSerie extends AbstractController {
 		review.setText("");
 	}
 
-	public ControllerSerie() {
+	public SerieController() {
 
 	}
 

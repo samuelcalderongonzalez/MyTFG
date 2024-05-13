@@ -14,7 +14,7 @@ import serielizable.entity.Serie;
 import utils.APILibrary;
 import utils.AbstractController;
 
-public class ControllerSearch extends AbstractController {
+public class SearchController extends AbstractController {
 	APILibrary api = new APILibrary();
 
 	List<Film> foundFilms;
