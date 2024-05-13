@@ -76,139 +76,148 @@
             </HBox>
          </children>
       </VBox>
-      <HBox layoutX="83.0" layoutY="405.0" prefHeight="237.0" prefWidth="937.0">
+      <VBox layoutX="83.0" layoutY="405.0" prefHeight="237.0" prefWidth="937.0">
          <children>
-            <VBox prefHeight="237.0" prefWidth="509.0" spacing="14.0">
+            <HBox prefHeight="204.0" prefWidth="937.0">
                <children>
-                  <Label prefHeight="27.0" prefWidth="125.0" text="Estadísticas">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <HBox prefHeight="25.0" prefWidth="454.0">
+                  <VBox prefHeight="237.0" prefWidth="509.0" spacing="14.0">
                      <children>
-                        <Label prefHeight="30.0" prefWidth="144.0" text="Películas favoritas:">
+                        <Label contentDisplay="RIGHT" prefHeight="27.0" prefWidth="473.0" text="Estadísticas">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nFilmsFavorite" prefHeight="25.0" prefWidth="316.0" text="nFilmsFavorite">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
+                        <HBox prefHeight="25.0" prefWidth="454.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="144.0" text="Películas favoritas:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nFilmsFavorite" prefHeight="25.0" prefWidth="316.0" text="nFilmsFavorite">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="454.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="144.0" text="Películas reseñadas:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nFilmsReviewed" prefHeight="25.0" prefWidth="312.0" text="nFilmsReviewed">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="454.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="144.0" text="Película más larga:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="longestFilm" prefHeight="25.0" prefWidth="317.0" text="longestFilm">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="454.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="144.0" text="Película más corta:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="shortestFilm" prefHeight="25.0" prefWidth="309.0" text="shortestFilm">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox prefHeight="25.0" prefWidth="454.0">
+                  </VBox>
+                  <VBox prefHeight="237.0" prefWidth="509.0" spacing="10.0">
                      <children>
-                        <Label prefHeight="30.0" prefWidth="144.0" text="Películas reseñadas:">
+                        <Label prefHeight="27.0" prefWidth="125.0">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nFilmsReviewed" prefHeight="25.0" prefWidth="312.0" text="nFilmsReviewed">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="144.0" text="Película más reciente:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="newestFilm" prefHeight="30.0" prefWidth="309.0" text="newestFilm">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="144.0" text="Película más antigua:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="oldestFilm" prefHeight="30.0" prefWidth="315.0" text="oldestFilm">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="144.0" text="Última completada:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lastestFilm" prefHeight="30.0" prefWidth="315.0" text="lastestFilm">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="144.0" text="Última actualizada:">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lastUpdatedFilm" prefHeight="30.0" prefWidth="312.0" text="lastUpdatedFilm">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
-                  <HBox prefHeight="25.0" prefWidth="454.0">
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="144.0" text="Película más larga:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="longestFilm" prefHeight="25.0" prefWidth="317.0" text="longestFilm">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="25.0" prefWidth="454.0">
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="144.0" text="Película más corta:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="shortestFilm" prefHeight="25.0" prefWidth="309.0" text="shortestFilm">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
+                  </VBox>
                </children>
-            </VBox>
-            <VBox prefHeight="237.0" prefWidth="509.0" spacing="10.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="125.0" text="asdasd">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="144.0" text="Película más reciente:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="newestFilm" prefHeight="30.0" prefWidth="309.0" text="newestFilm">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="144.0" text="Película más antigua:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="oldestFilm" prefHeight="30.0" prefWidth="315.0" text="oldestFilm">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="144.0" text="Última completada:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lastestFilm" prefHeight="30.0" prefWidth="315.0" text="lastestFilm">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Label prefHeight="30.0" prefWidth="144.0" text="Última actualizada:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lastUpdatedFilm" prefHeight="30.0" prefWidth="312.0" text="lastUpdatedFilm">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+            </HBox>
+            <Label fx:id="totalTimeInvested" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="952.0" text="Has invertido un total de x horas y y minutos viendo películas">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
-      </HBox>
+      </VBox>
    </children>
 </AnchorPane>

@@ -39,6 +39,9 @@ public class FilmStatsController extends AbstractController {
 
 	@FXML
 	private Label nFilmsReviewed;
+	
+	@FXML
+	private Label totalTimeInvested;
 
 	@FXML
 	private Label longestFilm;
@@ -75,6 +78,8 @@ public class FilmStatsController extends AbstractController {
 	private Film lastest;
 
 	private Film lastUpdated;
+	
+	private int totalMinutes = 0;
 
 	private int[] score = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
@@ -153,6 +158,7 @@ public class FilmStatsController extends AbstractController {
 			getFavoritesCount(film);
 			getReviewedCount(film);
 			getStatsFields(film);
+			sumDuration(film);
 		}
 		nFilmsRatedCount = totalFilmsCount - score[0];
 		nFilmsRated.setText(String.valueOf(nFilmsRatedCount));
@@ -165,7 +171,13 @@ public class FilmStatsController extends AbstractController {
 		oldestFilm.setText(oldest.printReleaseDate() != null ? oldest.printReleaseDate() : Constants.NOT_AVAILABLE);
 		lastestFilm.setText(lastest.printCompletedDate() != null ? lastest.printCompletedDate() : Constants.NOT_AVAILABLE);
 		lastUpdatedFilm.setText(lastUpdated.printLastUpdateDate() != null ? lastUpdated.printLastUpdateDate() : Constants.NOT_AVAILABLE);
+		totalTimeInvested.setText(printTotalMinutes(totalMinutes));
 
+	}
+
+	private void sumDuration(Film film) {
+		if(film.getDuration() != null)
+			totalMinutes += film.getDuration();
 	}
 
 	private void getStatsFields(Film film) {
@@ -182,23 +194,23 @@ public class FilmStatsController extends AbstractController {
 		if (film.getReleaseDate() != null) {
 			if (newest == null)
 				newest = film;
-			else if (newest.getReleaseDate().after(film.getReleaseDate()))
+			else if (newest.getReleaseDate().before(film.getReleaseDate()))
 				newest = film;
 			if (oldest == null)
 				oldest = film;
-			else if (oldest.getReleaseDate().before(film.getReleaseDate()))
+			else if (oldest.getReleaseDate().after(film.getReleaseDate()))
 				oldest = film;
 		}
 		if (film.getCompletedDateDate() != null) {
 			if (lastest == null)
 				lastest = film;
-			else if (lastest.getCompletedDateDate().after(film.getCompletedDateDate()))
+			else if (lastest.getCompletedDateDate().before(film.getCompletedDateDate()))
 				lastest = film;
 		}
 		if (film.getLastUpdateDate() != null) {
 			if (lastUpdated == null)
 				lastUpdated = film;
-			else if (lastUpdated.getLastUpdateDate().after(film.getLastUpdateDate()))
+			else if (lastUpdated.getLastUpdateDate().before(film.getLastUpdateDate()))
 				lastUpdated = film;
 		}
 
@@ -260,6 +272,17 @@ public class FilmStatsController extends AbstractController {
 		} else {
 			score[0]++;
 		}
+	}
+	
+	private String printTotalMinutes(int duration) {
+		int newDuration = duration;
+		Integer hour = 0;
+		while (newDuration - 60 >= 0) {
+			hour++;
+			newDuration = newDuration - 60;
+		}
+		String time = hour > 0 ? hour.toString() + "h " + newDuration + "min" : newDuration + "min";
+		return "Has pasado un total de " + time + " viendo películas.";
 	}
 
 }
