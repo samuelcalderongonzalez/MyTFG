@@ -126,9 +126,9 @@ public class Season {
 			if (score > 0)
 				return score.toString();
 			else
-				return Constants.NO_SCORE;
+				return Constants.NOT_AVAILABLE;
 		} else
-			return Constants.NO_SCORE;
+			return Constants.NOT_AVAILABLE;
 	}
 
 	public void setScore(Double score) {

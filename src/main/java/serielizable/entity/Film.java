@@ -151,7 +151,7 @@ public class Film {
 		if (score != null && score > 0)
 			return score.toString();
 		else
-			return Constants.NO_SCORE;
+			return Constants.NOT_AVAILABLE;
 	}
 
 	public void setScore(Double score) {
@@ -189,6 +189,12 @@ public class Film {
 			return DateUtils.mapDateToString(completedDate);
 		else
 			return Constants.NO_COMPLETE_DATE;
+	}
+	
+	public Date getCompletedDateDate() {
+		if (completedDate != null)
+			return completedDate;
+		return null;
 	}
 
 	public void setCompletedDate(Date completedDate) {
@@ -291,6 +297,18 @@ public class Film {
 
 	public String printDuration() {
 		return title + " (" + getDurationComplex() + ").";
+	}
+	
+	public String printReleaseDate() {
+		return title + " (" + getReleaseDate().toString() + ").";
+	}
+	
+	public String printLastUpdateDate() {
+		return title + " (" + getLastUpdateDate().toString() + ").";
+	}
+	
+	public String printCompletedDate() {
+		return title + " (" + getCompletedDate().toString() + ").";
 	}
 
 }

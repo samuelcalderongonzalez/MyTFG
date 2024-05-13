@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import serielizable.entity.Film;
 import serielizable.repository.FilmRepository;
 import utils.AbstractController;
+import utils.Constants;
 
 public class FilmStatsController extends AbstractController {
 
@@ -60,22 +61,21 @@ public class FilmStatsController extends AbstractController {
 	private int nFilmsRatedCount = 0;
 
 	private int favoritesCount = 0;
-	
+
 	private int reviewedCount = 0;
-	
+
 	private Film longest;
-	
+
 	private Film shortest;
-	
+
 	private Film newest;
-	
+
 	private Film oldest;
-	
+
 	private Film lastest;
-	
+
 	private Film lastUpdated;
 
-	
 	private int[] score = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 	@FXML
@@ -101,11 +101,11 @@ public class FilmStatsController extends AbstractController {
 	}
 
 	private void populateBarChart() {
-		xaxis.setLabel("Mis notas");
+		xaxis.setLabel("Puntuaciones");
 		yaxis.setLabel("Películas totales");
 
 		XYChart.Series<String, Number> series = new XYChart.Series<>();
-		series.setName("Puntuación");
+		series.setName("Puntuaciones");
 		series.getData().add(new XYChart.Data<>("10", score[10]));
 		series.getData().add(new XYChart.Data<>("9", score[9]));
 		series.getData().add(new XYChart.Data<>("8", score[8]));
@@ -159,33 +159,50 @@ public class FilmStatsController extends AbstractController {
 		nFilms.setText(String.valueOf(totalFilmsCount));
 		nFilmsFavorite.setText(String.valueOf(favoritesCount));
 		nFilmsReviewed.setText(String.valueOf(reviewedCount));
-		longestFilm.setText(longest.printDuration());
-		shortestFilm.setText(shortest.printDuration());
+		longestFilm.setText(longest.printDuration() != null ? longest.printDuration() : Constants.NOT_AVAILABLE);
+		shortestFilm.setText(shortest.printDuration() != null ? shortest.printDuration() : Constants.NOT_AVAILABLE);
+		newestFilm.setText(newest.printReleaseDate() != null ? newest.printReleaseDate() : Constants.NOT_AVAILABLE);
+		oldestFilm.setText(oldest.printReleaseDate() != null ? oldest.printReleaseDate() : Constants.NOT_AVAILABLE);
+		lastestFilm.setText(lastest.printCompletedDate() != null ? lastest.printCompletedDate() : Constants.NOT_AVAILABLE);
+		lastUpdatedFilm.setText(lastUpdated.printLastUpdateDate() != null ? lastUpdated.printLastUpdateDate() : Constants.NOT_AVAILABLE);
 
 	}
 
 	private void getStatsFields(Film film) {
-		//TODO valorar si añadir que esté en completed
-		if(longest == null)
-			longest = film;
-		else if(longest.getDuration() < film.getDuration())
-			longest = film;
-		if(shortest == null)
-			shortest = film;
-		else if(shortest.getDuration() > film.getDuration())
-			shortest = film;
+		if (film.getDuration() != null) {
+			if (longest == null)
+				longest = film;
+			else if (longest.getDuration() < film.getDuration())
+				longest = film;
+			if (shortest == null)
+				shortest = film;
+			else if (shortest.getDuration() > film.getDuration())
+				shortest = film;
+		}
+		if (film.getReleaseDate() != null) {
+			if (newest == null)
+				newest = film;
+			else if (newest.getReleaseDate().after(film.getReleaseDate()))
+				newest = film;
+			if (oldest == null)
+				oldest = film;
+			else if (oldest.getReleaseDate().before(film.getReleaseDate()))
+				oldest = film;
+		}
+		if (film.getCompletedDateDate() != null) {
+			if (lastest == null)
+				lastest = film;
+			else if (lastest.getCompletedDateDate().after(film.getCompletedDateDate()))
+				lastest = film;
+		}
+		if (film.getLastUpdateDate() != null) {
+			if (lastUpdated == null)
+				lastUpdated = film;
+			else if (lastUpdated.getLastUpdateDate().after(film.getLastUpdateDate()))
+				lastUpdated = film;
+		}
 
 	}
-
-//	private void getFromQuery() {
-//		longest = ;
-//		shortest = ;
-//		newest = ;
-//		oldest = ;
-//		lastest = ;
-//		lastUpdated = ;
-//		
-//	}
 
 	private void getFavoritesCount(Film film) {
 		if (film.isFavorite())

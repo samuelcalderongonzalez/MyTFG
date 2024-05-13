@@ -18,7 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import serielizable.entity.Film;
-import utils.APILibrary;
 import utils.AbstractController;
 
 public class FilmController extends AbstractController {
@@ -355,8 +354,4 @@ public class FilmController extends AbstractController {
 		}
 	}
 
-//	private void toggleFavorite() {
-//		currentFilm.setFavorite(!currentFilm.isFavorite());
-//		pupulateLabels();
-//	}
 }

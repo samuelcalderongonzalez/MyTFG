@@ -56,7 +56,7 @@
       </VBox>
       <VBox layoutX="587.0" layoutY="56.0" spacing="10.0">
          <children>
-            <BarChart fx:id="barChart" prefHeight="299.0" prefWidth="443.0" title="Mis notas">
+            <BarChart fx:id="barChart" prefHeight="299.0" prefWidth="443.0" title="Mis puntuaciones">
               <xAxis>
                 <CategoryAxis side="BOTTOM" fx:id="xaxis" />
               </xAxis>
@@ -92,7 +92,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nFilmsFavorite" prefHeight="30.0" prefWidth="144.0" text="nFilmsFavorite">
+                        <Label fx:id="nFilmsFavorite" prefHeight="25.0" prefWidth="316.0" text="nFilmsFavorite">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -106,7 +106,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nFilmsReviewed" prefHeight="30.0" prefWidth="144.0" text="nFilmsReviewed">
+                        <Label fx:id="nFilmsReviewed" prefHeight="25.0" prefWidth="312.0" text="nFilmsReviewed">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -120,7 +120,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="longestFilm" prefHeight="30.0" prefWidth="144.0" text="longestFilm">
+                        <Label fx:id="longestFilm" prefHeight="25.0" prefWidth="317.0" text="longestFilm">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -134,7 +134,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="shortestFilm" prefHeight="30.0" prefWidth="144.0" text="shortestFilm">
+                        <Label fx:id="shortestFilm" prefHeight="25.0" prefWidth="309.0" text="shortestFilm">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -157,7 +157,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="newestFilm" prefHeight="30.0" prefWidth="144.0" text="newestFilm">
+                        <Label fx:id="newestFilm" prefHeight="30.0" prefWidth="309.0" text="newestFilm">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -171,7 +171,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="oldestFilm" prefHeight="30.0" prefWidth="144.0" text="oldestFilm">
+                        <Label fx:id="oldestFilm" prefHeight="30.0" prefWidth="315.0" text="oldestFilm">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -185,7 +185,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lastestFilm" prefHeight="30.0" prefWidth="144.0" text="lastestFilm">
+                        <Label fx:id="lastestFilm" prefHeight="30.0" prefWidth="315.0" text="lastestFilm">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -199,7 +199,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lastUpdatedFilm" prefHeight="30.0" prefWidth="144.0" text="lastUpdatedFilm">
+                        <Label fx:id="lastUpdatedFilm" prefHeight="30.0" prefWidth="312.0" text="lastUpdatedFilm">
                            <font>
                               <Font size="14.0" />
                            </font>
