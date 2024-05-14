@@ -242,7 +242,6 @@ public class FilmController extends AbstractController {
 			favoriteButtonImage = new ImageView(noFavoriteImg);
 			resizeFavoriteImage();
 		}
-
 	}
 
 	private void populateComboBoxes() {

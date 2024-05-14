@@ -177,6 +177,7 @@ public class APILibrary {
 			for (JsonElement element : results) {
 				genre.add(new Genre(element.getAsJsonObject().get("id").getAsInt(),
 						element.getAsJsonObject().get("name").getAsString()));
+				System.out.println(element.getAsJsonObject().get("name").getAsString());
 
 			}
 		} catch (IOException e) {
