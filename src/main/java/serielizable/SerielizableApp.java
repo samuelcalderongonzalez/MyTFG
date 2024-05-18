@@ -34,11 +34,12 @@ public class SerielizableApp extends Application implements CAPPI {
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		primaryStage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue)
-                primaryStage.setMaximized(false);
+            if (newValue) 
+                primaryStage.setMaximized(false);   
         });
 		this.primaryStage.setTitle("Serielizable");
 		this.primaryStage.getIcons().add(icon);
+		
 		primaryStage.setOnCloseRequest(event -> {
 			HibernateUtils.close();
 		});
@@ -58,6 +59,8 @@ public class SerielizableApp extends Application implements CAPPI {
 			// Define and load the scene
 			Scene scene = new Scene(loginLayout);
 			// Load and show the scene
+			primaryStage.setX(scene.getWidth() + 150);
+	        primaryStage.setY(scene.getHeight() + 25);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
