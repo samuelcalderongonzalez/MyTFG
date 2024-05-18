@@ -27,7 +27,7 @@
             <Menu mnemonicParsing="false" text="Estadísticas">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#filmStats" text="Películas" />
-                  <MenuItem mnemonicParsing="false" onAction="#search" text="Series" />
+                  <MenuItem mnemonicParsing="false" onAction="#serieStats" text="Series" />
                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Desconectarse" />

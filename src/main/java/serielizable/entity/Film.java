@@ -296,19 +296,31 @@ public class Film {
 	}
 
 	public String printDuration() {
-		return title + " (" + getDurationComplex() + ").";
+		if(duration == null)
+			return Constants.NOT_AVAILABLE;
+		else
+			return title + " (" + getDurationComplex() + ").";
 	}
 	
 	public String printReleaseDate() {
-		return title + " (" + DateUtils.mapDateToString(getReleaseDate()) + ").";
+		if(releaseDate == null)
+			return Constants.NOT_AVAILABLE;
+		else
+			return title + " (" + DateUtils.mapDateToString(getReleaseDate()) + ").";
 	}
 	
 	public String printLastUpdateDate() {
-		return title + " (" + DateUtils.mapDateToString(getLastUpdateDate()) + ").";
+		if(lastUpdateDate == null)
+			return Constants.NOT_AVAILABLE;
+		else
+			return title + " (" + DateUtils.mapDateToString(getLastUpdateDate()) + ").";
 	}
 	
 	public String printCompletedDate() {
-		return title + " (" + DateUtils.mapDateToString(getCompletedDateDate()) + ").";
+		if(completedDate == null)
+			return Constants.NOT_AVAILABLE;
+		else
+			return title + " (" + DateUtils.mapDateToString(getCompletedDateDate()) + ").";
 	}
 
 }

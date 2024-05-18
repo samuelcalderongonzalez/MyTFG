@@ -170,12 +170,12 @@ public class FilmStatsController extends AbstractController {
 		nFilms.setText(String.valueOf(totalFilmsCount));
 		nFilmsFavorite.setText(String.valueOf(favoritesCount));
 		nFilmsReviewed.setText(String.valueOf(reviewedCount));
-		longestFilm.setText((longest.printDuration() != null ? longest.printDuration() : Constants.NOT_AVAILABLE));
-		shortestFilm.setText(shortest.printDuration() != null ? shortest.printDuration() : Constants.NOT_AVAILABLE);
-		newestFilm.setText(newest.printReleaseDate() != null ? newest.printReleaseDate() : Constants.NOT_AVAILABLE);
-		oldestFilm.setText(oldest.printReleaseDate() != null ? oldest.printReleaseDate() : Constants.NOT_AVAILABLE);
-		lastestFilm.setText(lastest.printCompletedDate() != null ? lastest.printCompletedDate() : Constants.NOT_AVAILABLE);
-		lastUpdatedFilm.setText(lastUpdated.printLastUpdateDate() != null ? lastUpdated.printLastUpdateDate() : Constants.NOT_AVAILABLE);
+		longestFilm.setText((longest != null ? longest.printDuration() : Constants.NOT_AVAILABLE));
+		shortestFilm.setText(shortest != null ? shortest.printDuration() : Constants.NOT_AVAILABLE);
+		newestFilm.setText(newest != null ? newest.printReleaseDate() : Constants.NOT_AVAILABLE);
+		oldestFilm.setText(oldest != null ? oldest.printReleaseDate() : Constants.NOT_AVAILABLE);
+		lastestFilm.setText(lastest != null ? lastest.printCompletedDate() : Constants.NOT_AVAILABLE);
+		lastUpdatedFilm.setText(lastUpdated != null ? lastUpdated.printLastUpdateDate() : Constants.NOT_AVAILABLE);
 		totalTimeInvested.setText(printTotalMinutes(totalMinutes));
 
 	}

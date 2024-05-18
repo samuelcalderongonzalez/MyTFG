@@ -329,4 +329,49 @@ public class Serie {
 		else
 			return "-";
 	}
+
+	public boolean isReviewed() {
+		if (review == null)
+			return false;
+		else
+			return true;
+	}
+	
+	public Date getCompletedDateDate() {
+		if (completedDate != null)
+			return completedDate;
+		return null;
+	}
+	
+	public String getCountSeasonsComplex() {
+		return countSeasons.toString() + " temporadas";
+	}
+	
+	public String printDuration() {
+		if(countSeasons == null)
+			return Constants.NOT_AVAILABLE;
+		else
+			return title + " (" + getCountSeasonsComplex() + ").";
+	}
+	
+	public String printReleaseDate() {
+		if(releaseDate == null)
+			return Constants.NOT_AVAILABLE;
+		else
+			return title + " (" + DateUtils.mapDateToString(getReleaseDate()) + ").";
+	}
+	
+	public String printLastUpdateDate() {
+		if(lastUpdateDate == null)
+			return Constants.NOT_AVAILABLE;
+		else
+			return title + " (" + DateUtils.mapDateToString(getLastUpdateDate()) + ").";
+	}
+	
+	public String printCompletedDate() {
+		if(completedDate == null)
+			return Constants.NOT_AVAILABLE;
+		else
+			return title + " (" + DateUtils.mapDateToString(getCompletedDateDate()) + ").";
+	}
 }
