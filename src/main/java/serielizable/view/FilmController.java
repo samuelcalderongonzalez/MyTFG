@@ -135,6 +135,11 @@ public class FilmController extends AbstractController {
 	public void serie() {
 		setViewSerie();
 	}
+	
+	@FXML
+	public void film() {
+		setViewFilm();
+	}
 
 	@FXML
 	public void editFilm() {

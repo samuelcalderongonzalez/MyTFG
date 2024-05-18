@@ -2,6 +2,7 @@ package serielizable.view;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -9,6 +10,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import serielizable.entity.Film;
 import serielizable.repository.FilmRepository;
 import utils.AbstractController;
@@ -103,6 +105,7 @@ public class FilmStatsController extends AbstractController {
 				new PieChart.Data("Pendientes", getPercentage(pendingCount, totalFilmsCount)),
 				new PieChart.Data("Abandonadas", getPercentage(droppedCount, totalFilmsCount)));
 		pieChart.setData(pieChartData);
+
 	}
 
 	private void populateBarChart() {
@@ -124,6 +127,8 @@ public class FilmStatsController extends AbstractController {
 		series.getData().add(new XYChart.Data<>("Sin nota", score[0]));
 		// Adding series to the barchart
 		barChart.getData().add(series);
+		
+		
 	}
 
 	@FXML
@@ -165,7 +170,7 @@ public class FilmStatsController extends AbstractController {
 		nFilms.setText(String.valueOf(totalFilmsCount));
 		nFilmsFavorite.setText(String.valueOf(favoritesCount));
 		nFilmsReviewed.setText(String.valueOf(reviewedCount));
-		longestFilm.setText(longest.printDuration() != null ? longest.printDuration() : Constants.NOT_AVAILABLE);
+		longestFilm.setText((longest.printDuration() != null ? longest.printDuration() : Constants.NOT_AVAILABLE));
 		shortestFilm.setText(shortest.printDuration() != null ? shortest.printDuration() : Constants.NOT_AVAILABLE);
 		newestFilm.setText(newest.printReleaseDate() != null ? newest.printReleaseDate() : Constants.NOT_AVAILABLE);
 		oldestFilm.setText(oldest.printReleaseDate() != null ? oldest.printReleaseDate() : Constants.NOT_AVAILABLE);

@@ -21,32 +21,16 @@
    <children>
       <MenuBar layoutX="10.0" layoutY="10.0" stylesheets="@../css/Serielizable.css" useSystemMenuBar="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <menus>
-            <Menu mnemonicParsing="false" text="Películas">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Lists" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Series">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#serie" text="Lists" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Buscar">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#search" text="Search" />
-               </items>
-            </Menu>
+            <Menu mnemonicParsing="false" text="Películas" />
+            <Menu mnemonicParsing="false" onAction="#serie" text="Series" />
+            <Menu mnemonicParsing="false" text="Buscar" />
             <Menu mnemonicParsing="false" text="Estadísticas">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#filmStats" text="Películas" />
                   <MenuItem mnemonicParsing="false" onAction="#search" text="Series" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Desconectarse">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#logOff" text="Log off" />
-               </items>
-            </Menu>
+            <Menu mnemonicParsing="false" text="Desconectarse" />
          </menus>
       </MenuBar>
       <Label fx:id="title" prefHeight="48.0" prefWidth="585.0" text="Título" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="60.0">
@@ -54,13 +38,13 @@
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <HBox layoutX="50.0" layoutY="146.0" prefHeight="48.0" prefWidth="595.0">
+      <HBox layoutX="50.0" layoutY="146.0" prefHeight="48.0" prefWidth="595.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="150.0">
          <children>
             <ComboBox fx:id="genreFilter" prefHeight="28.0" prefWidth="104.0" promptText="Género" />
             <ComboBox fx:id="favoriteFilter" prefHeight="28.0" prefWidth="104.0" promptText="Favorito" />
             <ComboBox fx:id="statusFilter" prefHeight="28.0" prefWidth="104.0" promptText="Estado" />
             <TextField fx:id="titleFilter" prefHeight="27.0" prefWidth="234.0" promptText="Título de la película" />
-            <Button fx:id="searchFilters" mnemonicParsing="false" prefHeight="36.0" prefWidth="73.0" text="Filter" />
+            <Button fx:id="searchFilters" alignment="CENTER" contentDisplay="CENTER" maxHeight="27.0" minHeight="27.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="69.0" styleClass="otherbutton" text="Filter" />
          </children>
       </HBox>
       <HBox layoutX="691.0" layoutY="30.0" spacing="125.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="30.0">

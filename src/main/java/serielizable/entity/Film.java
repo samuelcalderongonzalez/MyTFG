@@ -300,15 +300,15 @@ public class Film {
 	}
 	
 	public String printReleaseDate() {
-		return title + " (" + getReleaseDate().toString() + ").";
+		return title + " (" + DateUtils.mapDateToString(getReleaseDate()) + ").";
 	}
 	
 	public String printLastUpdateDate() {
-		return title + " (" + getLastUpdateDate().toString() + ").";
+		return title + " (" + DateUtils.mapDateToString(getLastUpdateDate()) + ").";
 	}
 	
 	public String printCompletedDate() {
-		return title + " (" + getCompletedDate().toString() + ").";
+		return title + " (" + DateUtils.mapDateToString(getCompletedDateDate()) + ").";
 	}
 
 }

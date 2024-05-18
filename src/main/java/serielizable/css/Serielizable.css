@@ -32,10 +32,18 @@
   -fx-background-color: #345da5;
   -fx-text-fill: #ffffff;
   -fx-font-weight: bold;
-  -fx-padding: 10.0px 16.0px;
   -fx-border-radius: 3.0px;
 
 }
+
+.menu-bar .label {
+    -fx-font-size: 14.0 pt;
+    -fx-text-fill: white;
+    -fx-font-weight: bold; 
+    -fx-padding: 3.0px;
+
+}
+
 
 .combo-box {
   -fx-background-color: #4d82bc;
@@ -66,24 +74,18 @@
 
 }
 
-.menu, .menu-item {
-  -fx-text-fill: #ffffff;
+.menu-item {
+    -fx-text-fill: black;
+    -fx-background: #BEE7FF;
+}
+.menu-item .label{
+    -fx-font-size: 14.0 pt;
+    -fx-text-fill: black;
 }
 
 .circle {
   -fx-fill: #4CAF50;
   -fx-stroke: #ffffff;
-}
-
-.delete-button {
-  -fx-background-color: #ff0000;
-  -fx-text-fill: #ffffff;
-  -fx-padding: 8.0px 16.0px;
-  -fx-border-radius: 3.0px;
-}
-
-.delete-button:hover {
-  -fx-background-color: #d50000;
 }
 
 .check-box {
