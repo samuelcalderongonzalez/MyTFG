@@ -3,6 +3,7 @@ package serielizable.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -33,16 +35,16 @@ public class SerieController extends AbstractController {
 	private Label totalVotes;
 
 	@FXML
-	private Label genres;
+	private TextField genres;
 
 	@FXML
-	private Label completedDate;
+	private TextField completedDate;
 
 	@FXML
-	private Label sinopsis;
+	private TextArea sinopsis;
 
 	@FXML
-	private Label review;
+	private TextArea review;
 
 	@FXML
 	private Button btnEditSerie;
@@ -85,7 +87,14 @@ public class SerieController extends AbstractController {
 	private Rectangle posterImageRectangle;
 	
 	@FXML
+	private Rectangle backgroundImage;
+	
+	@FXML
+	private Rectangle favoriteImage;
+	
+	@FXML
 	public void initialize() {
+		setBackgroundImage();
 		setButtonIcon();
 		populateComboBoxes();
 		currentSeries = serieRepository.getAllByUserId(currentUser.getId());
@@ -108,11 +117,22 @@ public class SerieController extends AbstractController {
 		pupulateLabels();
 
 	}
+	
+	private void setBackgroundImage() {
+		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
+		backgroundImage.setFill(new ImagePattern(imgBackground));
+
+	}
 
 	@FXML
 	public void logOff() {
 		currentUser = null;
 		setViewLogin();
+	}
+	
+	@FXML
+	public void exit() {
+		Platform.exit();
 	}
 
 	@FXML
@@ -121,6 +141,11 @@ public class SerieController extends AbstractController {
 	}
 
 	@FXML
+	public void serie() {
+		setViewSerie();
+	}
+	
+	@FXML
 	public void film() {
 		setViewFilm();
 	}
@@ -128,6 +153,16 @@ public class SerieController extends AbstractController {
 	@FXML
 	public void editSerie() {
 		setViewEditSerie();
+	}
+	
+	@FXML
+	public void filmStats() {
+		setViewFilmStats();
+	}
+	
+	@FXML
+	public void serieStats() {
+		setViewSerieStats();
 	}
 
 	@FXML
@@ -176,11 +211,10 @@ public class SerieController extends AbstractController {
 	}
 	
 	/**
-	 * This method is used to change favorite´s button icon after using it
+	 * This method is used to change favorite´s image icon after using it
 	 */
 	private void setFavoriteImage() {
-		if (currentSerie.isFavorite())
-			title.setText(currentSerie.getTitle() + " \u2665");
+		favoriteImage.setVisible(currentSerie.isFavorite());
 	}
 
 	private void clearLabels() {

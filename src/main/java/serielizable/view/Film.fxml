@@ -20,7 +20,7 @@
 <AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.FilmController">
    <children>
       <Rectangle fx:id="backgroundImage" fill="DODGERBLUE" height="680.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="1080.0" />
-      <Rectangle fx:id="backgroundImage1" arcHeight="20.0" arcWidth="20.0" fill="#bcd8f2" height="405.0" layoutX="662.0" layoutY="200.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="405.0" AnchorPane.rightAnchor="15.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#bcd8f2" height="405.0" layoutX="662.0" layoutY="200.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="405.0" AnchorPane.rightAnchor="15.0" />
       <MenuBar layoutX="10.0" layoutY="10.0" stylesheets="@../css/Serielizable.css" useSystemMenuBar="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <menus>
             <Menu mnemonicParsing="false" text="Listas ▶">
@@ -59,7 +59,6 @@
             <Button fx:id="searchFilters" alignment="CENTER" contentDisplay="CENTER" maxHeight="30.0" minHeight="30.0" mnemonicParsing="false" onAction="#applyFilters" prefHeight="30.0" prefWidth="146.0" styleClass="otherbutton" text="Filtrar" />
          </children>
       </HBox>
-      <HBox layoutX="691.0" layoutY="30.0" spacing="125.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="45.0" />
       <TableView fx:id="tableFootage" layoutX="50.0" layoutY="202.0" prefHeight="405.0" prefWidth="595.0">
         <columns>
           <TableColumn fx:id="titleTableColumn" prefWidth="174.0" text="Título" />
