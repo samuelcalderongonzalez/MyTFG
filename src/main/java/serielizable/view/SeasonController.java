@@ -1,5 +1,6 @@
 package serielizable.view;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,8 +8,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import serielizable.entity.Season;
 import utils.AbstractController;
 
@@ -26,10 +31,10 @@ public class SeasonController extends AbstractController {
 	private Label totalVotes;
 
 	@FXML
-	private Label completedDate;
+	private TextField completedDate;
 
 	@FXML
-	private Label review;
+	private TextArea review;
 
 	@FXML
 	private Button btnEditSeason;
@@ -55,7 +60,15 @@ public class SeasonController extends AbstractController {
 	private ImageView imageViewBack;
 	
 	@FXML
+	private Rectangle posterImageRectangle;
+	
+	@FXML
+	private Rectangle backgroundImage;
+	
+	@FXML
 	public void initialize() {
+		setPosterImg();
+		setBackgroundImage();
 		setBackButtonIcon();
 		setButtonIcon();
 		serieTitle.setText(currentSerie.getTitle());
@@ -83,6 +96,11 @@ public class SeasonController extends AbstractController {
 		currentUser = null;
 		setViewLogin();
 	}
+	
+	@FXML
+	public void exit() {
+		Platform.exit();
+	}
 
 	@FXML
 	public void search() {
@@ -90,13 +108,23 @@ public class SeasonController extends AbstractController {
 	}
 
 	@FXML
+	public void serie() {
+		setViewSerie();
+	}
+	
+	@FXML
 	public void film() {
 		setViewFilm();
 	}
 	
 	@FXML
-	public void serie() {
-		setViewSerie();
+	public void filmStats() {
+		setViewFilmStats();
+	}
+	
+	@FXML
+	public void serieStats() {
+		setViewSerieStats();
 	}
 	
 	@FXML
@@ -107,6 +135,38 @@ public class SeasonController extends AbstractController {
 	@FXML
 	public void handleBack() {
 		setViewSerie();
+	}
+	
+	private void setBackgroundImage() {
+		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
+		backgroundImage.setFill(new ImagePattern(imgBackground));
+
+	}
+	
+	/**
+	 * This method fills the poster with the serie image
+	 */
+	private void setPosterImg() {
+		// Create a default image
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
+		// If the current serie has an url:
+		if (currentSerie.getImageLink() != null) {
+			// Create an image with the url
+			Image imgPoster = new Image(currentSerie.getImageLink());
+			// If the image is valid:
+			if (!imgPoster.isError()) {
+				// Assign the image
+				posterImageRectangle.setFill(new ImagePattern(imgPoster));
+			}
+			// Assign the default image
+			else {
+				posterImageRectangle.setFill(new ImagePattern(imgPosterDefault));
+			}
+		}
+		// Assign the default image
+		else {
+			posterImageRectangle.setFill(new ImagePattern(imgPosterDefault));
+		}
 	}
 
 	private void pupulateLabels() {
@@ -136,7 +196,7 @@ public class SeasonController extends AbstractController {
 	}
 	
 	private void setBackButtonIcon() {
-		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButton.png"));
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButtonWhite.png"));
 		imageViewBack = new ImageView(editImg);
 		imageViewBack.setFitHeight(40);
 		imageViewBack.setFitWidth(40);

@@ -92,6 +92,8 @@ public class FilmController extends AbstractController {
 
 	@FXML
 	public void initialize() {
+		Image imgFavorite = new Image(getClass().getResourceAsStream("../../utils/favoriteIconShow.png"));
+		favoriteImage.setFill(new ImagePattern(imgFavorite));
 		setBackgroundImage();
 		setEditButtonIcon();
 		populateComboBoxes();
@@ -170,8 +172,6 @@ public class FilmController extends AbstractController {
 	 * This method gets the film information and sends them to the proper places
 	 */
 	private void pupulateLabels() {
-		Image imgFavorite = new Image(getClass().getResourceAsStream("../../utils/favoriteIconShow.png"));
-		favoriteImage.setFill(new ImagePattern(imgFavorite));
 		setFavoriteImage();
 		// Set the film editable
 		editFilmButton.setVisible(true);

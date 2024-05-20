@@ -94,6 +94,8 @@ public class SerieController extends AbstractController {
 	
 	@FXML
 	public void initialize() {
+		Image imgFavorite = new Image(getClass().getResourceAsStream("../../utils/favoriteIconShow.png"));
+		favoriteImage.setFill(new ImagePattern(imgFavorite));
 		setBackgroundImage();
 		setButtonIcon();
 		populateComboBoxes();
