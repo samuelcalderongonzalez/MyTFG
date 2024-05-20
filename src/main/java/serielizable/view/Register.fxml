@@ -86,19 +86,22 @@
             <HBox alignment="CENTER" prefHeight="39.0" prefWidth="275.0" />
          </children>
       </HBox>
+      <HBox alignment="CENTER" layoutX="220.0" layoutY="505.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="registerButton" minWidth="95.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="47.0" prefWidth="160.0" text="Registrarse">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="100.0" right="100.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
       <Button fx:id="getBackButton" layoutX="63.0" layoutY="655.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <HBox alignment="CENTER" layoutX="220.0" layoutY="505.0" AnchorPane.bottomAnchor="48.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Button fx:id="registerButton" minWidth="116.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="47.0" prefWidth="160.0" text="Registrarse">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
    </children>
 </AnchorPane>

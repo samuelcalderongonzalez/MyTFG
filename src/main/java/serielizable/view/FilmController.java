@@ -3,6 +3,7 @@ package serielizable.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -49,9 +50,6 @@ public class FilmController extends AbstractController {
 	private Button editFilmButton;
 
 	@FXML
-	private Button favoriteButton;
-
-	@FXML
 	private ComboBox<String> genreFilter;
 
 	@FXML
@@ -81,18 +79,20 @@ public class FilmController extends AbstractController {
 
 	private ImageView editImageView;
 
-	private ImageView favoriteButtonImage;
-
 	private List<Film> currentFilteredFilms = new ArrayList<Film>();
 
-	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
-	Image noFavoriteImg = new Image(getClass().getResourceAsStream("../../utils/noFavorite.png"));
-
-	@FXML
+	@FXML	
 	private Rectangle posterImageRectangle;
+	
+	@FXML
+	private Rectangle backgroundImage;
+	
+	@FXML
+	private Rectangle favoriteImage;
 
 	@FXML
 	public void initialize() {
+		setBackgroundImage();
 		setEditButtonIcon();
 		populateComboBoxes();
 		// Get all the films of the logged user
@@ -120,10 +120,21 @@ public class FilmController extends AbstractController {
 
 	}
 
+	private void setBackgroundImage() {
+		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
+		backgroundImage.setFill(new ImagePattern(imgBackground));
+
+	}
+
 	@FXML
 	public void logOff() {
 		currentUser = null;
 		setViewLogin();
+	}
+	
+	@FXML
+	public void exit() {
+		Platform.exit();
 	}
 
 	@FXML
@@ -160,6 +171,8 @@ public class FilmController extends AbstractController {
 	 * This method gets the film information and sends them to the proper places
 	 */
 	private void pupulateLabels() {
+		Image imgFavorite = new Image(getClass().getResourceAsStream("../../utils/favoriteIconShow.png"));
+		favoriteImage.setFill(new ImagePattern(imgFavorite));
 		setFavoriteImage();
 		// Set the film editable
 		editFilmButton.setVisible(true);
@@ -180,7 +193,7 @@ public class FilmController extends AbstractController {
 	 */
 	private void setPosterImg() {
 		// Create a default image
-		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.png"));
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
 		// If the current film has an url:
 		if (currentFilm.getImageLink() != null) {
 			// Create an image with the url
@@ -233,25 +246,10 @@ public class FilmController extends AbstractController {
 	}
 
 	/**
-	 * This method prepares visually the favorite button
-	 */
-	private void resizeFavoriteImage() {
-		favoriteButtonImage.setFitHeight(30);
-		favoriteButtonImage.setFitWidth(30);
-		favoriteButton.setGraphic(favoriteButtonImage);
-	}
-
-	/**
-	 * This method is used to change favorite´s button icon after using it
+	 * This method is used to change favorite´s image icon after using it
 	 */
 	private void setFavoriteImage() {
-		if (currentFilm.isFavorite()) {
-			favoriteButtonImage = new ImageView(favoriteImg);
-			resizeFavoriteImage();
-		} else {
-			favoriteButtonImage = new ImageView(noFavoriteImg);
-			resizeFavoriteImage();
-		}
+		favoriteImage.setVisible(currentFilm.isFavorite());
 	}
 
 	private void populateComboBoxes() {

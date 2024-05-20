@@ -51,9 +51,6 @@ public class SerieController extends AbstractController {
 	private Button btnSeasons;
 	
 	@FXML
-	private Button favoriteButton;
-	
-	@FXML
 	private ComboBox<String> genreFilter;
 
 	@FXML
@@ -82,12 +79,7 @@ public class SerieController extends AbstractController {
 
 	private ImageView imageViewSeason;
 	
-	private ImageView favoriteButtonImage;
-	
 	private List<Serie> currentFilteredSeries = new ArrayList<Serie>();
-	
-	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
-	Image noFavoriteImg = new Image(getClass().getResourceAsStream("../../utils/noFavorite.png"));
 
 	@FXML
 	private Rectangle posterImageRectangle;
@@ -162,11 +154,11 @@ public class SerieController extends AbstractController {
 	 */
 	private void setPosterImg() {
 		// Create a default image
-		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.png"));
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
 		// If the current serie has an url:
-		if (currentFilm.getImageLink() != null) {
+		if (currentSerie.getImageLink() != null) {
 			// Create an image with the url
-			Image imgPoster = new Image(currentFilm.getImageLink());
+			Image imgPoster = new Image(currentSerie.getImageLink());
 			// If the image is valid:
 			if (!imgPoster.isError()) {
 				// Assign the image
@@ -184,25 +176,11 @@ public class SerieController extends AbstractController {
 	}
 	
 	/**
-	 * This method prepares visually the favorite button
-	 */
-	private void resizeFavoriteImage() {
-		favoriteButtonImage.setFitHeight(30);
-		favoriteButtonImage.setFitWidth(30);
-		favoriteButton.setGraphic(favoriteButtonImage);
-	}
-	
-	/**
 	 * This method is used to change favorite´s button icon after using it
 	 */
 	private void setFavoriteImage() {
-		if (currentFilm.isFavorite()) {
-			favoriteButtonImage = new ImageView(favoriteImg);
-			resizeFavoriteImage();
-		} else {
-			favoriteButtonImage = new ImageView(noFavoriteImg);
-			resizeFavoriteImage();
-		}
+		if (currentSerie.isFavorite())
+			title.setText(currentSerie.getTitle() + " \u2665");
 	}
 
 	private void clearLabels() {

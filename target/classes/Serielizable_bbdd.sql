@@ -89,3 +89,7 @@ select * from season;
 
 update film set score = 0 where user_id = 1 and id = 1;
 
+update serie set genres = "Template" where genres is null;
+
+
+
