@@ -1,104 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.EditFilmController">
    <children>
-      <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" AnchorPane.bottomAnchor="0.0">
-         <top>
-            <MenuBar prefHeight="40.0" prefWidth="1091.0" styleClass="menubar" useSystemMenuBar="true" BorderPane.alignment="CENTER">
-               <menus>
-                  <Menu mnemonicParsing="false" text="Películas">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Lists" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Series">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Lists" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Buscar">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#search" text="Search" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Desconectarse">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#logOff" text="Log off" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-         </top>
-      </BorderPane>
-      <HBox layoutX="670.0" layoutY="40.0" AnchorPane.rightAnchor="150.0">
+      <Rectangle fx:id="backgroundImage" fill="DODGERBLUE" height="680.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bcd8f2" height="599.0" layoutX="129.0" layoutY="59.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="883.0" AnchorPane.bottomAnchor="21.0" AnchorPane.topAnchor="60.0" />
+      <MenuBar layoutX="20.0" layoutY="20.0" stylesheets="@../css/Serielizable.css" useSystemMenuBar="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Listas ▶">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#film" text="Películas" />
+                  <MenuItem mnemonicParsing="false" onAction="#serie" text="Series" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Buscar 🔎">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#search" text="Buscar" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Estadísticas 📈">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#filmStats" text="Películas" />
+                  <MenuItem mnemonicParsing="false" onAction="#serieStats" text="Series" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Desconectarse 🚪">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#logOff" text="Cerrar sesión" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Salir" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="96.0" prefHeight="61.0" prefWidth="429.0" text="Título" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="96.0">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="posterImageRec" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="555.0" layoutX="611.0" layoutY="74.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="370.0" AnchorPane.bottomAnchor="45.0" />
+      <Button fx:id="btFavorite" layoutX="500.0" layoutY="115.0" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#toggleFavorite" prefHeight="0.0" prefWidth="0.0" text="favorite" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="262.0" />
+      <Label layoutX="150.0" layoutY="161.0" prefHeight="28.0" prefWidth="256.0" text="Estado" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="161.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="159.0" layoutY="396.0" prefHeight="28.0" prefWidth="260.0" text="Reseña" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="340.0">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <HBox layoutX="150.0" layoutY="600.0" spacing="125.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="150.0">
          <children>
-            <Label fx:id="title" contentDisplay="CENTER" prefHeight="156.0" prefWidth="366.0" text="Título">
+            <Button mnemonicParsing="false" onAction="#deleteFilm" prefHeight="50.0" prefWidth="150.0" text="Eliminar">
                <font>
-                  <Font name="System Bold" size="28.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
-            </Label>
-            <HBox prefHeight="218.0" prefWidth="433.0" spacing="160.0">
-               <children>
-                  <Rectangle fx:id="posterImageRec" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="218.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="174.0">
-                     <HBox.margin>
-                        <Insets top="30.0" />
-                     </HBox.margin>
-                  </Rectangle>
-                  <Button fx:id="btFavorite" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#toggleFavorite" prefHeight="0.0" prefWidth="0.0" text="favorite">
-                     <HBox.margin>
-                        <Insets top="75.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#saveFilm" prefHeight="50.0" prefWidth="150.0" text="Guardar">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
-      <TextField fx:id="tfReview" layoutX="150.0" layoutY="438.0" prefHeight="124.0" prefWidth="790.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="330.0" />
-      <Label layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="370.0" text="Estado" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label layoutX="150.0" layoutY="393.0" prefHeight="28.0" prefWidth="312.0" text="Reseña" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="300.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Button mnemonicParsing="false" onAction="#deleteFilm" prefHeight="76.0" prefWidth="242.0" text="Eliminar" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="225.0">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Button>
-      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#saveFilm" prefHeight="76.0" prefWidth="242.0" text="Guardar" AnchorPane.bottomAnchor="46.0" AnchorPane.rightAnchor="225.0">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Button>
       <Button fx:id="getBackButton" layoutX="10.0" layoutY="10.0" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="0.0" prefWidth="0.0" text="&lt;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Label layoutX="40.0" layoutY="40.0" prefHeight="28.0" prefWidth="234.0" text="Mi puntuación" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="200.0">
+      <Label layoutX="150.0" layoutY="251.0" prefHeight="28.0" prefWidth="250.0" text="Mi puntuación" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="251.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbStatus" prefHeight="36.0" prefWidth="337.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="235.0" />
-      <ComboBox fx:id="cbPersonalScore" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="234.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="235.0" />
+      <ComboBox fx:id="cbStatus" layoutX="150.0" layoutY="199.0" prefHeight="36.0" prefWidth="253.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="199.0" />
+      <ComboBox fx:id="cbPersonalScore" layoutX="175.0" layoutY="286.0" prefHeight="36.0" prefWidth="253.0" AnchorPane.leftAnchor="150.0" />
+      <TextArea fx:id="tfReview" layoutX="180.0" layoutY="393.0" prefHeight="168.0" prefWidth="424.0" promptText="Exprese sus comentarios u opiniones... " wrapText="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="375.0" />
    </children>
 </AnchorPane>

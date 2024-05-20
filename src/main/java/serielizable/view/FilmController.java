@@ -151,11 +151,6 @@ public class FilmController extends AbstractController {
 	public void film() {
 		setViewFilm();
 	}
-
-	@FXML
-	public void editFilm() {
-		setViewEditFilm();
-	}
 	
 	@FXML
 	public void filmStats() {
@@ -167,6 +162,10 @@ public class FilmController extends AbstractController {
 		setViewSerieStats();
 	}
 
+	@FXML
+	public void editFilm() {
+		setViewEditFilm();
+	}
 	/**
 	 * This method gets the film information and sends them to the proper places
 	 */

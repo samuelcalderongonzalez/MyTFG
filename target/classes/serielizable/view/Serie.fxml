@@ -147,6 +147,6 @@
       </VBox>
       <Button fx:id="btnEditSerie" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#editSerie" prefHeight="0.0" prefWidth="0.0" text="edit" visible="false" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="260.0" />
       <Rectangle fx:id="favoriteImage" fill="DODGERBLUE" height="27.0" layoutX="675.0" layoutY="195.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="19.0" />
-      <Button fx:id="btnSeasons" layoutX="20.0" layoutY="20.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#viewSeasons" prefHeight="0.0" prefWidth="0.0" text="Seasons" visible="false" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="260.0" />
+      <Button fx:id="btnSeasons" layoutX="20.0" layoutY="20.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#viewSeasons" prefHeight="0.0" prefWidth="0.0" text="Seasons" visible="false" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="260.0" />
    </children>
 </AnchorPane>

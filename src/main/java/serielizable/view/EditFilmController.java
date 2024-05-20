@@ -1,10 +1,11 @@
 package serielizable.view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
@@ -24,26 +25,30 @@ public class EditFilmController extends AbstractController {
 	private ComboBox<String> cbPersonalScore;
 
 	@FXML
-	private TextField tfReview;
-	
+	private TextArea tfReview;
+
 	@FXML
 	private Button btFavorite;
-	
+
 	@FXML
 	private Button getBackButton;
-	
+
 	private ImageView imageViewBack;
-	
+
 	private ImageView imageFavoriteBtn;
-	
+
 	@FXML
 	private Rectangle posterImageRec;
-	
+
+	@FXML
+	private Rectangle backgroundImage;
+
 	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
 	Image noFavoriteImg = new Image(getClass().getResourceAsStream("../../utils/noFavorite.png"));
 
 	@FXML
 	public void initialize() {
+		setBackgroundImage();
 		setFavoriteImage();
 		setPosterImg();
 		setBackButtonIcon();
@@ -52,15 +57,41 @@ public class EditFilmController extends AbstractController {
 
 	@FXML
 	public void logOff() {
-		currentFilm = null;
 		currentUser = null;
+		currentFilm = null;
+		currentSerie = null;
 		setViewLogin();
+	}
+
+	@FXML
+	public void exit() {
+		Platform.exit();
 	}
 
 	@FXML
 	public void search() {
 		currentFilm = null;
 		setViewSearch();
+	}
+
+	@FXML
+	public void serie() {
+		setViewSerie();
+	}
+
+	@FXML
+	public void film() {
+		setViewFilm();
+	}
+
+	@FXML
+	public void filmStats() {
+		setViewFilmStats();
+	}
+
+	@FXML
+	public void serieStats() {
+		setViewSerieStats();
 	}
 
 	@FXML
@@ -98,20 +129,20 @@ public class EditFilmController extends AbstractController {
 		filmRepository.updateFilm(currentFilm);
 		handleBack();
 	}
-	
+
 	private void setBackButtonIcon() {
-		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButton.png"));
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButtonWhite.png"));
 		imageViewBack = new ImageView(editImg);
 		imageViewBack.setFitHeight(50);
 		imageViewBack.setFitWidth(50);
 		getBackButton.setGraphic(imageViewBack);
 	}
-	
+
 	private void setPosterImg() {
-		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.png"));
-		if(currentFilm.getImageLink() != null) {
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
+		if (currentFilm.getImageLink() != null) {
 			Image imgPoster = new Image(currentFilm.getImageLink());
-			if(!imgPoster.isError()) {
+			if (!imgPoster.isError()) {
 				posterImageRec.setFill(new ImagePattern(imgPoster));
 			} else {
 				posterImageRec.setFill(new ImagePattern(imgPosterDefault));
@@ -120,28 +151,34 @@ public class EditFilmController extends AbstractController {
 			posterImageRec.setFill(new ImagePattern(imgPosterDefault));
 		}
 	}
-	
+
 	private void setFavoriteImage() {
-		if(currentFilm.isFavorite()) {
+		if (currentFilm.isFavorite()) {
 			imageFavoriteBtn = new ImageView(favoriteImg);
 			resizeFavoriteImage();
 		} else {
 			imageFavoriteBtn = new ImageView(noFavoriteImg);
 			resizeFavoriteImage();
 		}
-		
+
 	}
-	
+
 	private void resizeFavoriteImage() {
-		imageFavoriteBtn.setFitHeight(60);
-		imageFavoriteBtn.setFitWidth(60);
+		imageFavoriteBtn.setFitHeight(125);
+		imageFavoriteBtn.setFitWidth(125);
 		btFavorite.setGraphic(imageFavoriteBtn);
 	}
-	
+
 	@FXML
 	private void toggleFavorite() {
 		currentFilm.setFavorite(!currentFilm.isFavorite());
 		setFavoriteImage();
+	}
+
+	private void setBackgroundImage() {
+		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
+		backgroundImage.setFill(new ImagePattern(imgBackground));
+
 	}
 
 }
