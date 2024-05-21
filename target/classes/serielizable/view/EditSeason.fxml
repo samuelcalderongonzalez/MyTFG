@@ -6,84 +6,102 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.EditSeasonController">
    <children>
-      <BorderPane accessibleRole="TABLE_VIEW" focusTraversable="true" layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0" AnchorPane.bottomAnchor="0.0">
-         <top>
-            <MenuBar prefHeight="40.0" prefWidth="1091.0" styleClass="menubar" useSystemMenuBar="true" BorderPane.alignment="CENTER">
-               <menus>
-                  <Menu mnemonicParsing="false" text="Películas">
-                     <items>
-                        <MenuItem mnemonicParsing="false" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Series">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Lists" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Buscar">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#search" text="Search" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Desconectarse">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#logOff" text="Log off" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-         </top>
-      </BorderPane>
-      <TextField fx:id="tfReview" layoutX="150.0" layoutY="374.0" prefHeight="124.0" prefWidth="790.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="330.0" />
-      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutY="57.0" prefHeight="123.0" prefWidth="787.0" text="Título" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="57.0">
+      <Rectangle fx:id="backgroundImage" fill="DODGERBLUE" height="680.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bcd8f2" height="599.0" layoutX="129.0" layoutY="59.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="883.0" AnchorPane.bottomAnchor="21.0" AnchorPane.topAnchor="60.0" />
+      <MenuBar layoutX="20.0" layoutY="20.0" stylesheets="@../css/Serielizable.css" useSystemMenuBar="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Listas ▶">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#film" text="Películas" />
+                  <MenuItem mnemonicParsing="false" onAction="#serie" text="Series" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Buscar 🔎">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#search" text="Buscar" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Estadísticas 📈">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#filmStats" text="Películas" />
+                  <MenuItem mnemonicParsing="false" onAction="#serieStats" text="Series" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Desconectarse 🚪">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#logOff" text="Cerrar sesión" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Salir" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="78.0" prefHeight="61.0" prefWidth="429.0" text="Título" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="78.0">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <Label layoutX="10.0" layoutY="10.0" prefHeight="28.0" prefWidth="271.0" text="Estado" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="200.0">
+      <Rectangle fx:id="posterImageRec" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="555.0" layoutX="611.0" layoutY="74.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="370.0" AnchorPane.bottomAnchor="45.0" />
+      <HBox layoutX="150.0" layoutY="161.0" prefHeight="74.0" prefWidth="424.0" spacing="20.0">
+         <children>
+            <VBox spacing="10.0">
+               <children>
+                  <Label prefHeight="28.0" prefWidth="256.0" text="Estado">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cbStatus" prefHeight="36.0" prefWidth="250.0" />
+               </children>
+            </VBox>
+            <VBox spacing="10.0">
+               <children>
+                  <Label prefHeight="28.0" prefWidth="250.0" text="Mi puntuación">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cbPersonalScore" prefHeight="36.0" prefWidth="253.0" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Label layoutX="159.0" layoutY="396.0" prefHeight="28.0" prefWidth="260.0" text="Reseña" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="340.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label layoutX="150.0" layoutY="393.0" prefHeight="28.0" prefWidth="312.0" text="Reseña" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="300.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#saveSeason" prefHeight="76.0" prefWidth="242.0" text="Guardar" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Button>
+      <HBox layoutX="150.0" layoutY="600.0" spacing="125.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="150.0" />
       <Button fx:id="getBackButton" layoutX="10.0" layoutY="10.0" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="0.0" prefWidth="0.0" text="&lt;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="40.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Label layoutX="456.0" layoutY="200.0" prefHeight="28.0" prefWidth="144.0" text="Mi puntuación" AnchorPane.rightAnchor="490.0" AnchorPane.topAnchor="200.0">
+      <TextArea fx:id="tfReview" layoutX="180.0" layoutY="393.0" prefHeight="168.0" prefWidth="424.0" promptText="Exprese sus comentarios u opiniones... " wrapText="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="375.0" />
+      <Label layoutX="150.0" layoutY="248.0" prefHeight="28.0" prefWidth="301.0" text="Progreso">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbStatus" prefHeight="36.0" prefWidth="271.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="235.0" />
-      <ComboBox fx:id="cbPersonalScore" layoutX="456.0" layoutY="235.0" prefHeight="36.0" prefWidth="144.0" AnchorPane.rightAnchor="490.0" AnchorPane.topAnchor="235.0" />
-      <Label layoutX="633.0" layoutY="200.0" prefHeight="28.0" prefWidth="301.0" text="Progreso" AnchorPane.rightAnchor="156.0" AnchorPane.topAnchor="200.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="progress" layoutX="476.0" layoutY="220.0" prefHeight="36.0" prefWidth="125.0" text="Progreso" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="235.0">
+      <Label fx:id="progress" layoutX="374.0" layoutY="282.0" prefHeight="36.0" prefWidth="125.0" text="Progreso">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="tfProgress" prefHeight="36.0" prefWidth="170.0" AnchorPane.rightAnchor="288.0" AnchorPane.topAnchor="235.0" />
+      <Button mnemonicParsing="false" onAction="#saveSeason" prefHeight="50.0" prefWidth="150.0" text="Guardar" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="300.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tfProgress" layoutX="150.0" layoutY="282.0" prefHeight="36.0" prefWidth="204.0" />
    </children>
 </AnchorPane>

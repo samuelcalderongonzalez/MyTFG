@@ -1,14 +1,18 @@
 package serielizable.view;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import utils.AbstractController;
 import utils.DateUtils;
 
@@ -24,7 +28,7 @@ public class EditSeasonController extends AbstractController {
 	private ComboBox<String> cbPersonalScore;
 
 	@FXML
-	private TextField tfReview;
+	private TextArea tfReview;
 
 	@FXML
 	private TextField tfProgress;
@@ -36,24 +40,63 @@ public class EditSeasonController extends AbstractController {
 	
 	@FXML
 	private Button getBackButton;
+	
+	@FXML
+	private Rectangle posterImageRec;
+
+	@FXML
+	private Rectangle backgroundImage;
 
 	@FXML
 	public void initialize() {
+		setBackgroundImage();
+		setPosterImg();
 		setBackButtonIcon();
 		populateFields();
 	}
 
 	@FXML
 	public void logOff() {
-		currentSeason = null;
 		currentUser = null;
+		currentFilm = null;
+		currentSerie = null;
+		currentSeason = null;
 		setViewLogin();
+	}
+
+	@FXML
+	public void exit() {
+		Platform.exit();
 	}
 
 	@FXML
 	public void search() {
 		currentSeason = null;
 		setViewSearch();
+	}
+
+	@FXML
+	public void serie() {
+		currentSeason = null;
+		setViewSerie();
+	}
+
+	@FXML
+	public void film() {
+		currentSeason = null;
+		setViewFilm();
+	}
+
+	@FXML
+	public void filmStats() {
+		currentSeason = null;
+		setViewFilmStats();
+	}
+
+	@FXML
+	public void serieStats() {
+		currentSeason = null;
+		setViewSerieStats();
 	}
 
 	@FXML
@@ -107,6 +150,26 @@ public class EditSeasonController extends AbstractController {
 		imageViewBack.setFitHeight(50);
 		imageViewBack.setFitWidth(50);
 		getBackButton.setGraphic(imageViewBack);
+	}
+	
+	private void setPosterImg() {
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
+		if (currentSerie.getImageLink() != null) {
+			Image imgPoster = new Image(currentSerie.getImageLink());
+			if (!imgPoster.isError()) {
+				posterImageRec.setFill(new ImagePattern(imgPoster));
+			} else {
+				posterImageRec.setFill(new ImagePattern(imgPosterDefault));
+			}
+		} else {
+			posterImageRec.setFill(new ImagePattern(imgPosterDefault));
+		}
+	}
+	
+	private void setBackgroundImage() {
+		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
+		backgroundImage.setFill(new ImagePattern(imgBackground));
+
 	}
 
 }

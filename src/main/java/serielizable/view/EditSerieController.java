@@ -1,12 +1,15 @@
 package serielizable.view;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import utils.AbstractController;
 import utils.DateUtils;
 
@@ -22,28 +25,70 @@ public class EditSerieController extends AbstractController {
 	private ComboBox<String> cbPersonalScore;
 
 	@FXML
-	private TextField tfReview;
+	private TextArea tfReview;
 
 	private ImageView imageViewBack;
 	@FXML
+	private Button btFavorite;
+	@FXML
 	private Button getBackButton;
 
+	private ImageView imageFavoriteBtn;
+
+	@FXML
+	private Rectangle posterImageRec;
+
+	@FXML
+	private Rectangle backgroundImage;
+	
+	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
+	Image noFavoriteImg = new Image(getClass().getResourceAsStream("../../utils/noFavorite.png"));
+
 	public void initialize() {
+		setBackgroundImage();
+		setFavoriteImage();
+		setPosterImg();
 		setBackButtonIcon();
 		populateFields();
 	}
 
 	@FXML
 	public void logOff() {
-		currentSerie = null;
 		currentUser = null;
+		currentFilm = null;
+		currentSerie = null;
 		setViewLogin();
+	}
+
+	@FXML
+	public void exit() {
+		Platform.exit();
 	}
 
 	@FXML
 	public void search() {
 		currentSerie = null;
 		setViewSearch();
+	}
+
+	@FXML
+	public void serie() {
+		setViewSerie();
+	}
+
+	@FXML
+	public void film() {
+		setViewFilm();
+	}
+
+	@FXML
+	public void filmStats() {
+		setViewFilmStats();
+	}
+
+	@FXML
+	public void serieStats() {
+		setViewSerieStats();
 	}
 
 	@FXML
@@ -88,6 +133,49 @@ public class EditSerieController extends AbstractController {
 		imageViewBack.setFitHeight(50);
 		imageViewBack.setFitWidth(50);
 		getBackButton.setGraphic(imageViewBack);
+	}
+	
+	private void setPosterImg() {
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
+		if (currentSerie.getImageLink() != null) {
+			Image imgPoster = new Image(currentSerie.getImageLink());
+			if (!imgPoster.isError()) {
+				posterImageRec.setFill(new ImagePattern(imgPoster));
+			} else {
+				posterImageRec.setFill(new ImagePattern(imgPosterDefault));
+			}
+		} else {
+			posterImageRec.setFill(new ImagePattern(imgPosterDefault));
+		}
+	}
+
+	private void setFavoriteImage() {
+		if (currentSerie.isFavorite()) {
+			imageFavoriteBtn = new ImageView(favoriteImg);
+			resizeFavoriteImage();
+		} else {
+			imageFavoriteBtn = new ImageView(noFavoriteImg);
+			resizeFavoriteImage();
+		}
+
+	}
+
+	private void resizeFavoriteImage() {
+		imageFavoriteBtn.setFitHeight(125);
+		imageFavoriteBtn.setFitWidth(125);
+		btFavorite.setGraphic(imageFavoriteBtn);
+	}
+
+	@FXML
+	private void toggleFavorite() {
+		currentSerie.setFavorite(!currentSerie.isFavorite());
+		setFavoriteImage();
+	}
+
+	private void setBackgroundImage() {
+		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
+		backgroundImage.setFill(new ImagePattern(imgBackground));
+
 	}
 
 }
