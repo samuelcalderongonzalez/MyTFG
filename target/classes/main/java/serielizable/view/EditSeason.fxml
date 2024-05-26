@@ -51,7 +51,6 @@
          </font>
       </Label>
       <Rectangle fx:id="posterImageRec" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="555.0" layoutX="611.0" layoutY="74.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="370.0" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="130.0" />
-      <Button fx:id="btFavorite" layoutX="500.0" layoutY="115.0" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#toggleFavorite" prefHeight="0.0" prefWidth="0.0" text="favorite" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="262.0" />
       <HBox layoutX="150.0" layoutY="161.0" prefHeight="74.0" prefWidth="424.0" spacing="20.0" AnchorPane.leftAnchor="120.0">
          <children>
             <VBox spacing="10.0">

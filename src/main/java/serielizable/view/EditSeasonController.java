@@ -130,9 +130,9 @@ public class EditSeasonController extends AbstractController {
 		if (cbPersonalScore.getSelectionModel().getSelectedItem() != null)
 			currentSeason.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
 		currentSeason.setCurrentEpisodes(tfProgress.getText());
-		seasonRepository.updateSeason(currentSeason);
 		if (cbStatus.getSelectionModel().getSelectedItem().equals("Completada"))
 			currentSeason.setCompletedDate(DateUtils.getCurrentDate());
+		seasonRepository.updateSeason(currentSeason);
 		handleBack();
 	}
 

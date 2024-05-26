@@ -171,6 +171,7 @@ public class FilmStatsController extends AbstractController {
 		setViewFilmStats();
 	}
 
+	
 	@FXML
 	public void serieStats() {
 		setViewSerieStats();

@@ -76,6 +76,7 @@ public class AddSerieController extends AbstractController {
 		setPosterImg();
 		setBackButtonIcon();
 		cbStatus.getItems().addAll("Completada", "En curso", "Abandonada", "Pendiente");
+		cbStatus.getSelectionModel().select("Pendiente");
 		cbStatus.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {

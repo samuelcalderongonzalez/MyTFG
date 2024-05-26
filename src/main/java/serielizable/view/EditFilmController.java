@@ -129,6 +129,7 @@ public class EditFilmController extends AbstractController {
 		currentFilm.setCompletedDate(
 				cbStatus.getSelectionModel().getSelectedItem().equals("Completada") ? DateUtils.getCurrentDate()
 						: null);
+		currentFilm.setLastUpdateDate(DateUtils.getCurrentDate());
 		filmRepository.updateFilm(currentFilm);
 		handleBack();
 	}

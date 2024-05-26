@@ -120,10 +120,11 @@ public class EditSerieController extends AbstractController {
 		currentSerie.setReview(tfReview.getText());
 		if (cbPersonalScore.getSelectionModel().getSelectedItem() != null)
 			currentSerie.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
-		serieRepository.updateSerie(currentSerie);
 		currentSerie.setCompletedDate(
 				cbStatus.getSelectionModel().getSelectedItem().equals("Completada") ? DateUtils.getCurrentDate()
 						: null);
+		currentSerie.setLastUpdateDate(DateUtils.getCurrentDate());
+		serieRepository.updateSerie(currentSerie);
 		handleBack();
 	}
 
