@@ -84,6 +84,7 @@ public class AddSerieController extends AbstractController {
 			}
 		});
 		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
+		cbPersonalScore.getSelectionModel().select("-");
 		maxPage = currentSerie.getSeasons().size() - 1;
 		populateTitle();
 	}
