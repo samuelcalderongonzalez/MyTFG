@@ -1,5 +1,6 @@
 package serielizable.view;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,9 +10,10 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import serielizable.entity.Film;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import serielizable.entity.Serie;
-import serielizable.repository.FilmRepository;
 import serielizable.repository.SerieRepository;
 import utils.AbstractController;
 import utils.Constants;
@@ -85,9 +87,12 @@ public class SerieStatsController extends AbstractController {
 	private int totalSeasons = 0;
 
 	private int[] score = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	@FXML
+	private Rectangle backgroundImage;
 
 	@FXML
 	public void initialize() {
+		setBackgroundImage();
 		updateCurrentSeries();
 		getData();
 		populatePieChart();
@@ -136,17 +141,40 @@ public class SerieStatsController extends AbstractController {
 	@FXML
 	public void logOff() {
 		currentUser = null;
+		currentFilm = null;
+		currentSerie = null;
 		setViewLogin();
 	}
 
 	@FXML
+	public void exit() {
+		Platform.exit();
+	}
+
+	@FXML
 	public void search() {
+		currentSerie = null;
 		setViewSearch();
 	}
 
 	@FXML
 	public void serie() {
 		setViewSerie();
+	}
+
+	@FXML
+	public void film() {
+		setViewFilm();
+	}
+
+	@FXML
+	public void filmStats() {
+		setViewFilmStats();
+	}
+
+	@FXML
+	public void serieStats() {
+		setViewSerieStats();
 	}
 
 	public SerieStatsController() {
@@ -183,7 +211,7 @@ public class SerieStatsController extends AbstractController {
 	}
 
 	private void sumDuration(Serie serie) {
-		if(serie.getCountSeasons() != null)
+		if(serie.getCountSeasons() != null & serie.getStatus().equals("Completada"))
 			totalSeasons += serie.getCountSeasons();
 	}
 
@@ -285,6 +313,12 @@ public class SerieStatsController extends AbstractController {
 	
 	private String printTotalSeasons(int duration) {
 		return "Has visto un total de " + totalSeasons + " temporadas.";
+	}
+	
+	private void setBackgroundImage() {
+		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
+		backgroundImage.setFill(new ImagePattern(imgBackground));
+
 	}
 
 }

@@ -11,38 +11,44 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.FilmStatsController">
+<AnchorPane maxHeight="680.0" maxWidth="1080.0" minHeight="680.0" minWidth="1080.0" prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.FilmStatsController">
    <children>
-      <MenuBar layoutX="10.0" layoutY="10.0" stylesheets="@../css/Serielizable.css" useSystemMenuBar="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Rectangle fx:id="backgroundImage" fill="DODGERBLUE" height="680.0" layoutX="20.0" layoutY="20.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#bcd8f2" height="600.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="1000.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="60.0" />
+      <MenuBar layoutX="30.0" layoutY="30.0" stylesheets="@../css/Serielizable.css" useSystemMenuBar="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <menus>
-            <Menu mnemonicParsing="false" text="Películas">
+            <Menu mnemonicParsing="false" text="Listas ▶">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Lists" />
+                  <MenuItem mnemonicParsing="false" onAction="#film" text="Películas" />
+                  <MenuItem mnemonicParsing="false" onAction="#serie" text="Series" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Series">
+            <Menu mnemonicParsing="false" text="Buscar 🔎">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#serie" text="Lists" />
+                  <MenuItem mnemonicParsing="false" onAction="#search" text="Buscar" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Buscar">
+            <Menu mnemonicParsing="false" text="Estadísticas 📈">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#search" text="Search" />
+                  <MenuItem mnemonicParsing="false" onAction="#filmStats" text="Películas" />
+                  <MenuItem mnemonicParsing="false" onAction="#serieStats" text="Series" />
                </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Desconectarse">
+            <Menu mnemonicParsing="false" text="Desconectarse 🚪">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#logOff" text="Log off" />
+                  <MenuItem mnemonicParsing="false" onAction="#logOff" text="Cerrar sesión" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Salir" />
                </items>
             </Menu>
          </menus>
       </MenuBar>
-      <VBox layoutX="50.0" layoutY="54.0" spacing="10.0">
+      <VBox layoutX="50.0" layoutY="54.0" prefHeight="295.0" prefWidth="434.0" spacing="10.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="80.0">
          <children>
             <PieChart fx:id="pieChart" prefHeight="299.0" prefWidth="443.0" title="Películas" />
-            <HBox alignment="CENTER" spacing="5.0">
+            <HBox alignment="CENTER" prefHeight="29.0" prefWidth="434.0" spacing="5.0">
                <children>
                   <Label text="Películas totales:">
                      <font>
@@ -54,7 +60,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="587.0" layoutY="56.0" spacing="10.0">
+      <VBox layoutX="587.0" layoutY="56.0" prefHeight="295.0" prefWidth="419.0" spacing="10.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="80.0">
          <children>
             <BarChart fx:id="barChart" prefHeight="299.0" prefWidth="443.0" title="Mis puntuaciones">
               <xAxis>
@@ -76,7 +82,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="83.0" layoutY="405.0" prefHeight="237.0" prefWidth="937.0">
+      <VBox layoutX="83.0" layoutY="405.0" prefHeight="237.0" prefWidth="937.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0">
          <children>
             <HBox prefHeight="204.0" prefWidth="937.0">
                <children>

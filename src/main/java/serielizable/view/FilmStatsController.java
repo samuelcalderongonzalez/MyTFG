@@ -1,8 +1,8 @@
 package serielizable.view;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -10,7 +10,9 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import serielizable.entity.Film;
 import serielizable.repository.FilmRepository;
 import utils.AbstractController;
@@ -84,9 +86,13 @@ public class FilmStatsController extends AbstractController {
 	private int totalMinutes = 0;
 
 	private int[] score = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	
+	@FXML
+	private Rectangle backgroundImage;
 
 	@FXML
 	public void initialize() {
+		setBackgroundImage();
 		updateCurrentFilms();
 		getData();
 		populatePieChart();
@@ -134,17 +140,40 @@ public class FilmStatsController extends AbstractController {
 	@FXML
 	public void logOff() {
 		currentUser = null;
+		currentFilm = null;
+		currentSerie = null;
 		setViewLogin();
 	}
 
 	@FXML
+	public void exit() {
+		Platform.exit();
+	}
+
+	@FXML
 	public void search() {
+		currentSerie = null;
 		setViewSearch();
 	}
 
 	@FXML
 	public void serie() {
 		setViewSerie();
+	}
+
+	@FXML
+	public void film() {
+		setViewFilm();
+	}
+
+	@FXML
+	public void filmStats() {
+		setViewFilmStats();
+	}
+
+	@FXML
+	public void serieStats() {
+		setViewSerieStats();
 	}
 
 	public FilmStatsController() {
@@ -181,7 +210,7 @@ public class FilmStatsController extends AbstractController {
 	}
 
 	private void sumDuration(Film film) {
-		if(film.getDuration() != null)
+		if(film.getDuration() != null & film.getStatus().equals("Completada"))
 			totalMinutes += film.getDuration();
 	}
 
@@ -288,6 +317,12 @@ public class FilmStatsController extends AbstractController {
 		}
 		String time = hour > 0 ? hour.toString() + "h " + newDuration + "min" : newDuration + "min";
 		return "Has pasado un total de " + time + " viendo películas.";
+	}
+	
+	private void setBackgroundImage() {
+		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
+		backgroundImage.setFill(new ImagePattern(imgBackground));
+
 	}
 
 }
