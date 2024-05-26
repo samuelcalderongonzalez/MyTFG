@@ -17,7 +17,7 @@
 <AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.EditSeasonController">
    <children>
       <Rectangle fx:id="backgroundImage" fill="DODGERBLUE" height="680.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bcd8f2" height="599.0" layoutX="129.0" layoutY="59.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="883.0" AnchorPane.bottomAnchor="21.0" AnchorPane.topAnchor="60.0" />
+      <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#bcd8f2" height="599.0" layoutX="129.0" layoutY="59.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="883.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="60.0" />
       <MenuBar layoutX="20.0" layoutY="20.0" stylesheets="@../css/Serielizable.css" useSystemMenuBar="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <menus>
             <Menu mnemonicParsing="false" text="Listas ▶">
@@ -45,13 +45,14 @@
             </Menu>
          </menus>
       </MenuBar>
-      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="78.0" prefHeight="61.0" prefWidth="429.0" text="Título" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="78.0">
+      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="150.0" layoutY="78.0" prefHeight="61.0" prefWidth="429.0" text="Título" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="78.0">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <Rectangle fx:id="posterImageRec" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="555.0" layoutX="611.0" layoutY="74.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="370.0" AnchorPane.bottomAnchor="45.0" />
-      <HBox layoutX="150.0" layoutY="161.0" prefHeight="74.0" prefWidth="424.0" spacing="20.0">
+      <Rectangle fx:id="posterImageRec" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="555.0" layoutX="611.0" layoutY="74.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="370.0" AnchorPane.bottomAnchor="45.0" AnchorPane.rightAnchor="130.0" />
+      <Button fx:id="btFavorite" layoutX="500.0" layoutY="115.0" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#toggleFavorite" prefHeight="0.0" prefWidth="0.0" text="favorite" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="262.0" />
+      <HBox layoutX="150.0" layoutY="161.0" prefHeight="74.0" prefWidth="424.0" spacing="20.0" AnchorPane.leftAnchor="120.0">
          <children>
             <VBox spacing="10.0">
                <children>
@@ -75,7 +76,7 @@
             </VBox>
          </children>
       </HBox>
-      <Label layoutX="159.0" layoutY="396.0" prefHeight="28.0" prefWidth="260.0" text="Reseña" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="340.0">
+      <Label layoutX="159.0" layoutY="396.0" prefHeight="28.0" prefWidth="260.0" text="Reseña" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="340.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -86,22 +87,22 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <TextArea fx:id="tfReview" layoutX="180.0" layoutY="393.0" prefHeight="168.0" prefWidth="424.0" promptText="Exprese sus comentarios u opiniones... " wrapText="true" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="375.0" />
-      <Label layoutX="150.0" layoutY="248.0" prefHeight="28.0" prefWidth="301.0" text="Progreso">
+      <TextArea fx:id="tfReview" layoutX="180.0" layoutY="393.0" prefHeight="168.0" prefWidth="424.0" promptText="Exprese sus comentarios u opiniones... " wrapText="true" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="375.0" />
+      <Label layoutX="150.0" layoutY="248.0" prefHeight="28.0" prefWidth="301.0" text="Progreso" AnchorPane.leftAnchor="120.0">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="progress" layoutX="374.0" layoutY="282.0" prefHeight="36.0" prefWidth="125.0" text="Progreso">
+      <Label fx:id="progress" layoutX="374.0" layoutY="282.0" prefHeight="36.0" prefWidth="125.0" text="Progreso" AnchorPane.leftAnchor="345.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button mnemonicParsing="false" onAction="#saveSeason" prefHeight="50.0" prefWidth="150.0" text="Guardar" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="300.0">
+      <Button mnemonicParsing="false" onAction="#saveSeason" prefHeight="50.0" prefWidth="150.0" text="Guardar" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="275.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <TextField fx:id="tfProgress" layoutX="150.0" layoutY="282.0" prefHeight="36.0" prefWidth="204.0" />
+      <TextField fx:id="tfProgress" layoutX="150.0" layoutY="282.0" prefHeight="36.0" prefWidth="204.0" AnchorPane.leftAnchor="120.0" />
    </children>
 </AnchorPane>

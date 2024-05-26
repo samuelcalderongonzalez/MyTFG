@@ -76,6 +76,7 @@ public class EditFilmController extends AbstractController {
 
 	@FXML
 	public void serie() {
+		currentFilm = null;
 		setViewSerie();
 	}
 
@@ -86,11 +87,13 @@ public class EditFilmController extends AbstractController {
 
 	@FXML
 	public void filmStats() {
+		currentFilm = null;
 		setViewFilmStats();
 	}
 
 	@FXML
 	public void serieStats() {
+		currentFilm = null;
 		setViewSerieStats();
 	}
 

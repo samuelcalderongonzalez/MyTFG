@@ -13,7 +13,7 @@ create table User(
 create table Film(
 	id int,
     user_id int references user(id),
-    title varchar(50) NOT NULL,
+    title varchar(100) NOT NULL,
     status varchar(50) NOT NULL, -- Enumerado EJ (Completed, Watching, On-Hold, Dropped, Plan to watch)
     review text, -- Dato subjetivo del usuario -- 
     score decimal(4,2) check (score >= 0 AND score <= 10) NOT NULL,
@@ -34,7 +34,7 @@ create table Film(
 create table Serie(
 	id int,
     user_id int references user(id),
-    title varchar(50) NOT NULL,
+    title varchar(100) NOT NULL,
     status varchar(50) NOT NULL, -- Enumerado EJ (Completed, Watching, On-Hold, Dropped, Plan to watch)
     review text, -- Dato subjetivo del usuario -- 
     score decimal(4,2) check (score >= 0 AND score <= 10) NOT NULL,
