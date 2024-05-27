@@ -2,13 +2,18 @@ package serielizable.view;
 
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import serielizable.entity.Film;
 import serielizable.entity.Serie;
 import utils.APILibrary;
@@ -23,6 +28,9 @@ public class SearchController extends AbstractController {
 
 	@FXML
 	private Button searchButton;
+
+	@FXML
+	private Label logMessage;
 
 	@FXML
 	private TextField searchTextField;
@@ -51,43 +59,79 @@ public class SearchController extends AbstractController {
 	@FXML
 	private TableColumn<Serie, String> tcSerieSeasons;
 
+	@FXML
+	private Rectangle backgroundImage;
+
 	private boolean isFilm;
 
 	@FXML
 	public void initialize() {
+		setBackgroundImage();
 
 	}
 
 	@FXML
 	public void logOff() {
 		currentUser = null;
+		currentFilm = null;
+		currentSerie = null;
 		setViewLogin();
 	}
 
 	@FXML
-	public void mainApp() {
-		setViewFilm();
+	public void exit() {
+		Platform.exit();
 	}
-	
+
+	@FXML
+	public void search() {
+		currentFilm = null;
+		setViewSearch();
+	}
+
 	@FXML
 	public void serie() {
 		setViewSerie();
 	}
 
 	@FXML
+	public void film() {
+		setViewFilm();
+	}
+
+	@FXML
+	public void filmStats() {
+		setViewFilmStats();
+	}
+
+	@FXML
+	public void serieStats() {
+		setViewSerieStats();
+	}
+
+	@FXML
 	public void searchFilm() {
 		isFilm = true;
+		logMessage.setText("Cargando...");
 		foundFilms = api.searchFilmByTitle(searchTextField.getText());
 		films = FXCollections.observableArrayList(foundFilms);
-		populateTable();
+		if(films.isEmpty())
+			logMessage.setText("No se encontraron resultados");
+		else
+			populateTable();
+
 	}
 
 	@FXML
 	public void searchSerie() {
 		isFilm = false;
+		logMessage.setText("Cargando...");
 		foundSeries = api.searchSerieByTitle(searchTextField.getText());
 		series = FXCollections.observableArrayList(foundSeries);
-		populateTable();
+		if(series.isEmpty())
+			logMessage.setText("No se encontraron resultados");
+		else
+			populateTable();
 	}
 
 	private void populateTable() {
@@ -98,6 +142,7 @@ public class SearchController extends AbstractController {
 			tcFilmRelease.setCellValueFactory(param -> param.getValue().getSPReleaseDate());
 			tcFilmScore.setCellValueFactory(param -> param.getValue().getSPScore());
 			tableFilm.setItems(films);
+			logMessage.setText(" ");
 			tableFilm.setOnMouseClicked(event -> {
 				if (event.getClickCount() == 2) {
 					currentFilm = tableFilm.getSelectionModel().getSelectedItem();
@@ -113,6 +158,7 @@ public class SearchController extends AbstractController {
 			tcSerieScore.setCellValueFactory(param -> param.getValue().getSPScore());
 			tcSerieSeasons.setCellValueFactory(param -> param.getValue().getSPTotalSeasons());
 			tableSerie.setItems(series);
+			logMessage.setText(" ");
 			tableSerie.setOnMouseClicked(event -> {
 				if (event.getClickCount() == 2) {
 					currentSerie = tableSerie.getSelectionModel().getSelectedItem();
@@ -123,4 +169,9 @@ public class SearchController extends AbstractController {
 		}
 	}
 
+	private void setBackgroundImage() {
+		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
+		backgroundImage.setFill(new ImagePattern(imgBackground));
+
+	}
 }

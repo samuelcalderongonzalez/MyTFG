@@ -9,54 +9,55 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.SearchController">
+<AnchorPane maxHeight="680.0" maxWidth="1080.0" minHeight="680.0" minWidth="1080.0" prefHeight="680.0" prefWidth="1080.0" styleClass="body" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.SearchController">
    <children>
-      <BorderPane layoutX="-1.0" layoutY="-2.0" minHeight="720.0" minWidth="1080.0" prefHeight="732.0" prefWidth="1091.0">
-         <top>
-            <MenuBar prefHeight="40.0" prefWidth="1091.0" styleClass="menubar" useSystemMenuBar="true" BorderPane.alignment="CENTER">
-               <menus>
-                  <Menu mnemonicParsing="false" onAction="#mainApp" text="Películas">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Lists" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" onAction="#mainApp" text="Series">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#serie" text="Lists" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Buscar">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Search" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" onAction="#logOff" text="Desconectarse">
-                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#logOff" text="Log off" />
-                     </items>
-                  </Menu>
-               </menus>
-            </MenuBar>
-         </top>
-      </BorderPane>
-      <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="417.0" promptText="Título de la película o serie" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="325.0" AnchorPane.topAnchor="150.0" />
-      <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchFilm" prefHeight="25.0" prefWidth="40.0" text="Película" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="240.0" />
-      <TableView fx:id="tableFilm" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="300.0">
+      <Rectangle fx:id="backgroundImage" fill="DODGERBLUE" height="680.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#bcd8f2" height="592.0" layoutX="672.0" layoutY="210.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" width="875.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="50.0" />
+      <MenuBar layoutX="20.0" layoutY="20.0" stylesheets="@../css/Serielizable.css" useSystemMenuBar="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Listas ▶">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#film" text="Películas" />
+                  <MenuItem mnemonicParsing="false" onAction="#serie" text="Series" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Buscar 🔎">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#search" text="Buscar" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Estadísticas 📈">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#filmStats" text="Películas" />
+                  <MenuItem mnemonicParsing="false" onAction="#serieStats" text="Series" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Desconectarse 🚪">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#logOff" text="Cerrar sesión" />
+                  <MenuItem mnemonicParsing="false" onAction="#exit" text="Salir" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <TextField fx:id="searchTextField" prefHeight="25.0" prefWidth="417.0" promptText="Título de la película o serie" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="150.0" />
+      <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchFilm" prefHeight="43.0" prefWidth="191.0" text="Película" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="639.0" AnchorPane.topAnchor="240.0" />
+      <TableView fx:id="tableFilm" layoutX="265.0" prefHeight="280.0" prefWidth="665.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="300.0">
         <columns>
           <TableColumn fx:id="tcFilmTitle" prefWidth="230.0" text="Título" />
-          <TableColumn fx:id="tcFilmRelease" minWidth="0.0" prefWidth="160.0" text="Estreno" />
-            <TableColumn fx:id="tcFilmScore" minWidth="1.0" prefWidth="139.0" text="Puntuación" />
+          <TableColumn fx:id="tcFilmRelease" minWidth="0.0" prefWidth="196.0" text="Estreno" />
+            <TableColumn fx:id="tcFilmScore" minWidth="1.0" prefWidth="152.0" text="Puntuación" />
         </columns>
       </TableView>
-      <Button fx:id="searchButton1" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchSerie" prefHeight="25.0" prefWidth="40.0" text="Serie" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="325.0" AnchorPane.topAnchor="240.0" />
-      <Label layoutX="325.0" layoutY="209.0" prefHeight="25.0" prefWidth="440.0" text="Buscar como..." AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="325.0" AnchorPane.topAnchor="209.0">
+      <Button fx:id="searchButton1" layoutX="639.0" layoutY="10.0" mnemonicParsing="false" onAction="#searchSerie" prefHeight="43.0" prefWidth="191.0" text="Serie" AnchorPane.leftAnchor="639.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="240.0" />
+      <Label layoutX="325.0" layoutY="209.0" prefHeight="25.0" prefWidth="440.0" text="Buscar como..." AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="209.0">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold Italic" size="14.0" />
          </font></Label>
-      <TableView fx:id="tableSerie" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="300.0">
+      <TableView fx:id="tableSerie" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="300.0">
          <columns>
             <TableColumn fx:id="tcSerieTitle" prefWidth="179.0" text="Título" />
             <TableColumn fx:id="tcSerieRelease" minWidth="0.0" prefWidth="113.33331298828125" text="Estreno" />
@@ -64,5 +65,11 @@
             <TableColumn fx:id="tcSerieSeasons" prefWidth="179.0" text="Temporadas" />
          </columns>
       </TableView>
+      <Label alignment="CENTER" layoutX="335.0" layoutY="219.0" prefHeight="43.0" prefWidth="580.0" text="Busque una película o serie" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="logMessage" alignment="CENTER" layoutX="458.0" layoutY="247.0" prefHeight="32.0" prefWidth="165.0" textAlignment="CENTER" textFill="RED" wrapText="true" AnchorPane.bottomAnchor="401.0" AnchorPane.leftAnchor="458.0" AnchorPane.rightAnchor="457.0" AnchorPane.topAnchor="247.0" />
    </children>
 </AnchorPane>
