@@ -5,7 +5,11 @@ import serielizable.entity.User;
 public class UserRepository extends AbstractRepository {
 
 	public User getByUserName(String userName) {
-		return (User) session.createQuery("from User where user_name = '" + userName + "'").list().get(0);
+		try {
+			return (User) session.createQuery("from User where user_name = '" + userName + "'").list().get(0);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	public void insertUser(User user) {
@@ -17,7 +21,7 @@ public class UserRepository extends AbstractRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public boolean exists(String userName) {

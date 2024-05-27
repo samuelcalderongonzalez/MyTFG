@@ -2,6 +2,7 @@ package serielizable.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -36,6 +37,9 @@ public class LoginController extends AbstractController {
 	
 	@FXML
 	private HBox viewablePasswordTextfieldHBox;
+	
+	@FXML
+	private Label logMessage;
 
 	// Define the button image
 	Image showPasswordImg = new Image(getClass().getResourceAsStream("../../utils/eye.png"));
@@ -162,17 +166,20 @@ public class LoginController extends AbstractController {
 					else {
 						// Warn about the mistake
 						System.err.println(Constants.PASSWORDS_DONT_MATCH);
+						logMessage.setText("Las contraseñas no coinciden");
 					}
 				}
 				// If the user doesn´t exist:
 				else {
 					// Warn about the non existence of the user
 					System.err.println(Constants.USER_DOESNT_EXISTS);
+					logMessage.setText("El usuario especificado no existe");
 				}
 			}
 			// If any field is empty inform it
 			else {
 				System.err.println(Constants.USER_AND_PASSWORD_EMPTY);
+				logMessage.setText("Los campos no pueden estar vacíos");
 			}
 			return false;
 		}else {
@@ -193,17 +200,20 @@ public class LoginController extends AbstractController {
 					else {
 						// Warn about the mistake
 						System.err.println(Constants.PASSWORDS_DONT_MATCH);
+						logMessage.setText("Las contraseñas no coinciden");
 					}
 				}
 				// If the user doesn´t exist:
 				else {
 					// Warn about the non existence of the user
 					System.err.println(Constants.USER_DOESNT_EXISTS);
+					logMessage.setText("El usuario especificado no existe");
 				}
 			}
 			// If any field is empty inform it
 			else {
 				System.err.println(Constants.USER_AND_PASSWORD_EMPTY);
+				logMessage.setText("Los campos no pueden estar vacíos");
 			}
 			return false;
 		}
