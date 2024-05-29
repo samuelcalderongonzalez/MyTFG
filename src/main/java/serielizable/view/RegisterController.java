@@ -2,6 +2,7 @@ package serielizable.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -60,6 +61,9 @@ public class RegisterController extends AbstractController {
 	ImageView imageView;
 	
 	ImageView imageViewBack;
+	
+	@FXML
+	private Label logMessage;
 
 	// This is used for the password visibility
 	private boolean passwordIsVisible = false;
@@ -101,24 +105,28 @@ public class RegisterController extends AbstractController {
 					} else {
 						// Warn the user about it
 						System.err.println(Constants.REGEX_ERROR);
+						logMessage.setText("La contraseña debe tener al menos 8 caracteres e incluir: 1 mayúscula, 1 número, 1 caracter especial");
 					}
 				}
 				// If the passwords are not the same:
 				else {
 					// Warn the user about it
 					System.err.println(Constants.PASSWORDS_DONT_MATCH);
+					logMessage.setText("Las contraseñas no coinciden");
 				}
 			}
 			// If the username is alredy used:
 			else {
 				// Warn the user about it
 				System.err.println(Constants.USERNAME_ALREADY_USED);
+				logMessage.setText("El usuario especificado ya existe");
 			}
 		}
 		// If any field is empty:
 		else {
 			// Warn the user about it
 			System.err.println(Constants.USER_AND_PASSWORD_EMPTY);
+			logMessage.setText("Los campos no deben estar vacíos");
 		}
 	}
 
