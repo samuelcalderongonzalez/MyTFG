@@ -36,6 +36,17 @@
 
 }
 
+.button-serie {
+  -fx-background-color: #345da5;
+  -fx-text-fill: #ffffff;
+  -fx-font-weight: bold;
+  -fx-font-size: 18;
+  -fx-border-radius: 3.0px;
+  -fx-border-color: white;
+  -fx-border-width: 2px;
+
+}
+
 .menu-bar .label {
     -fx-font-size: 14.0 pt;
     -fx-text-fill: white;

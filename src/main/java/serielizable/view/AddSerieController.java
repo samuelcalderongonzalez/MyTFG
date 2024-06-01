@@ -64,6 +64,9 @@ public class AddSerieController extends AbstractController {
 
 	@FXML
 	private Rectangle backgroundImage;
+	
+	@FXML
+	private Label pagination;
 
 	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
 	Image noFavoriteImg = new Image(getClass().getResourceAsStream("../../utils/noFavorite.png"));
@@ -135,6 +138,7 @@ public class AddSerieController extends AbstractController {
 	}
 
 	public void populateTitle() {
+		pagination.setText(String.valueOf(page + 2).concat("/").concat(String.valueOf(maxPage + 2)));
 		if (page < 0)
 			title.setText(currentSerie.getTitle());
 		else
@@ -275,7 +279,7 @@ public class AddSerieController extends AbstractController {
 	}
 
 	private void setBackButtonIcon() {
-		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButton.png"));
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButtonWhite.png"));
 		imageViewBack = new ImageView(editImg);
 		imageViewBack.setFitHeight(50);
 		imageViewBack.setFitWidth(50);
