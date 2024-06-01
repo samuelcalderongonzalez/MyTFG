@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import serielizable.entity.Season;
 import serielizable.entity.Serie;
 import serielizable.repository.SerieRepository;
 import utils.AbstractController;
@@ -71,6 +72,8 @@ public class SerieStatsController extends AbstractController {
 	private int favoritesCount = 0;
 
 	private int reviewedCount = 0;
+	
+	private int totalEpisodesViewed = 0;
 
 	private Serie longest;
 
@@ -107,10 +110,10 @@ public class SerieStatsController extends AbstractController {
 
 	private void populatePieChart() {
 		ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-				new PieChart.Data("Completadas", getPercentage(completedCount, totalSeriesCount)),
-				new PieChart.Data("Pendientes", getPercentage(pendingCount, totalSeriesCount)),
-				new PieChart.Data("En curso", getPercentage(onGoingCount, totalSeriesCount)),
-				new PieChart.Data("Abandonadas", getPercentage(droppedCount, totalSeriesCount)));
+				new PieChart.Data("Completadas (" + completedCount +")", getPercentage(completedCount, totalSeriesCount)),
+				new PieChart.Data("Pendientes (" + pendingCount + ")", getPercentage(pendingCount, totalSeriesCount)),
+				new PieChart.Data("En curso (" + onGoingCount + ")", getPercentage(onGoingCount, totalSeriesCount)),
+				new PieChart.Data("Abandonadas (" + droppedCount + ")", getPercentage(droppedCount, totalSeriesCount)));
 		pieChart.setData(pieChartData);
 
 	}
@@ -187,6 +190,9 @@ public class SerieStatsController extends AbstractController {
 
 	private void getData() {
 		for (Serie serie : currentSeries) {
+			for (Season s : serie.getSeasons()) {
+				totalEpisodesViewed += s.getCurrentEpisodes();
+			}
 			totalSeriesCount++;
 			getStatusCounts(serie);
 			getScoresCount(serie);
@@ -312,7 +318,7 @@ public class SerieStatsController extends AbstractController {
 	}
 	
 	private String printTotalSeasons(int duration) {
-		return "Has visto un total de " + totalSeasons + " temporadas.";
+		return "Has visto un total de " + totalSeasons + " temporadas y " + totalEpisodesViewed + " capítulos.";
 	}
 	
 	private void setBackgroundImage() {

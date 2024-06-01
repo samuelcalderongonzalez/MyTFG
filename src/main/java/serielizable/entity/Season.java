@@ -175,7 +175,10 @@ public class Season {
 	}
 
 	public Integer getCurrentEpisodes() {
-		return currentEpisodes;
+		if(currentEpisodes != null)
+			return currentEpisodes;
+		else
+			return 0;
 	}
 
 	public String getStringCurrentEpisodes() {

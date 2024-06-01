@@ -220,7 +220,7 @@
             </HBox>
             <Label fx:id="totalTimeInvested" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="952.0" text="Has invertido un total de x horas y y minutos viendo series">
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
             </Label>
          </children>

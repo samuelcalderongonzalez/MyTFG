@@ -107,9 +107,9 @@ public class FilmStatsController extends AbstractController {
 
 	private void populatePieChart() {
 		ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-				new PieChart.Data("Completadas", getPercentage(completedCount, totalFilmsCount)),
-				new PieChart.Data("Pendientes", getPercentage(pendingCount, totalFilmsCount)),
-				new PieChart.Data("Abandonadas", getPercentage(droppedCount, totalFilmsCount)));
+				new PieChart.Data("Completadas (" + completedCount + ")", getPercentage(completedCount, totalFilmsCount)),
+				new PieChart.Data("Pendientes (" + pendingCount + ")", getPercentage(pendingCount, totalFilmsCount)),
+				new PieChart.Data("Abandonadas (" + droppedCount + ")", getPercentage(droppedCount, totalFilmsCount)));
 		pieChart.setData(pieChartData);
 
 	}

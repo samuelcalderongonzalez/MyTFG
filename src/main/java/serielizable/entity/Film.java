@@ -47,7 +47,7 @@ public class Film {
 	private Date lastUpdateDate;
 
 	@Column(name = "genres")
-	private String genres; // TODO darle una vuelta a esto
+	private String genres;
 
 	@Column(name = "duration")
 	private Integer duration;

@@ -15,7 +15,8 @@
 
 <AnchorPane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="390.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/Serielizable.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="serielizable.view.LoginController">
    <children>
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#bcd8f2" height="500.0" layoutX="54.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="500.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0" />
+      <Rectangle fx:id="backgroundImage" fill="WHITE" height="600.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="600.0" />
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#bcd8f2" height="500.0" layoutX="100.0" layoutY="15.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="450.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="50.0" />
       <HBox alignment="CENTER" layoutX="150.0" layoutY="71.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
             <ImageView fx:id="imagelogo" fitHeight="201.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
@@ -83,6 +84,6 @@
             </Button>
          </children>
       </HBox>
-      <Label fx:id="logMessage" alignment="CENTER" layoutX="139.0" layoutY="271.0" prefHeight="29.0" prefWidth="330.0" textAlignment="CENTER" textFill="RED" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="139.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="271.0" />
+      <Label fx:id="logMessage" alignment="CENTER" layoutX="139.0" layoutY="265.0" prefHeight="35.0" prefWidth="330.0" textAlignment="CENTER" textFill="RED" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="139.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="265.0" />
    </children>
 </AnchorPane>

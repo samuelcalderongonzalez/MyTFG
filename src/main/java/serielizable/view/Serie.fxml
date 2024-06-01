@@ -65,7 +65,7 @@
           <TableColumn fx:id="tcStatus" prefWidth="118.0" text="Estado" />
             <TableColumn fx:id="tcPersonalScore" prefWidth="95.0" text="Mi valoración" />
             <TableColumn fx:id="tcReleaseDate" prefWidth="103.0" text="Fecha estreno" />
-            <TableColumn fx:id="tcSeasons" prefWidth="101.0" text="Duración" />
+            <TableColumn fx:id="tcSeasons" prefWidth="101.0" text="Temporadas" />
         </columns>
       </TableView>
       <VBox layoutX="675.0" layoutY="230.0" prefHeight="355.0" prefWidth="378.0">
