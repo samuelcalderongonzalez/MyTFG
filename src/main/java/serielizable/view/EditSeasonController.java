@@ -145,7 +145,7 @@ public class EditSeasonController extends AbstractController {
 	}
 
 	private void setBackButtonIcon() {
-		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButton.png"));
+		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButtonWhite.png"));
 		imageViewBack = new ImageView(editImg);
 		imageViewBack.setFitHeight(50);
 		imageViewBack.setFitWidth(50);

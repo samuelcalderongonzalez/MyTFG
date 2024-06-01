@@ -271,7 +271,7 @@ public class SerieStatsController extends AbstractController {
 		if (serie.getStatus().equals("Completada"))
 			completedCount++;
 		if (serie.getStatus().equals("En curso"))
-			completedCount++;
+			onGoingCount++;
 		if (serie.getStatus().equals("Pendiente"))
 			pendingCount++;
 		if (serie.getStatus().equals("Abandonada"))

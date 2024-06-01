@@ -54,6 +54,7 @@ public class AddFilmController extends AbstractController {
 		setPosterImg();
 		setBackButtonIcon();
 		cbStatus.getItems().addAll("Completada", "Pendiente", "Abandonada");
+		cbStatus.getSelectionModel().select("Pendiente");
 		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 		cbPersonalScore.getSelectionModel().select("-");
 		populateTitle();

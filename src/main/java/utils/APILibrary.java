@@ -67,7 +67,8 @@ public class APILibrary {
 				currFilm.setSynopsis(element.getAsJsonObject().get("overview").getAsString());
 				currFilm.setDuration(searchFilmRuntime(currFilm.getId()));
 				currFilm.setTotalScoreVotes(element.getAsJsonObject().get("vote_count").getAsInt());
-				currFilm.setImageLink(Constants.POSTER_PATH_PREX + element.getAsJsonObject().get("poster_path").getAsString());
+				currFilm.setImageLink(
+						Constants.POSTER_PATH_PREX + element.getAsJsonObject().get("poster_path").getAsString());
 
 				films.add(currFilm);
 			}
@@ -121,7 +122,8 @@ public class APILibrary {
 				currSerie.setScore(element.getAsJsonObject().get("vote_average").getAsDouble());
 				currSerie.setSynopsis(element.getAsJsonObject().get("overview").getAsString());
 				currSerie.setTotalScoreVotes(element.getAsJsonObject().get("vote_count").getAsInt());
-				currSerie.setImageLink(Constants.POSTER_PATH_PREX + element.getAsJsonObject().get("poster_path").getAsString());
+				currSerie.setImageLink(
+						Constants.POSTER_PATH_PREX + element.getAsJsonObject().get("poster_path").getAsString());
 
 				series.add(searchSerieDetails(currSerie));
 			}
@@ -131,7 +133,7 @@ public class APILibrary {
 			e.printStackTrace();
 		}
 
-		return series;
+		return series != null ? series : new ArrayList<Serie>();
 
 	}
 
@@ -226,8 +228,12 @@ public class APILibrary {
 					Season currSeason = new Season();
 					currSeason.setId(element.getAsJsonObject().get("id").getAsInt());
 					currSeason.setSerie(serie);
-					currSeason.setReleaseDate(
-							DateUtils.mapStringToDate(element.getAsJsonObject().get("air_date").getAsString()));
+					try {
+						currSeason.setReleaseDate(
+								DateUtils.mapStringToDate(element.getAsJsonObject().get("air_date").getAsString()));
+					} catch (Exception e) {
+						
+					}
 					try {
 						currSeason.setTotalEpisodes(element.getAsJsonObject().get("episode_count").getAsInt());
 					} catch (Exception e) {

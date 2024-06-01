@@ -114,10 +114,9 @@ public class SearchController extends AbstractController {
 		isFilm = true;
 		foundFilms = api.searchFilmByTitle(searchTextField.getText());
 		films = FXCollections.observableArrayList(foundFilms);
-		if(films.isEmpty())
+		if (films.isEmpty())
 			logMessage.setText("No se encontraron resultados");
-		else
-			populateTable();
+		populateTable();
 
 	}
 
@@ -126,10 +125,9 @@ public class SearchController extends AbstractController {
 		isFilm = false;
 		foundSeries = api.searchSerieByTitle(searchTextField.getText());
 		series = FXCollections.observableArrayList(foundSeries);
-		if(series.isEmpty())
+		if (series.isEmpty())
 			logMessage.setText("No se encontraron resultados");
-		else
-			populateTable();
+		populateTable();
 	}
 
 	private void populateTable() {
@@ -140,11 +138,11 @@ public class SearchController extends AbstractController {
 			tcFilmRelease.setCellValueFactory(param -> param.getValue().getSPReleaseDate());
 			tcFilmScore.setCellValueFactory(param -> param.getValue().getSPScore());
 			tableFilm.setItems(films);
-			logMessage.setText(" ");
+			if (!films.isEmpty())
+				logMessage.setText(" ");
 			tableFilm.setOnMouseClicked(event -> {
 				if (event.getClickCount() == 2) {
 					currentFilm = tableFilm.getSelectionModel().getSelectedItem();
-					System.out.println(currentFilm);
 					setViewAddFilm();
 				}
 			});
@@ -156,11 +154,11 @@ public class SearchController extends AbstractController {
 			tcSerieScore.setCellValueFactory(param -> param.getValue().getSPScore());
 			tcSerieSeasons.setCellValueFactory(param -> param.getValue().getSPTotalSeasons());
 			tableSerie.setItems(series);
-			logMessage.setText(" ");
+			if (!series.isEmpty())
+				logMessage.setText(" ");
 			tableSerie.setOnMouseClicked(event -> {
 				if (event.getClickCount() == 2) {
 					currentSerie = tableSerie.getSelectionModel().getSelectedItem();
-					System.out.println(currentSerie);
 					setViewAddSerie();
 				}
 			});
