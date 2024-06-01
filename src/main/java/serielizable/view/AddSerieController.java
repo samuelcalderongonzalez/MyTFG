@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -21,6 +22,9 @@ public class AddSerieController extends AbstractController {
 
 	@FXML
 	private Label title;
+	
+	@FXML
+	private CheckBox allCompleted;
 
 	@FXML
 	private Label progress;
@@ -45,6 +49,12 @@ public class AddSerieController extends AbstractController {
 
 	@FXML
 	private Button btnPrev;
+	
+	@FXML
+	private Button btnLast;
+
+	@FXML
+	private Button btnFirst;
 
 	private int page;
 
@@ -154,6 +164,14 @@ public class AddSerieController extends AbstractController {
 		clearAndPopulateFields();
 		checkIfCompleted();
 	}
+	@FXML
+	public void handleLast() {
+		saveSerie();
+		page = maxPage;
+		buttonsAndFieldsVisibility();
+		clearAndPopulateFields();
+		checkIfCompleted();
+	}
 
 	@FXML
 	public void handlePrev() {
@@ -163,8 +181,15 @@ public class AddSerieController extends AbstractController {
 		clearAndPopulateFields();
 		checkIfCompleted();
 	}
+	@FXML
+	public void handleFirst() {
+		saveSerie();
+		page = -1;
+		buttonsAndFieldsVisibility();
+		clearAndPopulateFields();
+		checkIfCompleted();
+	}
 
-	// TODO Esto es horroroso, hay que refactorizar.
 	public void saveSerie() {
 		if (page < 0) {
 			currentSerie.setUserId(currentUser.getId());
@@ -201,6 +226,8 @@ public class AddSerieController extends AbstractController {
 			}
 			season.setUserId(currentUser.getId());
 		}
+		if(allCompleted.isSelected()) 
+			markEverythingAsCompleted();
 		serieRepository.insertSerie(currentSerie);
 		currentSerie = null;
 		setViewSerie();
@@ -211,27 +238,37 @@ public class AddSerieController extends AbstractController {
 		setFavoriteImage();
 		if (page < 0) {
 			btnPrev.setVisible(false);
+			btnFirst.setVisible(false);
+			btnNext.setVisible(true);
+			btnLast.setVisible(true);
 			totalEpisodes.setVisible(false);
 			progress.setVisible(false);
 			tfProgress.setVisible(false);
 			btFavorite.setVisible(true);
+			allCompleted.setVisible(true);
 		} else if (page == maxPage) {
 			btnNext.setVisible(false);
+			btnLast.setVisible(false);
+			btnFirst.setVisible(true);
+			btnPrev.setVisible(true);
 			totalEpisodes.setVisible(true);
 			progress.setVisible(true);
 			tfProgress.setVisible(true);
 			btFavorite.setVisible(false);
+			allCompleted.setVisible(false);
 		} else {
 			btnPrev.setVisible(true);
 			btnNext.setVisible(true);
+			btnLast.setVisible(true);
+			btnFirst.setVisible(true);
 			totalEpisodes.setVisible(true);
 			progress.setVisible(true);
 			tfProgress.setVisible(true);
 			btFavorite.setVisible(false);
+			allCompleted.setVisible(false);
 		}
 	}
 
-	// TODO muy mejorable. Añadir lambdas a ser posible
 	private void clearAndPopulateFields() {
 		populateTitle();
 		pupulateTotalEpisodes();
@@ -259,8 +296,15 @@ public class AddSerieController extends AbstractController {
 					: currentSerie.getSeasons().get(page).getCurrentEpisodes().toString());
 		}
 	}
+	
+	private void markEverythingAsCompleted() {
+		currentSerie.setStatus("Completada");
+		for (Season s : currentSerie.getSeasons()) {
+			s.setStatus("Completada");
+			s.setCurrentEpisodes(s.getTotalEpisodes());
+		}
+	}
 
-	// TODO cambiar por lambda
 	private void pupulateTotalEpisodes() {
 		if (page < 0)
 			totalEpisodes.setText("");

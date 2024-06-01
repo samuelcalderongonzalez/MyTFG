@@ -106,9 +106,7 @@ public class APILibrary {
 
 			for (JsonElement element : results) {
 				JsonArray jsonGenres = element.getAsJsonObject().getAsJsonArray("genre_ids");
-				JsonArray jsonSeasons = element.getAsJsonObject().getAsJsonArray("seasons");
 				Serie currSerie = new Serie();
-				Season seasons = new Season();
 				for (JsonElement el : jsonGenres) {
 					for (Genre g : serieGenres) {
 						if (g.getId() == el.getAsInt()) {
@@ -207,7 +205,6 @@ public class APILibrary {
 	}
 
 	public Serie searchSerieDetails(Serie serie) {
-		Integer runtime = 0;
 		OkHttpClient client = new OkHttpClient();
 
 		Request request = new Request.Builder()
@@ -221,7 +218,6 @@ public class APILibrary {
 			JsonObject jsonObject = gson.fromJson(jsonResponse, JsonObject.class);
 			JsonArray results = jsonObject.getAsJsonArray("seasons");
 			System.out.println(results);
-//			runtime = jsonObject.get("runtime").getAsInt();
 			serie.setTotalEpisodes(jsonObject.get("number_of_episodes").getAsInt());
 			serie.setCountSeasons(jsonObject.get("number_of_seasons").getAsInt());
 			if (serie.getCountSeasons() > 0) {

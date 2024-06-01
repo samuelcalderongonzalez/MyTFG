@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -71,7 +72,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="title" alignment="TOP_CENTER" layoutX="160.0" layoutY="253.0" prefHeight="57.0" prefWidth="409.0" text="Titulo" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="521.0" AnchorPane.topAnchor="100.0">
+      <Label fx:id="title" alignment="CENTER" layoutX="121.0" layoutY="85.0" prefHeight="57.0" prefWidth="409.0" text="Titulo" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="520.0" AnchorPane.topAnchor="85.0">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
@@ -96,7 +97,7 @@
          </children>
       </VBox>
       <Button fx:id="btnNext" mnemonicParsing="false" onAction="#handleNext" prefHeight="208.0" prefWidth="52.0" styleClass="button-serie" text="&gt;" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="275.0" />
-      <Button fx:id="btnPrev" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlePrev" prefHeight="208.0" prefWidth="52.0" styleClass="button-serie" text="&lt;" visible="false" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="300.0" />
+      <Button fx:id="btnPrev" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handlePrev" prefHeight="208.0" prefWidth="52.0" styleClass="button-serie" text="&lt;" visible="false" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="275.0" />
       <ComboBox fx:id="cbStatus" prefHeight="36.0" prefWidth="253.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="190.0" />
       <ComboBox fx:id="cbPersonalScore" prefHeight="36.0" prefWidth="253.0" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="265.0" />
       <Button fx:id="btFavorite" layoutX="510.0" layoutY="125.0" maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#toggleFavorite" prefHeight="0.0" prefWidth="0.0" text="favorite" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="262.0" />
@@ -106,5 +107,8 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Button fx:id="btnLast" layoutX="10.0" layoutY="493.0" maxHeight="35.0" minHeight="35.0" mnemonicParsing="false" onAction="#handleLast" prefHeight="35.0" prefWidth="52.0" styleClass="button-serie" text="&gt;&gt;" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="493.0" />
+      <Button fx:id="btnFirst" layoutX="20.0" layoutY="20.0" maxHeight="35.0" maxWidth="52.0" minHeight="35.0" minWidth="52.0" mnemonicParsing="false" onAction="#handleFirst" prefHeight="35.0" prefWidth="52.0" styleClass="button-serie" text="&lt;&lt;" visible="false" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="493.0" />
+      <CheckBox fx:id="allCompleted" layoutX="117.0" layoutY="99.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="255.0" text="Marcar todo completado" AnchorPane.topAnchor="350.0" />
    </children>
 </AnchorPane>

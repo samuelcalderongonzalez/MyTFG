@@ -24,9 +24,6 @@ public class SerielizableApp extends Application implements CAPPI {
 	Image icon = new Image(getClass().getResourceAsStream("../utils/logopng.png"));
 
 	public static void main(String[] args) throws ClientProtocolException, IOException {
-		
-		api = new APILibrary();
-		api.searchFilmByTitle("Los vengadores");
 		launch(args);
 	}
 

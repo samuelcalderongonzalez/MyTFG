@@ -297,7 +297,10 @@ public class Serie {
 	}
 
 	public SimpleStringProperty getSPTotalSeasons() {
-		return new SimpleStringProperty(countSeasons.toString());
+		if(countSeasons != null)
+			 return new SimpleStringProperty(countSeasons.toString());
+		else
+			 return new SimpleStringProperty("N/A");
 	}
 
 	public SimpleStringProperty getSPScore() {

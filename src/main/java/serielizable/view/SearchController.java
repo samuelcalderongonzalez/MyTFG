@@ -112,7 +112,6 @@ public class SearchController extends AbstractController {
 	@FXML
 	public void searchFilm() {
 		isFilm = true;
-		logMessage.setText("Cargando...");
 		foundFilms = api.searchFilmByTitle(searchTextField.getText());
 		films = FXCollections.observableArrayList(foundFilms);
 		if(films.isEmpty())
@@ -125,7 +124,6 @@ public class SearchController extends AbstractController {
 	@FXML
 	public void searchSerie() {
 		isFilm = false;
-		logMessage.setText("Cargando...");
 		foundSeries = api.searchSerieByTitle(searchTextField.getText());
 		series = FXCollections.observableArrayList(foundSeries);
 		if(series.isEmpty())
