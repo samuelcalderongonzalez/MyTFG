@@ -17,13 +17,19 @@ import javafx.scene.shape.Rectangle;
 import serielizable.entity.Season;
 import utils.AbstractController;
 
+/**
+ * The season controller class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class SeasonController extends AbstractController {
 
 	private ObservableList<Season> seasons;
 
 	@FXML
 	private Label score;
-	
+
 	@FXML
 	private Label serieTitle;
 
@@ -38,7 +44,7 @@ public class SeasonController extends AbstractController {
 
 	@FXML
 	private Button btnEditSeason;
-	
+
 	@FXML
 	private Button getBackButton;
 
@@ -54,17 +60,17 @@ public class SeasonController extends AbstractController {
 	private TableColumn<Season, String> tcReleaseDate;
 	@FXML
 	private TableColumn<Season, String> tcProgress;
-	
+
 	private ImageView imageView;
-	
+
 	private ImageView imageViewBack;
-	
+
 	@FXML
 	private Rectangle posterImageRectangle;
-	
+
 	@FXML
 	private Rectangle backgroundImage;
-	
+
 	@FXML
 	public void initialize() {
 		setPosterImg();
@@ -86,63 +92,93 @@ public class SeasonController extends AbstractController {
 				pupulateLabels();
 			}
 		});
-		//Mostrar la primera season al iniciar la vista
+		// Shows the first season at first
 		currentSeason = seasons.get(0);
 		pupulateLabels();
 	}
 
+	/**
+	 * Log off method
+	 */
 	@FXML
 	public void logOff() {
 		currentUser = null;
 		setViewLogin();
 	}
-	
+
+	/**
+	 * Close the app
+	 */
 	@FXML
 	public void exit() {
 		Platform.exit();
 	}
 
+	/**
+	 * Open the search view
+	 */
 	@FXML
 	public void search() {
 		setViewSearch();
 	}
 
+	/**
+	 * Open the serie view
+	 */
 	@FXML
 	public void serie() {
 		setViewSerie();
 	}
-	
+
+	/**
+	 * Open the film view
+	 */
 	@FXML
 	public void film() {
 		setViewFilm();
 	}
-	
+
+	/**
+	 * Open the film stats view
+	 */
 	@FXML
 	public void filmStats() {
 		setViewFilmStats();
 	}
-	
+
+	/**
+	 * Open the serie stats view
+	 */
 	@FXML
 	public void serieStats() {
 		setViewSerieStats();
 	}
-	
+
+	/**
+	 * Open the edit season view
+	 */
 	@FXML
 	public void editSeason() {
 		setViewEditSeason();
 	}
-	
+
+	/**
+	 * Go back to the previous view
+	 */
 	@FXML
 	public void handleBack() {
 		setViewSerie();
 	}
-	
+
+	/**
+	 * Set the background image
+	 */
 	private void setBackgroundImage() {
 		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
 		backgroundImage.setFill(new ImagePattern(imgBackground));
 
 	}
-	
+
 	/**
 	 * This method fills the poster with the serie image
 	 */
@@ -169,6 +205,9 @@ public class SeasonController extends AbstractController {
 		}
 	}
 
+	/**
+	 * Populate the labels
+	 */
 	private void pupulateLabels() {
 		btnEditSeason.setVisible(true);
 		score.setText(currentSeason.getStringScore());
@@ -176,6 +215,9 @@ public class SeasonController extends AbstractController {
 		review.setText(currentSeason.getReview());
 	}
 
+	/**
+	 * Clear the labels
+	 */
 	private void clearLabels() {
 		score.setText("");
 		totalVotes.setText("votes");
@@ -186,7 +228,10 @@ public class SeasonController extends AbstractController {
 	public SeasonController() {
 
 	}
-	
+
+	/**
+	 * Set the edit button icon and resizes it
+	 */
 	private void setButtonIcon() {
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/edit.png"));
 		imageView = new ImageView(editImg);
@@ -194,7 +239,10 @@ public class SeasonController extends AbstractController {
 		imageView.setFitWidth(50);
 		btnEditSeason.setGraphic(imageView);
 	}
-	
+
+	/**
+	 * Set the back button icon and resizes it
+	 */
 	private void setBackButtonIcon() {
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButtonWhite.png"));
 		imageViewBack = new ImageView(editImg);

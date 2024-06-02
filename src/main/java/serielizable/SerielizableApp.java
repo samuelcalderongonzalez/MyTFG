@@ -11,16 +11,20 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import utils.APILibrary;
 import utils.AbstractController;
 import utils.HibernateUtils;
 
+/**
+ * Serielizable class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class SerielizableApp extends Application implements CAPPI {
 	private Stage primaryStage;
 	// Window elements
 	private AnchorPane loginLayout;
 	private BorderPane rootLayout;
-	private static APILibrary api;
 	Image icon = new Image(getClass().getResourceAsStream("../utils/logopng.png"));
 
 	public static void main(String[] args) throws ClientProtocolException, IOException {
@@ -31,12 +35,12 @@ public class SerielizableApp extends Application implements CAPPI {
 	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		primaryStage.maximizedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) 
-                primaryStage.setMaximized(false);   
-        });
+			if (newValue)
+				primaryStage.setMaximized(false);
+		});
 		this.primaryStage.setTitle("Serielizable");
 		this.primaryStage.getIcons().add(icon);
-		
+
 		primaryStage.setOnCloseRequest(event -> {
 			HibernateUtils.close();
 		});
@@ -57,7 +61,7 @@ public class SerielizableApp extends Application implements CAPPI {
 			Scene scene = new Scene(loginLayout);
 			// Load and show the scene
 			primaryStage.setX(scene.getWidth() + 150);
-	        primaryStage.setY(scene.getHeight() + 25);
+			primaryStage.setY(scene.getHeight() + 25);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
@@ -74,26 +78,11 @@ public class SerielizableApp extends Application implements CAPPI {
 		return rootLayout;
 	}
 
-	public void setRoot(String root) {
-		try {
-			FXMLLoader loader = new FXMLLoader();
-
-			loader.setLocation(SerielizableApp.class.getResource(root));
-			rootLayout = (BorderPane) loader.load();
-
-			Scene scene = new Scene(rootLayout);
-			primaryStage.setScene(scene);
-
-			AbstractController controlador = loader.getController();
-			if (controlador != null)
-				controlador.setMainApp(this);
-
-			primaryStage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
+	/**
+	 * Sets the view by a provided view name
+	 * 
+	 * @param View name
+	 */
 	public void setView(String view) {
 		try {
 			FXMLLoader loader = new FXMLLoader();

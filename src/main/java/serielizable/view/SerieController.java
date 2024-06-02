@@ -21,13 +21,19 @@ import javafx.scene.shape.Rectangle;
 import serielizable.entity.Serie;
 import utils.AbstractController;
 
+/**
+ * The serie controller class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class SerieController extends AbstractController {
 
 	private ObservableList<Serie> series;
-	
+
 	@FXML
 	private Label title;
-	
+
 	@FXML
 	private Label score;
 
@@ -51,7 +57,7 @@ public class SerieController extends AbstractController {
 
 	@FXML
 	private Button btnSeasons;
-	
+
 	@FXML
 	private ComboBox<String> genreFilter;
 
@@ -80,18 +86,18 @@ public class SerieController extends AbstractController {
 	private ImageView imageView;
 
 	private ImageView imageViewSeason;
-	
+
 	private List<Serie> currentFilteredSeries = new ArrayList<Serie>();
 
 	@FXML
 	private Rectangle posterImageRectangle;
-	
+
 	@FXML
 	private Rectangle backgroundImage;
-	
+
 	@FXML
 	private Rectangle favoriteImage;
-	
+
 	@FXML
 	public void initialize() {
 		Image imgFavorite = new Image(getClass().getResourceAsStream("../../utils/favoriteIconShow.png"));
@@ -119,59 +125,92 @@ public class SerieController extends AbstractController {
 		pupulateLabels();
 
 	}
-	
+
+	/**
+	 * Set the background image
+	 */
 	private void setBackgroundImage() {
 		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
 		backgroundImage.setFill(new ImagePattern(imgBackground));
 
 	}
 
+	/**
+	 * Log off method
+	 */
 	@FXML
 	public void logOff() {
 		currentUser = null;
 		setViewLogin();
 	}
-	
+
+	/**
+	 * Close the app
+	 */
 	@FXML
 	public void exit() {
 		Platform.exit();
 	}
 
+	/**
+	 * Open the search view
+	 */
 	@FXML
 	public void search() {
 		setViewSearch();
 	}
 
+	/**
+	 * Open the serie view
+	 */
 	@FXML
 	public void serie() {
 		setViewSerie();
 	}
-	
+
+	/**
+	 * Open the film view
+	 */
 	@FXML
 	public void film() {
 		setViewFilm();
 	}
 
+	/**
+	 * Open the edit serie view
+	 */
 	@FXML
 	public void editSerie() {
 		setViewEditSerie();
 	}
-	
+
+	/**
+	 * Open the film stats view
+	 */
 	@FXML
 	public void filmStats() {
 		setViewFilmStats();
 	}
-	
+
+	/**
+	 * Open the serie stats view
+	 */
 	@FXML
 	public void serieStats() {
 		setViewSerieStats();
 	}
 
+	/**
+	 * Open the season view
+	 */
 	@FXML
 	public void viewSeasons() {
 		setViewSeason();
 	}
 
+	/**
+	 * Populate the labels
+	 */
 	private void pupulateLabels() {
 		setFavoriteImage();
 		btnEditSerie.setVisible(true);
@@ -185,7 +224,7 @@ public class SerieController extends AbstractController {
 		setPosterImg();
 		title.setText(currentSerie.getTitle());
 	}
-	
+
 	/**
 	 * This method fills the poster with the serie image
 	 */
@@ -211,7 +250,7 @@ public class SerieController extends AbstractController {
 			posterImageRectangle.setFill(new ImagePattern(imgPosterDefault));
 		}
 	}
-	
+
 	/**
 	 * This method is used to change favorite´s image icon after using it
 	 */
@@ -219,6 +258,9 @@ public class SerieController extends AbstractController {
 		favoriteImage.setVisible(currentSerie.isFavorite());
 	}
 
+	/**
+	 * Clear the labels
+	 */
 	private void clearLabels() {
 		score.setText("");
 		totalVotes.setText("votes");
@@ -232,6 +274,9 @@ public class SerieController extends AbstractController {
 
 	}
 
+	/**
+	 * Set the edit and season details button image and resizes it
+	 */
 	private void setButtonIcon() {
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/edit.png"));
 		imageView = new ImageView(editImg);
@@ -245,16 +290,22 @@ public class SerieController extends AbstractController {
 		imageViewSeason.setFitWidth(50);
 		btnSeasons.setGraphic(imageViewSeason);
 	}
-	
+
+	/**
+	 * Populate status, favorite and genre combo boxes
+	 */
 	private void populateComboBoxes() {
-		genreFilter.getItems().addAll("Sin filtro", "Action & Adventure", "Animación", "Comedia", "Crimen", "Documental",
-				"Drama", "Familia", "Kids", "Misterio", "News", "Reality", "Sci-fi & Fantasy", "Soap", "Talk",
-				"War & Politics", "Western");
+		genreFilter.getItems().addAll("Sin filtro", "Action & Adventure", "Animación", "Comedia", "Crimen",
+				"Documental", "Drama", "Familia", "Kids", "Misterio", "News", "Reality", "Sci-fi & Fantasy", "Soap",
+				"Talk", "War & Politics", "Western");
 		favoriteFilter.getItems().addAll("Sin filtro", "Favorito", "No favorito");
-		statusFilter.getItems().addAll("Sin filtro", "Completada", "En curso","Pendiente", "Abandonada");
+		statusFilter.getItems().addAll("Sin filtro", "Completada", "En curso", "Pendiente", "Abandonada");
 		defaultComboBoxes();
 	}
-	
+
+	/**
+	 * Set the combo boxes to No filters by default
+	 */
 	private void defaultComboBoxes() {
 		if (genreFilter.getSelectionModel().getSelectedItem() == null) {
 			genreFilter.getSelectionModel().select("Sin filtro");
@@ -266,17 +317,20 @@ public class SerieController extends AbstractController {
 			statusFilter.getSelectionModel().select("Sin filtro");
 		}
 	}
-	
+
+	/**
+	 * Apply the current filters
+	 */
 	@FXML
 	private void applyFilters() {
 		for (Serie serie : currentSeries) {
 			if (checkFilterCases(serie))
 				currentFilteredSeries.add(serie);
 		}
-		if(!titleFilter.getText().isEmpty()) {
+		if (!titleFilter.getText().isEmpty()) {
 			List<Serie> trueFilteredList = new ArrayList<Serie>();
 			for (Serie serie : currentFilteredSeries) {
-				if(serie.getTitle().toLowerCase().contains(titleFilter.getText().toLowerCase()))
+				if (serie.getTitle().toLowerCase().contains(titleFilter.getText().toLowerCase()))
 					trueFilteredList.add(serie);
 			}
 			series = FXCollections.observableArrayList(trueFilteredList);
@@ -288,6 +342,13 @@ public class SerieController extends AbstractController {
 
 	}
 
+	/**
+	 * If return true, the serie is added to the filtered list after passing all the
+	 * checks
+	 * 
+	 * @param serie
+	 * @return true or false
+	 */
 	private boolean checkFilterCases(Serie serie) {
 		if (!genreFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
 				&& !statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
@@ -318,7 +379,8 @@ public class SerieController extends AbstractController {
 				&& statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
 				&& !favoriteFilter.getSelectionModel().getSelectedItem().equals("Sin filtro"))
 			if ((serie.isFavorite() && favoriteFilter.getSelectionModel().getSelectedItem().equals("Favorito"))
-					|| (!serie.isFavorite() && favoriteFilter.getSelectionModel().getSelectedItem().equals("No favorito")))
+					|| (!serie.isFavorite()
+							&& favoriteFilter.getSelectionModel().getSelectedItem().equals("No favorito")))
 				return true;
 			else
 				return false;

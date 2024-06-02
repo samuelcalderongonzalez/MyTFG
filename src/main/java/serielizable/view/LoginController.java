@@ -12,6 +12,12 @@ import serielizable.entity.User;
 import utils.AbstractController;
 import utils.Constants;
 
+/**
+ * The login controller class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class LoginController extends AbstractController {
 
 	@FXML
@@ -19,25 +25,25 @@ public class LoginController extends AbstractController {
 
 	@FXML
 	private PasswordField passwordField;
-	
+
 	@FXML
 	private TextField passwordFieldViewable;
 
 	@FXML
 	private Button accessButton;
-	
+
 	@FXML
 	private Button registerButton;
-	
+
 	@FXML
 	private Button passwordViewButton;
-	
+
 	@FXML
 	private ImageView imagelogo;
-	
+
 	@FXML
 	private HBox viewablePasswordTextfieldHBox;
-	
+
 	@FXML
 	private Label logMessage;
 
@@ -55,19 +61,19 @@ public class LoginController extends AbstractController {
 		viewablePasswordTextfieldHBox.setDisable(true);
 		viewablePasswordTextfieldHBox.setVisible(false);
 	}
-	
+
 	@FXML
 	/**
 	 * This method is used to access and check the credentials
 	 */
 	private void handleAcceder() {
 		// If the credentials are good:
-		if (checkAcceso()) 
+		if (checkAcceso())
 			// Go to the next view
 			setViewFilm();
-		
+
 	}
-	
+
 	/**
 	 * This method resizes the password visibility button image
 	 */
@@ -77,30 +83,30 @@ public class LoginController extends AbstractController {
 		// Load the image into the button
 		passwordViewButton.setGraphic(imageView);
 	}
-	
+
 	/**
 	 * This method changes the password visibility button image
 	 */
 	private void setPasswordImage() {
-		if(!passwordIsVisible) {
+		if (!passwordIsVisible) {
 			// Change the image of the button
 			imageView = new ImageView(showPasswordImg);
 			resizePasswordImage();
-		}else {
+		} else {
 			// Change the image of the button
 			imageView = new ImageView(hidePasswordImg);
 			resizePasswordImage();
 		}
-		
+
 	}
-	
+
 	@FXML
 	/**
 	 * This method changed the password visibility
 	 */
 	private void changePasswordVisivility() {
 		// If the password is not visible:
-		if(!passwordIsVisible) {
+		if (!passwordIsVisible) {
 			// Set the normal textfield available
 			viewablePasswordTextfieldHBox.setDisable(false);
 			viewablePasswordTextfieldHBox.setVisible(true);
@@ -133,7 +139,7 @@ public class LoginController extends AbstractController {
 			setPasswordImage();
 		}
 	}
-	
+
 	@FXML
 	/**
 	 * This method is used to change the view to the register one
@@ -145,10 +151,11 @@ public class LoginController extends AbstractController {
 	@FXML
 	/**
 	 * This method checks the user credentials
+	 * 
 	 * @return
 	 */
 	private boolean checkAcceso() {
-		if(passwordIsVisible) {
+		if (passwordIsVisible) {
 			// First we have to check if the fields are filled
 			if (!userNameTextField.getText().isEmpty() && !passwordFieldViewable.getText().isEmpty()) {
 				// If there is content in the fields then:
@@ -161,7 +168,7 @@ public class LoginController extends AbstractController {
 						// Save the user
 						currentUser = user;
 						return true;
-					} 
+					}
 					// If the credentials don´t match:
 					else {
 						// Warn about the mistake
@@ -182,7 +189,7 @@ public class LoginController extends AbstractController {
 				logMessage.setText("Los campos no pueden estar vacíos");
 			}
 			return false;
-		}else {
+		} else {
 			// First we have to check if the fields are filled
 			if (!userNameTextField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
 				// If there is content in the fields then:
@@ -195,7 +202,7 @@ public class LoginController extends AbstractController {
 						// Save the user
 						currentUser = user;
 						return true;
-					} 
+					}
 					// If the credentials don´t match:
 					else {
 						// Warn about the mistake

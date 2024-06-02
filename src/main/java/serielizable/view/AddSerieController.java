@@ -18,11 +18,17 @@ import serielizable.entity.Season;
 import utils.AbstractController;
 import utils.DateUtils;
 
+/**
+ * The add serie controller class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class AddSerieController extends AbstractController {
 
 	@FXML
 	private Label title;
-	
+
 	@FXML
 	private CheckBox allCompleted;
 
@@ -49,7 +55,7 @@ public class AddSerieController extends AbstractController {
 
 	@FXML
 	private Button btnPrev;
-	
+
 	@FXML
 	private Button btnLast;
 
@@ -74,7 +80,7 @@ public class AddSerieController extends AbstractController {
 
 	@FXML
 	private Rectangle backgroundImage;
-	
+
 	@FXML
 	private Label pagination;
 
@@ -99,9 +105,12 @@ public class AddSerieController extends AbstractController {
 		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
 		cbPersonalScore.getSelectionModel().select("-");
 		maxPage = currentSerie.getSeasons().size() - 1;
-		populateTitle();
+		populateTitleAndPagination();
 	}
 
+	/**
+	 * Log off method
+	 */
 	@FXML
 	public void logOff() {
 		currentUser = null;
@@ -110,44 +119,68 @@ public class AddSerieController extends AbstractController {
 		setViewLogin();
 	}
 
+	/**
+	 * Close the app
+	 */
 	@FXML
 	public void exit() {
 		Platform.exit();
 	}
 
+	/**
+	 * Open the search view
+	 */
 	@FXML
 	public void search() {
 		currentSerie = null;
 		setViewSearch();
 	}
 
+	/**
+	 * Open the serie view
+	 */
 	@FXML
 	public void serie() {
 		setViewSerie();
 	}
 
+	/**
+	 * Open the film view
+	 */
 	@FXML
 	public void film() {
 		setViewFilm();
 	}
 
+	/**
+	 * Open the film stats view
+	 */
 	@FXML
 	public void filmStats() {
 		setViewFilmStats();
 	}
 
+	/**
+	 * Open the serie stats view
+	 */
 	@FXML
 	public void serieStats() {
 		setViewSerieStats();
 	}
 
+	/**
+	 * Go back to the previous view
+	 */
 	@FXML
 	public void handleBack() {
 		currentSerie = null;
 		setViewSearch();
 	}
 
-	public void populateTitle() {
+	/**
+	 * Populate the title and the pagination labels
+	 */
+	public void populateTitleAndPagination() {
 		pagination.setText(String.valueOf(page + 2).concat("/").concat(String.valueOf(maxPage + 2)));
 		if (page < 0)
 			title.setText(currentSerie.getTitle());
@@ -156,6 +189,9 @@ public class AddSerieController extends AbstractController {
 
 	}
 
+	/**
+	 * Goes to the next page
+	 */
 	@FXML
 	public void handleNext() {
 		saveSerie();
@@ -164,6 +200,10 @@ public class AddSerieController extends AbstractController {
 		clearAndPopulateFields();
 		checkIfCompleted();
 	}
+
+	/**
+	 * Goes to the last page
+	 */
 	@FXML
 	public void handleLast() {
 		saveSerie();
@@ -173,6 +213,9 @@ public class AddSerieController extends AbstractController {
 		checkIfCompleted();
 	}
 
+	/**
+	 * Goes to the previous page
+	 */
 	@FXML
 	public void handlePrev() {
 		saveSerie();
@@ -181,6 +224,10 @@ public class AddSerieController extends AbstractController {
 		clearAndPopulateFields();
 		checkIfCompleted();
 	}
+
+	/**
+	 * Goes to the first page
+	 */
 	@FXML
 	public void handleFirst() {
 		saveSerie();
@@ -190,15 +237,22 @@ public class AddSerieController extends AbstractController {
 		checkIfCompleted();
 	}
 
+	/**
+	 * Saves the current state of the serie/season fields, depending on the
+	 * pagination
+	 */
 	public void saveSerie() {
+		// If page is -1, then saves the info related to the serie
 		if (page < 0) {
 			currentSerie.setUserId(currentUser.getId());
 			currentSerie.setStatus(cbStatus.getSelectionModel().getSelectedItem());
 			currentSerie.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
 			currentSerie.setReview(tfReview.getText().isEmpty() ? null : tfReview.getText());
+			// If status is completed, then completed date is current date
 			currentSerie.setCompletedDate(
 					cbStatus.getSelectionModel().getSelectedItem().equals("Completada") ? DateUtils.getCurrentDate()
 							: null);
+			// Else, saves the info related to the current season
 		} else {
 			currentSerie.getSeasons().get(page).setStatus(cbStatus.getSelectionModel().getSelectedItem());
 			currentSerie.getSeasons().get(page).setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
@@ -209,6 +263,7 @@ public class AddSerieController extends AbstractController {
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
+			// If status is completed, then completedDate is current date
 			currentSerie.getSeasons().get(page)
 					.setCompletedDate(cbStatus.getSelectionModel().getSelectedItem().equals("Completada")
 							? DateUtils.getCurrentDate()
@@ -217,23 +272,34 @@ public class AddSerieController extends AbstractController {
 		}
 	}
 
+	/**
+	 * Saves the series and season info to the database
+	 */
 	@FXML
 	public void handleAddSerie() {
 		saveSerie();
 		for (Season season : currentSerie.getSeasons()) {
 			if (season.getStatus() == null) {
+				// If any season has no status, sets to Pending by default
 				season.setStatus("Pendiente");
 			}
 			season.setUserId(currentUser.getId());
 		}
-		if(allCompleted.isSelected()) 
+		// If the checkbox mark everything as completed is checked, then marks
+		// everything as completed
+		if (allCompleted.isSelected())
 			markEverythingAsCompleted();
+		// Saves the serie then goes to the serie view
 		serieRepository.insertSerie(currentSerie);
 		currentSerie = null;
 		setViewSerie();
 
 	}
 
+	/**
+	 * Changes the buttons and fields visibility depending on the current page
+	 * status
+	 */
 	private void buttonsAndFieldsVisibility() {
 		setFavoriteImage();
 		if (page < 0) {
@@ -269,8 +335,12 @@ public class AddSerieController extends AbstractController {
 		}
 	}
 
+	/**
+	 * Clear and populates certain fields depending on the current state of the
+	 * pagination
+	 */
 	private void clearAndPopulateFields() {
-		populateTitle();
+		populateTitleAndPagination();
 		pupulateTotalEpisodes();
 		if (page < 0) {
 			if (currentSerie.getStatus() != null) {
@@ -296,15 +366,23 @@ public class AddSerieController extends AbstractController {
 					: currentSerie.getSeasons().get(page).getCurrentEpisodes().toString());
 		}
 	}
-	
+
+	/**
+	 * Mark every season and the serie itself as completed
+	 */
 	private void markEverythingAsCompleted() {
 		currentSerie.setStatus("Completada");
+		currentSerie.setCompletedDate(DateUtils.getCurrentDate());
 		for (Season s : currentSerie.getSeasons()) {
 			s.setStatus("Completada");
 			s.setCurrentEpisodes(s.getTotalEpisodes());
+			s.setCompletedDate(DateUtils.getCurrentDate());
 		}
 	}
 
+	/**
+	 * Populate the total episode field when in a season page
+	 */
 	private void pupulateTotalEpisodes() {
 		if (page < 0)
 			totalEpisodes.setText("");
@@ -312,6 +390,10 @@ public class AddSerieController extends AbstractController {
 			totalEpisodes.setText("de " + currentSerie.getSeasons().get(page).getTotalEpisodes().toString());
 	}
 
+	/**
+	 * Checks if the status is completed and set the episode field to max when in a
+	 * season page
+	 */
 	private void checkIfCompleted() {
 		if (page >= 0) {
 			if (cbStatus.getSelectionModel().getSelectedItem().equals("Completada")) {
@@ -322,6 +404,9 @@ public class AddSerieController extends AbstractController {
 		}
 	}
 
+	/**
+	 * Set the back button icon and resizes it
+	 */
 	private void setBackButtonIcon() {
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButtonWhite.png"));
 		imageViewBack = new ImageView(editImg);
@@ -330,12 +415,19 @@ public class AddSerieController extends AbstractController {
 		getBackButton.setGraphic(imageViewBack);
 	}
 
+	/**
+	 * Set the background image
+	 */
 	private void setBackgroundImage() {
 		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
 		backgroundImage.setFill(new ImagePattern(imgBackground));
 
 	}
 
+	/**
+	 * Set the poster image of the film. If the image can't be accessed, puts a
+	 * default image
+	 */
 	private void setPosterImg() {
 		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
 		if (currentSerie.getImageLink() != null) {
@@ -350,6 +442,9 @@ public class AddSerieController extends AbstractController {
 		}
 	}
 
+	/**
+	 * Set the favorite image based on the favorite's film field
+	 */
 	private void setFavoriteImage() {
 		if (currentSerie.isFavorite()) {
 			imageFavoriteBtn = new ImageView(favoriteImg);
@@ -360,12 +455,18 @@ public class AddSerieController extends AbstractController {
 		}
 	}
 
+	/**
+	 * Resize the favorite image
+	 */
 	private void resizeFavoriteImage() {
-			imageFavoriteBtn.setFitHeight(125);
-			imageFavoriteBtn.setFitWidth(125);
-			btFavorite.setGraphic(imageFavoriteBtn);
+		imageFavoriteBtn.setFitHeight(125);
+		imageFavoriteBtn.setFitWidth(125);
+		btFavorite.setGraphic(imageFavoriteBtn);
 	}
 
+	/*
+	 * Toggles the favorite film image and field
+	 */
 	@FXML
 	private void toggleFavorite() {
 		currentSerie.setFavorite(!currentSerie.isFavorite());

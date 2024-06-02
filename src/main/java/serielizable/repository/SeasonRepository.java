@@ -4,8 +4,21 @@ import java.util.List;
 
 import serielizable.entity.Season;
 
+/**
+ * The season repository class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class SeasonRepository extends AbstractRepository {
 
+	/**
+	 * Gets all the seasons by a serie id and user id
+	 * 
+	 * @param userId
+	 * @param serieId
+	 * @return a list of season
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Season> getAllByUserIdAndSerieId(int userId, int serieId) {
 		try {
@@ -15,7 +28,12 @@ public class SeasonRepository extends AbstractRepository {
 			return null;
 		}
 	}
-	
+
+	/**
+	 * Updates a season
+	 * 
+	 * @param season
+	 */
 	public void updateSeason(Season season) {
 		try {
 			beginTransaction();

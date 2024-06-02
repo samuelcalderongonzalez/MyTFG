@@ -4,13 +4,29 @@ import java.util.List;
 
 import serielizable.entity.Serie;
 
+/**
+ * The serie repository class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class SerieRepository extends AbstractRepository {
-
+	/**
+	 * Gets all the series by an user id
+	 * 
+	 * @param userId
+	 * @return a list of series
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Serie> getAllByUserId(int userId) {
 		return session.createQuery("from Serie where user_id = '" + userId + "'").list();
 	}
 
+	/**
+	 * Inserts a serie
+	 * 
+	 * @param serie
+	 */
 	public void insertSerie(Serie serie) {
 		try {
 			beginTransaction();
@@ -23,6 +39,11 @@ public class SerieRepository extends AbstractRepository {
 
 	}
 
+	/**
+	 * Delete a serie
+	 * 
+	 * @param serie
+	 */
 	public void deleteSerie(Serie serie) {
 		try {
 			beginTransaction();
@@ -33,6 +54,11 @@ public class SerieRepository extends AbstractRepository {
 		}
 	}
 
+	/**
+	 * Update a serie
+	 * 
+	 * @param serie
+	 */
 	public void updateSerie(Serie serie) {
 		try {
 			beginTransaction();

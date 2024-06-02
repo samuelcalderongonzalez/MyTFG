@@ -20,10 +20,23 @@ import serielizable.entity.Film;
 import serielizable.entity.Season;
 import serielizable.entity.Serie;
 
+/**
+ * The APILibrary class. This class does every call needed with the API
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class APILibrary {
 	public static List<Genre> filmGenres = searchAllFilmGenres();
 	public static List<Genre> serieGenres = searchAllSerieGenres();
 
+	/**
+	 * Search a film by a title in the API, and maps the returned JSON into a film
+	 * object
+	 * 
+	 * @param title
+	 * @return a result list of films
+	 */
 	public List<Film> searchFilmByTitle(String title) {
 
 		List<Film> films = new ArrayList<>();
@@ -82,6 +95,13 @@ public class APILibrary {
 
 	}
 
+	/**
+	 * Search a serie by a title in the API, and maps the returned JSON into a serie
+	 * object
+	 * 
+	 * @param title
+	 * @return a result list of series
+	 */
 	public List<Serie> searchSerieByTitle(String title) {
 
 		List<Serie> series = new ArrayList<>();
@@ -137,6 +157,11 @@ public class APILibrary {
 
 	}
 
+	/**
+	 * Search all film genres in the API
+	 * 
+	 * @return all film genres
+	 */
 	private static List<Genre> searchAllFilmGenres() {
 		List<Genre> genre = new ArrayList<Genre>();
 		OkHttpClient client = new OkHttpClient();
@@ -161,6 +186,11 @@ public class APILibrary {
 		return genre;
 	}
 
+	/**
+	 * Search all series genres in the API
+	 * 
+	 * @return all series genres
+	 */
 	private static List<Genre> searchAllSerieGenres() {
 		List<Genre> genre = new ArrayList<Genre>();
 		OkHttpClient client = new OkHttpClient();
@@ -186,6 +216,12 @@ public class APILibrary {
 		return genre;
 	}
 
+	/**
+	 * Search and return the film runtime by an API call
+	 * 
+	 * @param filmId
+	 * @return the film runtime
+	 */
 	public Integer searchFilmRuntime(int filmId) {
 		Integer runtime = 0;
 		OkHttpClient client = new OkHttpClient();
@@ -206,6 +242,12 @@ public class APILibrary {
 		return runtime;
 	}
 
+	/**
+	 * Search the series details and maps it to a series object
+	 * 
+	 * @param serie
+	 * @return the mapped serie
+	 */
 	public Serie searchSerieDetails(Serie serie) {
 		OkHttpClient client = new OkHttpClient();
 
@@ -232,7 +274,7 @@ public class APILibrary {
 						currSeason.setReleaseDate(
 								DateUtils.mapStringToDate(element.getAsJsonObject().get("air_date").getAsString()));
 					} catch (Exception e) {
-						
+
 					}
 					try {
 						currSeason.setTotalEpisodes(element.getAsJsonObject().get("episode_count").getAsInt());

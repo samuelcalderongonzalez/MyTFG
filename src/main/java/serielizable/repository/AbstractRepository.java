@@ -5,7 +5,12 @@ import java.util.List;
 import org.hibernate.Session;
 
 import utils.HibernateUtils;
-
+/**
+ * The Abstract Repository class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public abstract class AbstractRepository {
 	protected Session session;
 

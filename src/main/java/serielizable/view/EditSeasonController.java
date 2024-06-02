@@ -16,6 +16,12 @@ import javafx.scene.shape.Rectangle;
 import utils.AbstractController;
 import utils.DateUtils;
 
+/**
+ * The edit season controller class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class EditSeasonController extends AbstractController {
 
 	@FXML
@@ -37,10 +43,10 @@ public class EditSeasonController extends AbstractController {
 	private Label progress;
 
 	private ImageView imageViewBack;
-	
+
 	@FXML
 	private Button getBackButton;
-	
+
 	@FXML
 	private Rectangle posterImageRec;
 
@@ -55,6 +61,9 @@ public class EditSeasonController extends AbstractController {
 		populateFields();
 	}
 
+	/**
+	 * Log off method
+	 */
 	@FXML
 	public void logOff() {
 		currentUser = null;
@@ -64,47 +73,71 @@ public class EditSeasonController extends AbstractController {
 		setViewLogin();
 	}
 
+	/**
+	 * Close the app
+	 */
 	@FXML
 	public void exit() {
 		Platform.exit();
 	}
 
+	/**
+	 * Open the search view
+	 */
 	@FXML
 	public void search() {
 		currentSeason = null;
 		setViewSearch();
 	}
 
+	/**
+	 * Open the serie view
+	 */
 	@FXML
 	public void serie() {
 		currentSeason = null;
 		setViewSerie();
 	}
 
+	/**
+	 * Open the film view
+	 */
 	@FXML
 	public void film() {
 		currentSeason = null;
 		setViewFilm();
 	}
 
+	/**
+	 * Open the film stats view
+	 */
 	@FXML
 	public void filmStats() {
 		currentSeason = null;
 		setViewFilmStats();
 	}
 
+	/**
+	 * Open the serie stats view
+	 */
 	@FXML
 	public void serieStats() {
 		currentSeason = null;
 		setViewSerieStats();
 	}
 
+	/**
+	 * Go back to the previous view
+	 */
 	@FXML
 	public void handleBack() {
 		currentSeason = null;
 		setViewSeason();
 	}
 
+	/**
+	 * Populate the fields and combo boxes
+	 */
 	private void populateFields() {
 		cbStatus.getItems().addAll("Completada", "En Curso", "Pendiente", "Abandonada");
 		cbStatus.setOnAction(new EventHandler<ActionEvent>() {
@@ -123,6 +156,9 @@ public class EditSeasonController extends AbstractController {
 
 	}
 
+	/**
+	 * Saves the season with the current info
+	 */
 	@FXML
 	private void saveSeason() {
 		currentSeason.setStatus(cbStatus.getSelectionModel().getSelectedItem());
@@ -130,12 +166,17 @@ public class EditSeasonController extends AbstractController {
 		if (cbPersonalScore.getSelectionModel().getSelectedItem() != null)
 			currentSeason.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
 		currentSeason.setCurrentEpisodes(tfProgress.getText());
+		// If status is completed, the sets completedDate to current date
 		if (cbStatus.getSelectionModel().getSelectedItem().equals("Completada"))
 			currentSeason.setCompletedDate(DateUtils.getCurrentDate());
+		// Save the season
 		seasonRepository.updateSeason(currentSeason);
 		handleBack();
 	}
 
+	/**
+	 * If the status is completed, sets the progress to max
+	 */
 	private void checkIfCompleted() {
 		if (cbStatus.getSelectionModel().getSelectedItem().equals("Completada")) {
 			tfProgress.setText(currentSeason.getStringTotalEpisodes());
@@ -144,6 +185,9 @@ public class EditSeasonController extends AbstractController {
 			tfProgress.setEditable(true);
 	}
 
+	/**
+	 * Set back button icon and resizes it
+	 */
 	private void setBackButtonIcon() {
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButtonWhite.png"));
 		imageViewBack = new ImageView(editImg);
@@ -151,7 +195,11 @@ public class EditSeasonController extends AbstractController {
 		imageViewBack.setFitWidth(50);
 		getBackButton.setGraphic(imageViewBack);
 	}
-	
+
+	/**
+	 * Set the poster image of the serie. If the image can't be accessed, puts a
+	 * default image
+	 */
 	private void setPosterImg() {
 		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
 		if (currentSerie.getImageLink() != null) {
@@ -165,7 +213,10 @@ public class EditSeasonController extends AbstractController {
 			posterImageRec.setFill(new ImagePattern(imgPosterDefault));
 		}
 	}
-	
+
+	/**
+	 * Set the background image
+	 */
 	private void setBackgroundImage() {
 		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
 		backgroundImage.setFill(new ImagePattern(imgBackground));

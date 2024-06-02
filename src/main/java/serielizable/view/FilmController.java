@@ -21,6 +21,12 @@ import javafx.scene.shape.Rectangle;
 import serielizable.entity.Film;
 import utils.AbstractController;
 
+/**
+ * The film controller class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class FilmController extends AbstractController {
 
 	private ObservableList<Film> films;
@@ -81,12 +87,12 @@ public class FilmController extends AbstractController {
 
 	private List<Film> currentFilteredFilms = new ArrayList<Film>();
 
-	@FXML	
+	@FXML
 	private Rectangle posterImageRectangle;
-	
+
 	@FXML
 	private Rectangle backgroundImage;
-	
+
 	@FXML
 	private Rectangle favoriteImage;
 
@@ -128,46 +134,71 @@ public class FilmController extends AbstractController {
 
 	}
 
+	/**
+	 * Log off method
+	 */
 	@FXML
 	public void logOff() {
 		currentUser = null;
 		setViewLogin();
 	}
-	
+
+	/**
+	 * Close the app
+	 */
 	@FXML
 	public void exit() {
 		Platform.exit();
 	}
 
+	/**
+	 * Open the search view
+	 */
 	@FXML
 	public void search() {
 		setViewSearch();
 	}
 
+	/**
+	 * Open the serie view
+	 */
 	@FXML
 	public void serie() {
 		setViewSerie();
 	}
-	
+
+	/**
+	 * Open the film view
+	 */
 	@FXML
 	public void film() {
 		setViewFilm();
 	}
-	
+
+	/**
+	 * Open the film stats view
+	 */
 	@FXML
 	public void filmStats() {
 		setViewFilmStats();
 	}
-	
+
+	/**
+	 * Open the serie stats view
+	 */
 	@FXML
 	public void serieStats() {
 		setViewSerieStats();
 	}
 
+	/**
+	 * Open the edit film view
+	 */
 	@FXML
 	public void editFilm() {
 		setViewEditFilm();
 	}
+
 	/**
 	 * This method gets the film information and sends them to the proper places
 	 */
@@ -251,6 +282,9 @@ public class FilmController extends AbstractController {
 		favoriteImage.setVisible(currentFilm.isFavorite());
 	}
 
+	/**
+	 * Populate the combo boxes with the genres, favorite and statuses
+	 */
 	private void populateComboBoxes() {
 		genreFilter.getItems().addAll("Sin filtro", "Acción", "Aventura", "Animación", "Comedia", "Crimen",
 				"Documental", "Drama", "Familia", "Fantasía", "Historia", "Terror", "Música", "Misterio", "Romance",
@@ -261,16 +295,19 @@ public class FilmController extends AbstractController {
 
 	}
 
+	/**
+	 * Apply the current filters
+	 */
 	@FXML
 	private void applyFilters() {
 		for (Film film : currentFilms) {
 			if (checkFilterCases(film))
 				currentFilteredFilms.add(film);
 		}
-		if(!titleFilter.getText().isEmpty()) {
+		if (!titleFilter.getText().isEmpty()) {
 			List<Film> trueFilteredList = new ArrayList<Film>();
 			for (Film film : currentFilteredFilms) {
-				if(film.getTitle().toLowerCase().contains(titleFilter.getText().toLowerCase()))
+				if (film.getTitle().toLowerCase().contains(titleFilter.getText().toLowerCase()))
 					trueFilteredList.add(film);
 			}
 			films = FXCollections.observableArrayList(trueFilteredList);
@@ -282,6 +319,13 @@ public class FilmController extends AbstractController {
 
 	}
 
+	/**
+	 * If return true, the film is added to the filtered list after passing all the
+	 * checks
+	 * 
+	 * @param film
+	 * @return true or false
+	 */
 	private boolean checkFilterCases(Film film) {
 		if (!genreFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
 				&& !statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
@@ -312,7 +356,8 @@ public class FilmController extends AbstractController {
 				&& statusFilter.getSelectionModel().getSelectedItem().equals("Sin filtro")
 				&& !favoriteFilter.getSelectionModel().getSelectedItem().equals("Sin filtro"))
 			if ((film.isFavorite() && favoriteFilter.getSelectionModel().getSelectedItem().equals("Favorito"))
-					|| (!film.isFavorite() && favoriteFilter.getSelectionModel().getSelectedItem().equals("No favorito")))
+					|| (!film.isFavorite()
+							&& favoriteFilter.getSelectionModel().getSelectedItem().equals("No favorito")))
 				return true;
 			else
 				return false;
@@ -348,6 +393,9 @@ public class FilmController extends AbstractController {
 			return true;
 	}
 
+	/**
+	 * If no filter is selected, the set No filter as default
+	 */
 	private void defaultComboBoxes() {
 		if (genreFilter.getSelectionModel().getSelectedItem() == null) {
 			genreFilter.getSelectionModel().select("Sin filtro");

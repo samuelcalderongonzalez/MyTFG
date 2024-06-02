@@ -19,6 +19,12 @@ import serielizable.repository.SerieRepository;
 import utils.AbstractController;
 import utils.Constants;
 
+/**
+ * The serie stats controller class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class SerieStatsController extends AbstractController {
 
 	@FXML
@@ -44,7 +50,7 @@ public class SerieStatsController extends AbstractController {
 
 	@FXML
 	private Label nSeriesReviewed;
-	
+
 	@FXML
 	private Label totalTimeInvested;
 
@@ -72,7 +78,7 @@ public class SerieStatsController extends AbstractController {
 	private int favoritesCount = 0;
 
 	private int reviewedCount = 0;
-	
+
 	private int totalEpisodesViewed = 0;
 
 	private Serie longest;
@@ -86,7 +92,7 @@ public class SerieStatsController extends AbstractController {
 	private Serie lastest;
 
 	private Serie lastUpdated;
-	
+
 	private int totalSeasons = 0;
 
 	private int[] score = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -103,14 +109,21 @@ public class SerieStatsController extends AbstractController {
 
 	}
 
+	/**
+	 * Update the currentSeries list
+	 */
 	private void updateCurrentSeries() {
 		SerieRepository serieRepository = new SerieRepository();
 		currentSeries = serieRepository.getAllByUserId(currentUser.getId());
 	}
 
+	/**
+	 * Populate the pie chart with the status and their percentages
+	 */
 	private void populatePieChart() {
 		ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-				new PieChart.Data("Completadas (" + completedCount +")", getPercentage(completedCount, totalSeriesCount)),
+				new PieChart.Data("Completadas (" + completedCount + ")",
+						getPercentage(completedCount, totalSeriesCount)),
 				new PieChart.Data("Pendientes (" + pendingCount + ")", getPercentage(pendingCount, totalSeriesCount)),
 				new PieChart.Data("En curso (" + onGoingCount + ")", getPercentage(onGoingCount, totalSeriesCount)),
 				new PieChart.Data("Abandonadas (" + droppedCount + ")", getPercentage(droppedCount, totalSeriesCount)));
@@ -118,6 +131,9 @@ public class SerieStatsController extends AbstractController {
 
 	}
 
+	/**
+	 * Populate the bar chart with the scores
+	 */
 	private void populateBarChart() {
 		xaxis.setLabel("Puntuaciones");
 		yaxis.setLabel("Series totales");
@@ -137,10 +153,12 @@ public class SerieStatsController extends AbstractController {
 		series.getData().add(new XYChart.Data<>("Sin nota", score[0]));
 		// Adding series to the barchart
 		barChart.getData().add(series);
-		
-		
+
 	}
 
+	/**
+	 * Log off method
+	 */
 	@FXML
 	public void logOff() {
 		currentUser = null;
@@ -149,32 +167,50 @@ public class SerieStatsController extends AbstractController {
 		setViewLogin();
 	}
 
+	/**
+	 * Close the app
+	 */
 	@FXML
 	public void exit() {
 		Platform.exit();
 	}
 
+	/**
+	 * Open the search view
+	 */
 	@FXML
 	public void search() {
 		currentSerie = null;
 		setViewSearch();
 	}
 
+	/**
+	 * Open the serie view
+	 */
 	@FXML
 	public void serie() {
 		setViewSerie();
 	}
 
+	/**
+	 * Open the film view
+	 */
 	@FXML
 	public void film() {
 		setViewFilm();
 	}
 
+	/**
+	 * Open the film stats view
+	 */
 	@FXML
 	public void filmStats() {
 		setViewFilmStats();
 	}
 
+	/**
+	 * Open the serie stats view
+	 */
 	@FXML
 	public void serieStats() {
 		setViewSerieStats();
@@ -184,10 +220,20 @@ public class SerieStatsController extends AbstractController {
 
 	}
 
+	/**
+	 * Convert the into a percentage based in the total
+	 * 
+	 * @param element
+	 * @param total
+	 * @return the percentage
+	 */
 	private double getPercentage(int element, int total) {
 		return Double.valueOf(element) * 100 / Double.valueOf(total);
 	}
 
+	/**
+	 * Populate all the data field and display them
+	 */
 	private void getData() {
 		for (Serie serie : currentSeries) {
 			for (Season s : serie.getSeasons()) {
@@ -216,12 +262,24 @@ public class SerieStatsController extends AbstractController {
 
 	}
 
+	/**
+	 * Sum the serie total seasons if the status is completed
+	 * 
+	 * @param film
+	 */
 	private void sumDuration(Serie serie) {
-		if(serie.getCountSeasons() != null & serie.getStatus().equals("Completada"))
+		if (serie.getCountSeasons() != null & serie.getStatus().equals("Completada"))
 			totalSeasons += serie.getCountSeasons();
 	}
 
+	/**
+	 * Compare certain series in order to fill the stats fields
+	 * 
+	 * @param film
+	 */
 	private void getStatsFields(Serie serie) {
+		// Compare and saves the longest and shortest serie based on it number of
+		// seasons
 		if (serie.getCountSeasons() != null) {
 			if (longest == null)
 				longest = serie;
@@ -232,6 +290,7 @@ public class SerieStatsController extends AbstractController {
 			else if (shortest.getCountSeasons() > serie.getCountSeasons())
 				shortest = serie;
 		}
+		// Compare and saves the newest and oldest serie
 		if (serie.getReleaseDate() != null) {
 			if (newest == null)
 				newest = serie;
@@ -242,12 +301,14 @@ public class SerieStatsController extends AbstractController {
 			else if (oldest.getReleaseDate().after(serie.getReleaseDate()))
 				oldest = serie;
 		}
+		// Compare and saves the lastest completed serie
 		if (serie.getCompletedDateDate() != null) {
 			if (lastest == null)
 				lastest = serie;
 			else if (lastest.getCompletedDateDate().before(serie.getCompletedDateDate()))
 				lastest = serie;
 		}
+		// Compare and saves the lastest updated serie
 		if (serie.getLastUpdateDate() != null) {
 			if (lastUpdated == null)
 				lastUpdated = serie;
@@ -257,11 +318,21 @@ public class SerieStatsController extends AbstractController {
 
 	}
 
+	/**
+	 * Count the number of serie favorites
+	 * 
+	 * @param serie
+	 */
 	private void getFavoritesCount(Serie serie) {
 		if (serie.isFavorite())
 			favoritesCount++;
 	}
 
+	/**
+	 * Count the number of series reviewed
+	 * 
+	 * @param serie
+	 */
 	private void getReviewedCount(Serie serie) {
 		if (serie.isReviewed())
 			reviewedCount++;
@@ -278,6 +349,11 @@ public class SerieStatsController extends AbstractController {
 			droppedCount++;
 	}
 
+	/**
+	 * Count the number of series completed, on going, pending and dropped
+	 * 
+	 * @param serie
+	 */
 	private void getScoresCount(Serie serie) {
 		if (serie.getPersonalScore() != null) {
 			switch (serie.getPersonalScore()) {
@@ -316,11 +392,20 @@ public class SerieStatsController extends AbstractController {
 			score[0]++;
 		}
 	}
-	
+
+	/**
+	 * Print the total of season and chapters watched
+	 * 
+	 * @param duration
+	 * @return seasons and chapters watched
+	 */
 	private String printTotalSeasons(int duration) {
 		return "Has visto un total de " + totalSeasons + " temporadas y " + totalEpisodesViewed + " capítulos.";
 	}
-	
+
+	/**
+	 * Set the background image
+	 */
 	private void setBackgroundImage() {
 		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
 		backgroundImage.setFill(new ImagePattern(imgBackground));

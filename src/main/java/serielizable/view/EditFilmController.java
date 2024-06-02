@@ -13,6 +13,12 @@ import javafx.scene.shape.Rectangle;
 import utils.AbstractController;
 import utils.DateUtils;
 
+/**
+ * The edit film controller class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class EditFilmController extends AbstractController {
 
 	@FXML
@@ -55,6 +61,9 @@ public class EditFilmController extends AbstractController {
 		populateFields();
 	}
 
+	/**
+	 * Log off method
+	 */
 	@FXML
 	public void logOff() {
 		currentUser = null;
@@ -63,46 +72,70 @@ public class EditFilmController extends AbstractController {
 		setViewLogin();
 	}
 
+	/**
+	 * Close the app
+	 */
 	@FXML
 	public void exit() {
 		Platform.exit();
 	}
 
+	/**
+	 * Open the search view
+	 */
 	@FXML
 	public void search() {
 		currentFilm = null;
 		setViewSearch();
 	}
 
+	/**
+	 * Open the serie view
+	 */
 	@FXML
 	public void serie() {
 		currentFilm = null;
 		setViewSerie();
 	}
 
+	/**
+	 * Open the film view
+	 */
 	@FXML
 	public void film() {
 		setViewFilm();
 	}
 
+	/**
+	 * Open the film stats view
+	 */
 	@FXML
 	public void filmStats() {
 		currentFilm = null;
 		setViewFilmStats();
 	}
 
+	/**
+	 * Open the serie stats view
+	 */
 	@FXML
 	public void serieStats() {
 		currentFilm = null;
 		setViewSerieStats();
 	}
 
+	/**
+	 * Go back to the previous view
+	 */
 	@FXML
 	public void handleBack() {
 		currentFilm = null;
 		setViewFilm();
 	}
 
+	/**
+	 * Populate some fields and combo boxes
+	 */
 	private void populateFields() {
 		cbStatus.getItems().addAll("Completada", "Pendiente", "Abandonada");
 		cbPersonalScore.getItems().addAll("-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
@@ -113,6 +146,9 @@ public class EditFilmController extends AbstractController {
 
 	}
 
+	/**
+	 * Delete the current film and go back
+	 */
 	@FXML
 	private void deleteFilm() {
 		filmRepository.deleteFilm(currentFilm);
@@ -120,20 +156,29 @@ public class EditFilmController extends AbstractController {
 
 	}
 
+	/**
+	 * Saves the film with the current changes
+	 */
 	@FXML
 	private void saveFilm() {
 		currentFilm.setStatus(cbStatus.getSelectionModel().getSelectedItem());
 		currentFilm.setReview(tfReview.getText());
 		if (cbPersonalScore.getSelectionModel().getSelectedItem() != null)
 			currentFilm.setPersonalScore(cbPersonalScore.getSelectionModel().getSelectedItem());
+		// Update the completedDate if the status is completed
 		currentFilm.setCompletedDate(
 				cbStatus.getSelectionModel().getSelectedItem().equals("Completada") ? DateUtils.getCurrentDate()
 						: null);
+		// Update the lastUpdateDate field
 		currentFilm.setLastUpdateDate(DateUtils.getCurrentDate());
+		// Updates the film the goes back
 		filmRepository.updateFilm(currentFilm);
 		handleBack();
 	}
 
+	/**
+	 * Set back button icon and resizes it
+	 */
 	private void setBackButtonIcon() {
 		Image editImg = new Image(getClass().getResourceAsStream("../../utils/backButtonWhite.png"));
 		imageViewBack = new ImageView(editImg);
@@ -142,6 +187,10 @@ public class EditFilmController extends AbstractController {
 		getBackButton.setGraphic(imageViewBack);
 	}
 
+	/**
+	 * Set the poster image of the film. If the image can't be accessed, puts a
+	 * default image
+	 */
 	private void setPosterImg() {
 		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
 		if (currentFilm.getImageLink() != null) {
@@ -156,6 +205,9 @@ public class EditFilmController extends AbstractController {
 		}
 	}
 
+	/**
+	 * Set the favorite image based on the favorite's film field
+	 */
 	private void setFavoriteImage() {
 		if (currentFilm.isFavorite()) {
 			imageFavoriteBtn = new ImageView(favoriteImg);
@@ -167,18 +219,27 @@ public class EditFilmController extends AbstractController {
 
 	}
 
+	/**
+	 * Resize the favorite image
+	 */
 	private void resizeFavoriteImage() {
 		imageFavoriteBtn.setFitHeight(125);
 		imageFavoriteBtn.setFitWidth(125);
 		btFavorite.setGraphic(imageFavoriteBtn);
 	}
 
+	/*
+	 * Toggles the favorite film image and field
+	 */
 	@FXML
 	private void toggleFavorite() {
 		currentFilm.setFavorite(!currentFilm.isFavorite());
 		setFavoriteImage();
 	}
 
+	/**
+	 * Set the background image
+	 */
 	private void setBackgroundImage() {
 		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
 		backgroundImage.setFill(new ImagePattern(imgBackground));

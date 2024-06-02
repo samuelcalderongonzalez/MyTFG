@@ -13,6 +13,12 @@ import serielizable.repository.UserRepository;
 import utils.AbstractController;
 import utils.Constants;
 
+/**
+ * The register controller class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class RegisterController extends AbstractController {
 
 	// Password String regex
@@ -44,10 +50,10 @@ public class RegisterController extends AbstractController {
 
 	@FXML
 	private Button registerButton;
-	
+
 	@FXML
 	private HBox viewablePasswordTextfieldHBox;
-	
+
 	@FXML
 	private HBox viewableRepeatPasswordTextfieldHBox;
 
@@ -59,9 +65,9 @@ public class RegisterController extends AbstractController {
 	private ImageView imageViewLogo;
 
 	ImageView imageView;
-	
+
 	ImageView imageViewBack;
-	
+
 	@FXML
 	private Label logMessage;
 
@@ -105,7 +111,8 @@ public class RegisterController extends AbstractController {
 					} else {
 						// Warn the user about it
 						System.err.println(Constants.REGEX_ERROR);
-						logMessage.setText("La contraseña debe tener al menos 8 caracteres e incluir: 1 mayúscula, 1 número, 1 caracter especial");
+						logMessage.setText(
+								"La contraseña debe tener al menos 8 caracteres e incluir: 1 mayúscula, 1 número, 1 caracter especial");
 					}
 				}
 				// If the passwords are not the same:
@@ -269,7 +276,7 @@ public class RegisterController extends AbstractController {
 	public void handleBack() {
 		setViewLogin();
 	}
-	
+
 	/**
 	 * This method prepares the return button
 	 */

@@ -6,10 +6,19 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+/**
+ * The hibernate utils class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class HibernateUtils {
 	private static SessionFactory sesionFactory;
 	private static Session session;
 
+	/**
+	 * Sets the sesion factory
+	 */
 	private static void setSessionFactory() {
 		if (sesionFactory == null) {
 			StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure().build();
@@ -17,11 +26,19 @@ public class HibernateUtils {
 		}
 	}
 
+	/*
+	 * Gets the session factory
+	 */
 	public SessionFactory getSessionFactory() {
 		setSessionFactory();
 		return sesionFactory;
 	}
 
+	/**
+	 * Get the current session
+	 * 
+	 * @return session
+	 */
 	public static Session getSession() {
 		if (session == null) {
 			if (sesionFactory == null)
@@ -32,16 +49,25 @@ public class HibernateUtils {
 		return session;
 	}
 
+	/**
+	 * Close the session
+	 */
 	public static void close() {
 		closeSession();
 		closeSessionFactory();
 	}
 
+	/**
+	 * Close the session
+	 */
 	public static void closeSession() {
 		if (session != null)
 			session.close();
 	}
 
+	/**
+	 * Close the session factory
+	 */
 	public static void closeSessionFactory() {
 		if ((sesionFactory != null) && !sesionFactory.isClosed())
 			sesionFactory.close();

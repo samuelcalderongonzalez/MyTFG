@@ -19,6 +19,12 @@ import serielizable.entity.Serie;
 import utils.APILibrary;
 import utils.AbstractController;
 
+/**
+ * The search controller class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class SearchController extends AbstractController {
 	APILibrary api = new APILibrary();
 
@@ -70,6 +76,9 @@ public class SearchController extends AbstractController {
 
 	}
 
+	/**
+	 * Log off method
+	 */
 	@FXML
 	public void logOff() {
 		currentUser = null;
@@ -78,37 +87,58 @@ public class SearchController extends AbstractController {
 		setViewLogin();
 	}
 
+	/**
+	 * Close the app
+	 */
 	@FXML
 	public void exit() {
 		Platform.exit();
 	}
 
+	/**
+	 * Open the search view
+	 */
 	@FXML
 	public void search() {
 		currentFilm = null;
 		setViewSearch();
 	}
 
+	/**
+	 * Open the serie view
+	 */
 	@FXML
 	public void serie() {
 		setViewSerie();
 	}
 
+	/**
+	 * Open the film view
+	 */
 	@FXML
 	public void film() {
 		setViewFilm();
 	}
 
+	/**
+	 * Open the film stats view
+	 */
 	@FXML
 	public void filmStats() {
 		setViewFilmStats();
 	}
 
+	/**
+	 * Open the serie stats view
+	 */
 	@FXML
 	public void serieStats() {
 		setViewSerieStats();
 	}
 
+	/**
+	 * Search a film by a provided title and populate the table with the result list
+	 */
 	@FXML
 	public void searchFilm() {
 		isFilm = true;
@@ -120,6 +150,10 @@ public class SearchController extends AbstractController {
 
 	}
 
+	/**
+	 * Search a serie by a provided title and populate the table with the result
+	 * list
+	 */
 	@FXML
 	public void searchSerie() {
 		isFilm = false;
@@ -130,6 +164,10 @@ public class SearchController extends AbstractController {
 		populateTable();
 	}
 
+	/**
+	 * Switch which table is visible depending if the user searched a for a film or
+	 * series and populate it
+	 */
 	private void populateTable() {
 		if (isFilm) {
 			tableSerie.setVisible(false);
@@ -141,6 +179,7 @@ public class SearchController extends AbstractController {
 			if (!films.isEmpty())
 				logMessage.setText(" ");
 			tableFilm.setOnMouseClicked(event -> {
+				// If double click, go to the add film view
 				if (event.getClickCount() == 2) {
 					currentFilm = tableFilm.getSelectionModel().getSelectedItem();
 					setViewAddFilm();
@@ -157,6 +196,7 @@ public class SearchController extends AbstractController {
 			if (!series.isEmpty())
 				logMessage.setText(" ");
 			tableSerie.setOnMouseClicked(event -> {
+				// If double click, go to the add serie view
 				if (event.getClickCount() == 2) {
 					currentSerie = tableSerie.getSelectionModel().getSelectedItem();
 					setViewAddSerie();
@@ -165,6 +205,9 @@ public class SearchController extends AbstractController {
 		}
 	}
 
+	/**
+	 * Set the background image
+	 */
 	private void setBackgroundImage() {
 		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
 		backgroundImage.setFill(new ImagePattern(imgBackground));

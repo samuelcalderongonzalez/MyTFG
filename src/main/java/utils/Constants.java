@@ -1,5 +1,11 @@
 package utils;
 
+/**
+ * The constants class
+ * 
+ * @author Samuel Calderón González
+ *
+ */
 public class Constants {
 	public static final String PASSWORDS_DONT_MATCH = "Passwords do not match";
 	public static final String USER_DOESNT_EXISTS = "Provided user does not exists";
@@ -12,11 +18,8 @@ public class Constants {
 	public static final String API_KEY = "0af1079825989f1c7098f8e8a00c1c98";
 	public static final String DATE_PATTERN = "yyyy-MM-dd";
 	public static final String STATUS_NULL_ERROR = "Status field can't be null";
-	public static final String NO_COMPLETE_DATE= "Por completar";
+	public static final String NO_COMPLETE_DATE = "Por completar";
 	public static final String NOT_AVAILABLE = "N/A";
 	public static final String POSTER_PATH_PREX = "https://image.tmdb.org/t/p/w500";
-
-
-
 
 }
