@@ -103,8 +103,10 @@ public class FilmController extends AbstractController {
 		setBackgroundImage();
 		setEditButtonIcon();
 		populateComboBoxes();
-		// Get all the films of the logged user
-		currentFilms = filmRepository.getAllByUserId(currentUser.getId());
+		// Get all the films of the logged user if there are films
+		currentFilms = filmRepository.getAllByUserId(currentUser.getId()) != null
+				? filmRepository.getAllByUserId(currentUser.getId())
+				: null;
 		// Save them
 		films = FXCollections.observableArrayList(currentFilms);
 		// Assign the data collected to each label
@@ -122,12 +124,20 @@ public class FilmController extends AbstractController {
 				pupulateLabels();
 			}
 		});
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
+		posterImageRectangle.setFill(new ImagePattern(imgPosterDefault));
+
 		// Select first film when initializing the view
-		currentFilm = currentFilms.get(0);
-		pupulateLabels();
+		if (!currentFilms.isEmpty()) {
+			currentFilm = currentFilms.get(0);
+			pupulateLabels();
+		}
 
 	}
 
+	/**
+	 * Set the background image
+	 */
 	private void setBackgroundImage() {
 		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
 		backgroundImage.setFill(new ImagePattern(imgBackground));

@@ -69,8 +69,14 @@ public class LoginController extends AbstractController {
 	private void handleAcceder() {
 		// If the credentials are good:
 		if (checkAcceso())
-			// Go to the next view
-			setViewFilm();
+			// Go to the next view, depending if the user has already films or series
+			if (!filmRepository.getAllByUserId(currentUser.getId()).isEmpty()) {
+				setViewFilm();
+			} else if (!serieRepository.getAllByUserId(currentUser.getId()).isEmpty()) {
+				setViewSerie();
+			} else {
+				setViewSearch();
+			}
 
 	}
 

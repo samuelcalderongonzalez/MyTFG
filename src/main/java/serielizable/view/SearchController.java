@@ -16,7 +16,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import serielizable.entity.Film;
 import serielizable.entity.Serie;
-import utils.APILibrary;
 import utils.AbstractController;
 
 /**
@@ -26,7 +25,6 @@ import utils.AbstractController;
  *
  */
 public class SearchController extends AbstractController {
-	APILibrary api = new APILibrary();
 
 	List<Film> foundFilms;
 

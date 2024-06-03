@@ -78,7 +78,8 @@ public class SeasonController extends AbstractController {
 		setBackButtonIcon();
 		setButtonIcon();
 		serieTitle.setText(currentSerie.getTitle());
-		seasons = FXCollections.observableArrayList(currentSerie.getSeasons());
+		seasons = FXCollections
+				.observableArrayList(currentSerie.getSeasons() != null ? currentSerie.getSeasons() : null);
 		tcTitle.setCellValueFactory(param -> param.getValue().getSPName());
 		tcStatus.setCellValueFactory(param -> param.getValue().getSPStatus());
 		tcPersonalScore.setCellValueFactory(param -> param.getValue().getSPPersonalScore());
@@ -92,9 +93,13 @@ public class SeasonController extends AbstractController {
 				pupulateLabels();
 			}
 		});
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
+		posterImageRectangle.setFill(new ImagePattern(imgPosterDefault));
 		// Shows the first season at first
-		currentSeason = seasons.get(0);
-		pupulateLabels();
+		if (!seasons.isEmpty()) {
+			currentSeason = seasons.get(0);
+			pupulateLabels();
+		}
 	}
 
 	/**

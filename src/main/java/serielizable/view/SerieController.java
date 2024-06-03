@@ -105,7 +105,9 @@ public class SerieController extends AbstractController {
 		setBackgroundImage();
 		setButtonIcon();
 		populateComboBoxes();
-		currentSeries = serieRepository.getAllByUserId(currentUser.getId());
+		currentSeries = serieRepository.getAllByUserId(currentUser.getId()) != null
+				? serieRepository.getAllByUserId(currentUser.getId())
+				: null;
 		series = FXCollections.observableArrayList(currentSeries);
 		tcTitle.setCellValueFactory(param -> param.getValue().getSPTitle());
 		tcStatus.setCellValueFactory(param -> param.getValue().getSPStatus());
@@ -120,10 +122,13 @@ public class SerieController extends AbstractController {
 				pupulateLabels();
 			}
 		});
+		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
+		posterImageRectangle.setFill(new ImagePattern(imgPosterDefault));
 		// Mostrar la primera serie al iniciar la vista
-		currentSerie = currentSeries.get(0);
-		pupulateLabels();
-
+		if (!currentSeries.isEmpty()) {
+			currentSerie = currentSeries.get(0);
+			pupulateLabels();
+		}
 	}
 
 	/**

@@ -17,7 +17,7 @@ public class HibernateUtils {
 	private static Session session;
 
 	/**
-	 * Sets the sesion factory
+	 * Sets the session factory
 	 */
 	private static void setSessionFactory() {
 		if (sesionFactory == null) {

@@ -24,6 +24,7 @@ public abstract class AbstractController {
 	public FilmRepository filmRepository = new FilmRepository();
 	public SerieRepository serieRepository = new SerieRepository();
 	public SeasonRepository seasonRepository = new SeasonRepository();
+	public static APILibrary api = new APILibrary();
 
 	public Constants constants;
 	public CAPPI cApp;
