@@ -27,8 +27,8 @@ import serielizable.entity.Serie;
  *
  */
 public class APILibrary {
-	public static List<Genre> filmGenres = searchAllFilmGenres();
-	public static List<Genre> serieGenres = searchAllSerieGenres();
+	public static final List<Genre> filmGenres = searchAllFilmGenres();
+	public static final List<Genre> serieGenres = searchAllSerieGenres();
 
 	/**
 	 * Search a film by a title in the API, and maps the returned JSON into a film

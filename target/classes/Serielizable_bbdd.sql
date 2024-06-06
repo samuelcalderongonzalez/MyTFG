@@ -1,7 +1,16 @@
+/**
+_____________________________________________
+Serielizable BBDD - Samuel Calderón González
+_____________________________________________
+**/
+/** Create the schema if not exists **/
 create schema if not exists serielizable;
 -- rollback: 'drop schema serielizable;' -- 
 
+/** Use the created schema **/
 use serielizable;
+
+/** Create the table User **/
 create table User(
 	id int auto_increment,
     user_name varchar(50) unique not null,
@@ -10,6 +19,7 @@ create table User(
 );
 -- rollback: 'drop table User;' --
 
+/** Create the table Film **/
 create table Film(
 	id int,
     user_id int references user(id),
@@ -32,6 +42,7 @@ create table Film(
 );
 -- rollback: 'drop table Film;'
 
+/** Create the table Serie **/
 create table Serie(
 	id int,
     user_id int references user(id),
@@ -57,6 +68,7 @@ create table Serie(
 );
 -- rollback: 'drop table Serie;'
 
+/** Create the table Season **/
 create table Season(
 	id int,
     serie_id int references serie(id),
@@ -77,12 +89,5 @@ create table Season(
 );
 -- rollback: 'drop table Season;'
 
+/** Inserts an user Admin **/
 INSERT INTO USER VALUES(1, "Admin", "Admin123@");
-
-select * from user;
-select * from film;
-select * from serie;
-select * from season;
-
-
-

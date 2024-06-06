@@ -10,7 +10,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-//import lombok.Getter;
 @Entity
 @Table(name = "User")
 public class User {

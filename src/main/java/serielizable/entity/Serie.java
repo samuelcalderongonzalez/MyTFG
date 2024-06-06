@@ -30,7 +30,7 @@ public class Serie {
 	private String title;
 
 	@Column(name = "status")
-	private String status; // TODO Pendiente de enum
+	private String status;
 
 	@Column(name = "review")
 	private String review;
@@ -51,7 +51,7 @@ public class Serie {
 	private Date lastUpdateDate;
 
 	@Column(name = "genres")
-	private String genres; // TODO darle una vuelta a esto
+	private String genres;
 
 	@Column(name = "total_episodes")
 	private Integer totalEpisodes;

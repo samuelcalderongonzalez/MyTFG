@@ -6,9 +6,9 @@ public interface CAPPI {
 	public BorderPane getPrimaryStage();
 
 	/**
-	 * Permite cambiar la vista.
+	 * Change the view.
 	 * 
-	 * @param root String con la ruta de la vista.
+	 * @param view name without extension.
 	 */
 	public void setView(String view);
 	

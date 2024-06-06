@@ -31,7 +31,7 @@ public class Season {
 	private String name;
 
 	@Column(name = "status")
-	private String status; // TODO Pendiente de enum
+	private String status;
 
 	@Column(name = "review")
 	private String review;
