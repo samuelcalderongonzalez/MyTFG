@@ -213,7 +213,7 @@ public class SeasonController extends AbstractController {
 	 */
 	private void clearLabels() {
 		score.setText("");
-		totalVotes.setText("votes");
+		totalVotes.setText("sin votos");
 		completedDate.setText("");
 		review.setText("");
 	}
