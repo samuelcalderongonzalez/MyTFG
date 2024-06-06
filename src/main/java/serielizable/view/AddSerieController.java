@@ -79,9 +79,6 @@ public class AddSerieController extends AbstractController {
 	private Rectangle posterImageRec;
 
 	@FXML
-	private Rectangle backgroundImage;
-
-	@FXML
 	private Label pagination;
 
 	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
@@ -413,15 +410,6 @@ public class AddSerieController extends AbstractController {
 		imageViewBack.setFitHeight(50);
 		imageViewBack.setFitWidth(50);
 		getBackButton.setGraphic(imageViewBack);
-	}
-
-	/**
-	 * Set the background image
-	 */
-	private void setBackgroundImage() {
-		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
-		backgroundImage.setFill(new ImagePattern(imgBackground));
-
 	}
 
 	/**

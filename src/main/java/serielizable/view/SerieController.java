@@ -93,9 +93,6 @@ public class SerieController extends AbstractController {
 	private Rectangle posterImageRectangle;
 
 	@FXML
-	private Rectangle backgroundImage;
-
-	@FXML
 	private Rectangle favoriteImage;
 
 	@FXML
@@ -129,15 +126,6 @@ public class SerieController extends AbstractController {
 			currentSerie = currentSeries.get(0);
 			pupulateLabels();
 		}
-	}
-
-	/**
-	 * Set the background image
-	 */
-	private void setBackgroundImage() {
-		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
-		backgroundImage.setFill(new ImagePattern(imgBackground));
-
 	}
 
 	/**

@@ -2,6 +2,10 @@ package utils;
 
 import java.util.List;
 
+import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import serielizable.CAPPI;
 import serielizable.entity.Film;
 import serielizable.entity.Season;
@@ -25,6 +29,9 @@ public abstract class AbstractController {
 	public SerieRepository serieRepository = new SerieRepository();
 	public SeasonRepository seasonRepository = new SeasonRepository();
 	public static APILibrary api = new APILibrary();
+	
+	@FXML
+	public Rectangle backgroundImage;
 
 	public Constants constants;
 	public CAPPI cApp;
@@ -141,6 +148,15 @@ public abstract class AbstractController {
 	 */
 	public void setViewSerieStats() {
 		setView("SerieStats");
+	}
+	
+	/**
+	 * Set the background image
+	 */
+	public void setBackgroundImage() {
+		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
+		backgroundImage.setFill(new ImagePattern(imgBackground));
+
 	}
 
 }

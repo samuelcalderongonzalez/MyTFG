@@ -44,9 +44,6 @@ public class EditSerieController extends AbstractController {
 	@FXML
 	private Rectangle posterImageRec;
 
-	@FXML
-	private Rectangle backgroundImage;
-
 	Image favoriteImg = new Image(getClass().getResourceAsStream("../../utils/favorite.png"));
 	Image noFavoriteImg = new Image(getClass().getResourceAsStream("../../utils/noFavorite.png"));
 
@@ -229,15 +226,6 @@ public class EditSerieController extends AbstractController {
 	private void toggleFavorite() {
 		currentSerie.setFavorite(!currentSerie.isFavorite());
 		setFavoriteImage();
-	}
-
-	/**
-	 * Set the background image
-	 */
-	private void setBackgroundImage() {
-		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
-		backgroundImage.setFill(new ImagePattern(imgBackground));
-
 	}
 
 }

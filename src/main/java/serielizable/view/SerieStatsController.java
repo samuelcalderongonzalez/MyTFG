@@ -10,9 +10,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import serielizable.entity.Season;
 import serielizable.entity.Serie;
 import serielizable.repository.SerieRepository;
@@ -96,8 +93,6 @@ public class SerieStatsController extends AbstractController {
 	private int totalSeasons = 0;
 
 	private int[] score = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-	@FXML
-	private Rectangle backgroundImage;
 
 	@FXML
 	public void initialize() {
@@ -401,15 +396,6 @@ public class SerieStatsController extends AbstractController {
 	 */
 	private String printTotalSeasons(int duration) {
 		return "Has visto un total de " + totalSeasons + " temporadas y " + totalEpisodesViewed + " capítulos.";
-	}
-
-	/**
-	 * Set the background image
-	 */
-	private void setBackgroundImage() {
-		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
-		backgroundImage.setFill(new ImagePattern(imgBackground));
-
 	}
 
 }

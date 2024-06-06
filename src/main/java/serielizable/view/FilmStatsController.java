@@ -10,9 +10,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import serielizable.entity.Film;
 import serielizable.repository.FilmRepository;
 import utils.AbstractController;
@@ -92,9 +89,6 @@ public class FilmStatsController extends AbstractController {
 	private int totalMinutes = 0;
 
 	private int[] score = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
-	@FXML
-	private Rectangle backgroundImage;
 
 	@FXML
 	public void initialize() {
@@ -406,13 +400,5 @@ public class FilmStatsController extends AbstractController {
 		return "Has pasado un total de " + time + " viendo películas.";
 	}
 
-	/**
-	 * Set the background image
-	 */
-	private void setBackgroundImage() {
-		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
-		backgroundImage.setFill(new ImagePattern(imgBackground));
-
-	}
 
 }

@@ -69,11 +69,7 @@ public class SeasonController extends AbstractController {
 	private Rectangle posterImageRectangle;
 
 	@FXML
-	private Rectangle backgroundImage;
-
-	@FXML
 	public void initialize() {
-		setPosterImg();
 		setBackgroundImage();
 		setBackButtonIcon();
 		setButtonIcon();
@@ -95,6 +91,7 @@ public class SeasonController extends AbstractController {
 		});
 		Image imgPosterDefault = new Image(getClass().getResourceAsStream("../../utils/posterImageDefault.jpg"));
 		posterImageRectangle.setFill(new ImagePattern(imgPosterDefault));
+		setPosterImg();
 		// Shows the first season at first
 		if (!seasons.isEmpty()) {
 			currentSeason = seasons.get(0);
@@ -173,15 +170,6 @@ public class SeasonController extends AbstractController {
 	@FXML
 	public void handleBack() {
 		setViewSerie();
-	}
-
-	/**
-	 * Set the background image
-	 */
-	private void setBackgroundImage() {
-		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
-		backgroundImage.setFill(new ImagePattern(imgBackground));
-
 	}
 
 	/**

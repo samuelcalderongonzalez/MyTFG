@@ -51,9 +51,6 @@ public class EditSeasonController extends AbstractController {
 	private Rectangle posterImageRec;
 
 	@FXML
-	private Rectangle backgroundImage;
-
-	@FXML
 	public void initialize() {
 		setBackgroundImage();
 		setPosterImg();
@@ -212,15 +209,6 @@ public class EditSeasonController extends AbstractController {
 		} else {
 			posterImageRec.setFill(new ImagePattern(imgPosterDefault));
 		}
-	}
-
-	/**
-	 * Set the background image
-	 */
-	private void setBackgroundImage() {
-		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
-		backgroundImage.setFill(new ImagePattern(imgBackground));
-
 	}
 
 }

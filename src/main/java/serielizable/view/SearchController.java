@@ -11,9 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Rectangle;
 import serielizable.entity.Film;
 import serielizable.entity.Serie;
 import utils.AbstractController;
@@ -62,9 +59,6 @@ public class SearchController extends AbstractController {
 	private TableColumn<Serie, String> tcSerieScore;
 	@FXML
 	private TableColumn<Serie, String> tcSerieSeasons;
-
-	@FXML
-	private Rectangle backgroundImage;
 
 	private boolean isFilm;
 
@@ -201,14 +195,5 @@ public class SearchController extends AbstractController {
 				}
 			});
 		}
-	}
-
-	/**
-	 * Set the background image
-	 */
-	private void setBackgroundImage() {
-		Image imgBackground = new Image(getClass().getResourceAsStream("../../utils/backgroundImage.jpg"));
-		backgroundImage.setFill(new ImagePattern(imgBackground));
-
 	}
 }
