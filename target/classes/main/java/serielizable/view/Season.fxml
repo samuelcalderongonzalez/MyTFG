@@ -76,6 +76,7 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </Label>
+                                    <Label fx:id="totalVotes" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="132.0" text="votos" />
                                  </children>
                                  <HBox.margin>
                                     <Insets />
