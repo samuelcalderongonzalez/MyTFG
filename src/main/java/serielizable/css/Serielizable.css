@@ -73,11 +73,6 @@
   -fx-background-color: #6b8ad7;
 }
 
-.hyperlink {
-  -fx-text-fill: #4CAF50;
-  -fx-font-weight: bold;
-}
-
 .menu-bar  {
   -fx-background-color: #345da5;
   -fx-border-color: #9c9c9c;
@@ -92,11 +87,6 @@
 .menu-item .label{
     -fx-font-size: 14.0 pt;
     -fx-text-fill: black;
-}
-
-.circle {
-  -fx-fill: #4CAF50;
-  -fx-stroke: #ffffff;
 }
 
 .check-box {
