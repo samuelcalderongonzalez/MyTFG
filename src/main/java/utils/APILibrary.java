@@ -74,15 +74,21 @@ public class APILibrary {
 
 				currFilm.setId(element.getAsJsonObject().get("id").getAsInt());
 				currFilm.setTitle(element.getAsJsonObject().get("title").getAsString());
-				currFilm.setReleaseDate(
-						DateUtils.mapStringToDate(element.getAsJsonObject().get("release_date").getAsString()));
+				try {
+					currFilm.setReleaseDate(
+							DateUtils.mapStringToDate(element.getAsJsonObject().get("release_date").getAsString()));
+				} catch (Exception e) {
+					currFilm.setReleaseDate(DateUtils.getCurrentDate());
+				}
 				currFilm.setScore(element.getAsJsonObject().get("vote_average").getAsDouble());
 				currFilm.setSynopsis(element.getAsJsonObject().get("overview").getAsString());
 				currFilm.setDuration(searchFilmRuntime(currFilm.getId()));
 				currFilm.setTotalScoreVotes(element.getAsJsonObject().get("vote_count").getAsInt());
+				try {
 				currFilm.setImageLink(
 						Constants.POSTER_PATH_PREX + element.getAsJsonObject().get("poster_path").getAsString());
-
+				} catch (Exception e) {
+				}
 				films.add(currFilm);
 			}
 		} catch (UnsupportedEncodingException e) {
@@ -137,14 +143,21 @@ public class APILibrary {
 				}
 				currSerie.setId(element.getAsJsonObject().get("id").getAsInt());
 				currSerie.setTitle(element.getAsJsonObject().get("name").getAsString());
+				try {
 				currSerie.setReleaseDate(
 						DateUtils.mapStringToDate(element.getAsJsonObject().get("first_air_date").getAsString()));
+				} catch (Exception e) {
+					currSerie.setReleaseDate(DateUtils.getCurrentDate());
+				}
 				currSerie.setScore(element.getAsJsonObject().get("vote_average").getAsDouble());
 				currSerie.setSynopsis(element.getAsJsonObject().get("overview").getAsString());
 				currSerie.setTotalScoreVotes(element.getAsJsonObject().get("vote_count").getAsInt());
+				try {
 				currSerie.setImageLink(
 						Constants.POSTER_PATH_PREX + element.getAsJsonObject().get("poster_path").getAsString());
-
+				} catch(Exception e) {
+					
+				}
 				series.add(searchSerieDetails(currSerie));
 			}
 		} catch (UnsupportedEncodingException e) {

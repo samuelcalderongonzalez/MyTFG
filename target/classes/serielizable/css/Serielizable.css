@@ -1,0 +1,135 @@
+.button:hover {
+    -fx-cursor: hand;
+}
+
+.root {
+  -fx-background-color: #f5f5f5;
+}
+
+.text-field {
+  -fx-background-color: #d2ecff;
+  -fx-border-color: #000000;
+  -fx-border-width: 1.0px;
+  -fx-border-radius: 3.0px;
+  -fx-padding: 5.0px;
+}
+
+.text-area {
+  -fx-background-color: #d2ecff;
+  -fx-border-color: #000000;
+  -fx-border-width: 1.0px;
+  -fx-border-radius: 3.0px;
+  -fx-padding: 5.0px;
+  -fx-background-fills: #d2ecff;
+}
+
+.text-area .content {
+  -fx-background-color: #d2ecff;
+
+}
+
+.button {
+  -fx-background-color: #345da5;
+  -fx-text-fill: #ffffff;
+  -fx-font-weight: bold;
+  -fx-border-radius: 3.0px;
+
+}
+
+.button-serie {
+  -fx-background-color: #345da5;
+  -fx-text-fill: #ffffff;
+  -fx-font-weight: bold;
+  -fx-font-size: 14;
+  -fx-border-radius: 3.0px;
+  -fx-border-color: white;
+  -fx-border-width: 2px;
+
+}
+
+.menu-bar .label {
+    -fx-font-size: 14.0 pt;
+    -fx-text-fill: white;
+    -fx-font-weight: bold; 
+    -fx-padding: 3.0px;
+
+}
+
+
+.combo-box {
+  -fx-background-color: #4d82bc;
+  -fx-border-color: #000000;
+  -fx-border-width: 1.0px;
+  -fx-border-radius: 3.0px;
+  -fx-text-fill: #ffffff;
+}
+
+.combo-box .list-cell {
+    -fx-background: #6b8ad7;
+    -fx-text-fill: #ffffff;
+}
+
+.button:hover {
+  -fx-background-color: #6b8ad7;
+}
+
+.menu-bar  {
+  -fx-background-color: #345da5;
+  -fx-border-color: #9c9c9c;
+  -fx-border-width: 0.0 0.0 1.0px 0.0;
+
+}
+
+.menu-item {
+    -fx-text-fill: black;
+    -fx-background: #BEE7FF;
+}
+.menu-item .label{
+    -fx-font-size: 14.0 pt;
+    -fx-text-fill: black;
+}
+
+.check-box {
+    -fx-padding: 5px;
+}
+
+.table-view {
+	-fx-background-color: 	#BEE7FF;
+	    -fx-border-color: #9c9c9c;
+}
+
+.table-view .column-header {
+	-fx-background-color: #6b8ad7;
+	-fx-border-color: #9c9c9c;
+}
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-background-color: #6b8ad7;
+}
+
+.check-box .box {
+    -fx-background-color: #ffffff; 
+    -fx-border-color: #999999; 
+    -fx-border-width: 2px;
+    -fx-padding: 2px;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #4CAF50; 
+    -fx-border-color: #4CAF50; 
+}
+
+.check-box:disabled:selected .box {
+    -fx-background-color: #cccccc;
+    -fx-border-color: #cccccc;
+}
+
+.check-box .label {
+    -fx-padding: 0 0 0 5px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333; 
+}
+
+.check-box:disabled .label {
+    -fx-text-fill: #cccccc;
+}
